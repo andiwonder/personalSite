@@ -1371,7 +1371,7 @@ table {
   text-align: center; }
   @media screen and (max-width: 1023px) {
     .main-content {
-      padding-right: 24px; } }
+      padding: 20px; } }
 
 .main-content__wrapper {
   padding: 5% 0; }
