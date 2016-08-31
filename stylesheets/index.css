@@ -1,4 +1,53 @@
 @charset "UTF-8";
+body {
+  font-family: Arial,Helvetica,sans-serif; }
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline; }
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block; }
+
+body {
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility; }
+
+ol, ul {
+  list-style: none; }
+
+blockquote, q {
+  quotes: none; }
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
 /*------------------------------------*\
     $CSSWIZARDRY-GRIDS
 \*------------------------------------*/
@@ -127,7 +176,7 @@
  * 2. Remove any margins and paddings that might affect the grid system.
  * 3. Apply a negative `margin-left` to negate the columns’ gutters.
  */
-.grid {
+.grid, .intro {
   list-style: none;
   /* [1] */
   margin: 0;
@@ -144,7 +193,7 @@
  * 4. Full-width unless told to behave otherwise.
  * 5. Required to combine fluid widths and fixed gutters.
  */
-.grid__item {
+.grid__item, .nav, .main-content, .main-content__wrapper, .intro .photo__wrapper {
   display: inline-block;
   /* [1] */
   padding-left: 24px;
@@ -167,7 +216,7 @@
 .grid--rev {
   direction: rtl;
   text-align: left; }
-  .grid--rev > .grid__item {
+  .grid--rev > .grid__item, .grid--rev > .nav, .grid--rev > .main-content, .grid--rev > .main-content__wrapper, .intro .grid--rev > .photo__wrapper {
     direction: ltr;
     text-align: left; }
 
@@ -175,9 +224,9 @@
  * Gutterless grids have all the properties of regular grids, minus any spacing.
  * Extends `.grid`.
  */
-.grid--full {
+.grid--full, .intro {
   margin-left: 0; }
-  .grid--full > .grid__item {
+  .grid--full > .grid__item, .intro > .grid__item, .grid--full > .nav, .intro > .nav, .grid--full > .main-content, .intro > .main-content, .grid--full > .main-content__wrapper, .intro > .main-content__wrapper, .intro .grid--full > .photo__wrapper, .intro > .photo__wrapper {
     padding-left: 0; }
 
 /**
@@ -185,26 +234,26 @@
  */
 .grid--right {
   text-align: right; }
-  .grid--right > .grid__item {
+  .grid--right > .grid__item, .grid--right > .nav, .grid--right > .main-content, .grid--right > .main-content__wrapper, .intro .grid--right > .photo__wrapper {
     text-align: left; }
 
 /**
  * Centered grids align grid items centrally without needing to use push or pull
  * classes. Extends `.grid`.
  */
-.grid--center {
+.grid--center, .intro {
   text-align: center; }
-  .grid--center > .grid__item {
+  .grid--center > .grid__item, .intro > .grid__item, .grid--center > .nav, .intro > .nav, .grid--center > .main-content, .intro > .main-content, .grid--center > .main-content__wrapper, .intro > .main-content__wrapper, .intro .grid--center > .photo__wrapper, .intro > .photo__wrapper {
     text-align: left; }
 
 /**
  * Align grid cells vertically (`.grid--middle` or `.grid--bottom`). Extends
  * `.grid`.
  */
-.grid--middle > .grid__item {
+.grid--middle > .grid__item, .grid--middle > .nav, .grid--middle > .main-content, .grid--middle > .main-content__wrapper, .intro .grid--middle > .photo__wrapper {
   vertical-align: middle; }
 
-.grid--bottom > .grid__item {
+.grid--bottom > .grid__item, .grid--bottom > .nav, .grid--bottom > .main-content, .grid--bottom > .main-content__wrapper, .intro .grid--bottom > .photo__wrapper {
   vertical-align: bottom; }
 
 /**
@@ -212,7 +261,7 @@
  */
 .grid--narrow {
   margin-left: -12px; }
-  .grid--narrow > .grid__item {
+  .grid--narrow > .grid__item, .grid--narrow > .nav, .grid--narrow > .main-content, .grid--narrow > .main-content__wrapper, .intro .grid--narrow > .photo__wrapper {
     padding-left: 12px; }
 
 /**
@@ -220,7 +269,7 @@
  */
 .grid--wide {
   margin-left: -48px; }
-  .grid--wide > .grid__item {
+  .grid--wide > .grid__item, .grid--wide > .nav, .grid--wide > .main-content, .grid--wide > .main-content__wrapper, .intro .grid--wide > .photo__wrapper {
     padding-left: 48px; }
 
 /*------------------------------------*\
@@ -247,7 +296,7 @@
 /**
  * Thirds
  */
-.one-third, .two-sixths, .four-twelfths {
+.one-third, .two-sixths, .four-twelfths, .intro .photo__wrapper {
   width: 33.333%; }
 
 .two-thirds, .four-sixths, .eight-twelfths {
@@ -274,16 +323,16 @@
 .three-fifths, .six-tenths {
   width: 60%; }
 
-.four-fifths, .eight-tenths {
+.four-fifths, .eight-tenths, .main-content__wrapper {
   width: 80%; }
 
 /**
  * Sixths
  */
-.one-sixth, .two-twelfths {
+.one-sixth, .two-twelfths, .nav {
   width: 16.666%; }
 
-.five-sixths, .ten-twelfths {
+.five-sixths, .ten-twelfths, .main-content {
   width: 83.333%; }
 
 /**
@@ -338,7 +387,7 @@
   /**
    * Whole
    */
-  .palm--one-whole {
+  .palm--one-whole, .nav, .main-content, .main-content__wrapper, .intro .photo__wrapper {
     width: 100%; }
 
   /**
@@ -350,7 +399,7 @@
   /**
    * Thirds
    */
-  .palm--one-third, .palm--two-sixths, .palm--four-twelfths {
+  .palm--one-third, .palm--two-sixths, .palm--four-twelfths, .nav-primary__item {
     width: 33.333%; }
 
   .palm--two-thirds, .palm--four-sixths, .palm--eight-twelfths {
@@ -437,13 +486,13 @@
   /**
    * Whole
    */
-  .lap--one-whole {
+  .lap--one-whole, .nav, .main-content, .main-content__wrapper {
     width: 100%; }
 
   /**
    * Halves
    */
-  .lap--one-half, .lap--two-quarters, .lap--three-sixths, .lap--four-eighths, .lap--five-tenths, .lap--six-twelfths {
+  .lap--one-half, .lap--two-quarters, .lap--three-sixths, .lap--four-eighths, .lap--five-tenths, .lap--six-twelfths, .intro .photo__wrapper {
     width: 50%; }
 
   /**
@@ -1243,5 +1292,145 @@
 /**
  * Pull classes, to move grid items back to the left by certain amounts.
  */
+.main-wrapper {
+  width: 75%;
+  margin-left: 12.5%; }
 
-/*# sourceMappingURL=grids.css.map */
+.stats__img {
+  width: 100%;
+  padding: 10%; }
+
+.stats__text {
+  font-size: 1em;
+  font-weight: 600;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 1px; }
+
+.navbar-icon {
+  width: 36px; }
+
+.nav {
+  text-align: center;
+  background-color: #28aadc;
+  padding-top: 5%;
+  font-weight: 800;
+  font-family: Arial; }
+  @media screen and (max-width: 1023px) {
+    .nav {
+      padding-top: 3%; } }
+  .nav .site-logo {
+    width: 50%; }
+    @media screen and (max-width: 1023px) {
+      .nav .site-logo {
+        width: 10%; } }
+    @media screen and (max-width: 480px) {
+      .nav .site-logo {
+        width: 20%; } }
+  @media (min-width: 1024px) {
+    .nav {
+      height: 100vh;
+      position: fixed; } }
+  .nav-social {
+    margin-top: 20%; }
+    @media screen and (max-width: 1023px) {
+      .nav-social {
+        margin: 3% 0; } }
+    .nav-social__item {
+      display: inline-block;
+      margin: 0 3%; }
+    .nav-social__icon {
+      width: 24px;
+      height: 24px; }
+  .nav-primary {
+    margin-top: 20%;
+    font-size: 1.125em; }
+    @media screen and (max-width: 1023px) {
+      .nav-primary {
+        margin: 3% auto;
+        width: 60%;
+        display: table;
+        font-size: 1.5em; } }
+    @media screen and (max-width: 768px) {
+      .nav-primary {
+        margin: 3% 0;
+        width: 100%;
+        display: table;
+        font-size: .9em; } }
+    .nav-primary__item {
+      margin: 20% 0; }
+      @media screen and (max-width: 1023px) {
+        .nav-primary__item {
+          margin: 3% 0;
+          display: table-cell; } }
+    .nav-primary__link {
+      color: black;
+      font-size: 1.125em; }
+
+.main-content {
+  text-align: center; }
+  @media screen and (max-width: 1023px) {
+    .main-content {
+      padding-right: 24px; } }
+
+.main-content__wrapper {
+  padding: 5% 0; }
+  .main-content__wrapper--without-padding {
+    padding: 0; }
+
+.intro .photo__wrapper {
+  text-align: center; }
+  .intro .photo__wrapper .about-me__photo {
+    width: 100%; }
+
+.intro__text {
+  font-family: Arial; }
+  .intro__text h3 {
+    margin: 1.5% 0;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase; }
+  .intro__text h4 {
+    margin: 0 0 1.5% 0;
+    font-weight: 600; }
+  .intro__text p {
+    font-size: .85em;
+    line-height: 1.5;
+    font-style: italic;
+    position: relative; }
+
+/* Single property */
+html {
+  font-size: 14px; }
+  @media screen and (min-width: 320px) {
+    html {
+      font-size: calc(14px + 6 * (100vw - 320px) / 1080); } }
+  @media screen and (min-width: 1400px) {
+    html {
+      font-size: 20px; } }
+
+p {
+  margin-bottom: 1.3em; }
+
+h1, h2, h3, h4 {
+  margin: 1.414em 0 0.5em;
+  font-weight: inherit;
+  line-height: 1.2; }
+
+h1 {
+  margin-top: 0;
+  font-size: 3.998em; }
+
+h2 {
+  font-size: 2.827em; }
+
+h3 {
+  font-size: 1.999em; }
+
+h4 {
+  font-size: 1.414em; }
+
+small, .font_small {
+  font-size: 0.707em; }
+
+/*# sourceMappingURL=index.css.map */

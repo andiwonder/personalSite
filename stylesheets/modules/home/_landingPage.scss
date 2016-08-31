@@ -1,0 +1,49 @@
+.section-landing {
+  font-size: 1.5em;
+  width: 100%;
+  height: 100vh;
+  background: url('../images/vox_snapshot.png') no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  text-align: left;
+
+  @media screen and (max-width: 768px) {
+    font-size: 1.2em;
+    padding-top: 5%;
+    line-height: 1.2;
+  }
+
+  &__logo {
+    color: red;
+    padding-top: 21%;
+    padding-left: 10%;
+    margin-bottom: 1.4%;
+
+    span {
+      font-size: 6.648em;
+      color: white;
+      background-color: rgba(46, 43, 44, 0.8);
+    }
+  }
+
+  &__text {
+    font-size: 2em;
+    line-height: 2em;
+    padding-left: 10%;
+
+    span.first-span {
+      margin-left: 10px;
+    }
+
+    & span {
+      padding: .5%;
+      background-color: rgba(254, 255, 3, 1); 
+    }
+
+    @media screen and (max-width: 768px) {
+      width: 80%;
+    }
+  }
+}

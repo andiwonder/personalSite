@@ -1,0 +1,121 @@
+.github-table {
+  width: 45%;
+  margin: 0 auto;
+  display: inline-block;
+}
+.commit-date span {
+  margin-top: 1%;
+}
+.commit-date span {
+  font-size: 1em;
+  vertical-align: top;
+}
+
+.commit-message {
+  padding-left: 5%;
+  /*padding-top: 2%;*/
+  border-left: 1px solid grey;
+  margin-left: 1.5%;
+  font-weight: 600;
+  /*padding-bottom: 2%;*/
+}
+
+.img-wrapper {
+  width: 10%;
+  display: inline-block;
+  padding: 2% 2% 1% 2%;
+  vertical-align: top;
+}
+
+.text-wrapper {
+  display: inline-block;
+  width: 88%;
+  padding-top: 2%;
+  font-size: .9em;
+}
+
+.commit-message img {
+  width: 100%;
+}
+
+.commit-message-date {
+  font-size: .9em;
+  color: #767676;
+}
+
+.commit-message h3 {
+  font-size: 1em;
+  line-height: 1.2em;
+}
+.commit-message-innerdiv {
+  width: 100%;
+  border: 1px solid #e5e5e5;
+  background-color: #F8F5EF;
+}
+
+.commit-date {
+  margin: 2% 0;
+}
+
+.commit {
+  width: 100%;
+}
+
+.section-github {
+  padding-top: 5%;
+  padding-bottom: 5%;
+}
+
+
+.github-table {
+  width: 33%;
+  display: inline-block;
+  vertical-align: top; 
+  margin-right: 1%;
+}
+
+.commit-week-table {
+  width: 35%;
+  margin-left: 10%;
+  display: inline-block;
+  vertical-align: top;
+  margin-right: 5%;
+  font-family: "cardo";
+  font-weight: 600;
+}
+
+.table-arrows {
+  vertical-align: top;
+  margin-top: 20% !important;
+  font-size: 2em !important;
+}
+
+.commit-week--header {
+  font-size: 5em;
+}
+
+.table-highlighted {
+  background-color: #FEFF03;
+}
+
+.week-table {
+  border: 1px solid rgba(34,36,38,.15) !important;
+  padding: 1% !important;
+  padding: 4% !important;
+}
+.hidden {
+  display: none;
+}
+
+
+.commit-week--header {
+  .ui.statistic {
+    background-color: #FEFF03;
+    vertical-align: top;
+    float: right;
+
+    .label {
+      font-size: .2em;
+    }
+  }
+}

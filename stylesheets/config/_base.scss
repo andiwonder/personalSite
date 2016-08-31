@@ -1,0 +1,23 @@
+$base__font-size: 15 !default;
+$base__line: 20 !default;
+
+@function calc-em($target, $context: $base__font-size) {
+    @return ($target / $context) * 1em;
+}
+
+$vox_gray: #f1f3f2;
+$vox_yellow: #FEFF03;
+
+body{
+  // background-color: $vox_gray;
+  // for testing purposes
+  // -webkit-filter: blur(2px);
+  // -moz-filter: blur(2px);
+  // -ms-filter: blur(2px);
+  // -o-filter: blur(2px);
+  // filter: blur(2px);
+  font-family: Arial,Helvetica,sans-serif; 
+}
+
+
+
