@@ -183,7 +183,7 @@ table {
   /* [2] */
   padding: 0;
   /* [2] */
-  margin-left: -24px;
+  margin-left: 0;
   /* [3] */ }
 
 /**
@@ -196,7 +196,7 @@ table {
 .grid__item, .nav, .main-content, .main-content__wrapper, .intro .photo__wrapper, .stats-section__item {
   display: inline-block;
   /* [1] */
-  padding-left: 24px;
+  padding-left: 0;
   /* [2] */
   vertical-align: top;
   /* [3] */
@@ -260,17 +260,17 @@ table {
  * Create grids with narrower gutters. Extends `.grid`.
  */
 .grid--narrow {
-  margin-left: -12px; }
+  margin-left: 0; }
   .grid--narrow > .grid__item, .grid--narrow > .nav, .grid--narrow > .main-content, .grid--narrow > .main-content__wrapper, .intro .grid--narrow > .photo__wrapper, .grid--narrow > .stats-section__item {
-    padding-left: 12px; }
+    padding-left: 0; }
 
 /**
  * Create grids with wider gutters. Extends `.grid`.
  */
 .grid--wide {
-  margin-left: -48px; }
+  margin-left: 0; }
   .grid--wide > .grid__item, .grid--wide > .nav, .grid--wide > .main-content, .grid--wide > .main-content__wrapper, .intro .grid--wide > .photo__wrapper, .grid--wide > .stats-section__item {
-    padding-left: 48px; }
+    padding-left: 0; }
 
 /*------------------------------------*\
     $WIDTHS
