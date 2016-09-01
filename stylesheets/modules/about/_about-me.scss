@@ -17,21 +17,19 @@
 }
 
 .intro__text {
-  font-family: Arial;
+  font-family: 'PT Sans', sans-serif;
   padding-left: 0;
   h3{
-    margin: .75em 0;
-    font-weight: 600;
+    margin: .75em 0 0 0;
+    font-weight: 700i;
+    letter-spacing: 1px;
     letter-spacing: 1px;
     text-transform: uppercase;
-
-    @media screen and (max-width:767px){
-      margin: .75em 0 .5em 0;
-    }
   }
   h4{
     margin: 0 0 .75em 0;
-    font-weight: 600;
+    font-weight: 700;
+    letter-spacing: 1px;
   }
   p {
     font-size: .85em;
@@ -60,6 +58,12 @@
   padding: 0;
   margin-top: 5%;
   margin-left: 0;
+  font-family: 'PT Sans', sans-serif;
+
+  h4 {
+    font-weight: 700;
+    letter-spacing: 1px;
+  }
 
   @media screen and (max-width:767px){
     margin-top: 10%;
@@ -81,7 +85,8 @@
 
   .stats__text{
     font-size: 0.707em;
-    font-weight: 600;
+    font-weight: 700;
+    letter-spacing: 1px;
     text-align: center;
     text-transform: uppercase;
     letter-spacing: 1px;

@@ -1299,8 +1299,8 @@ table {
   text-align: center;
   background-color: #28aadc;
   padding-top: 5%;
-  font-weight: 800;
-  font-family: Arial;
+  font-weight: 700i;
+  font-family: 'PT Sans', sans-serif;
   padding-left: 0; }
   @media screen and (max-width: 1023px) {
     .nav {
@@ -1370,19 +1370,18 @@ table {
     width: 100%; }
 
 .intro__text {
-  font-family: Arial;
+  font-family: 'PT Sans', sans-serif;
   padding-left: 0; }
   .intro__text h3 {
-    margin: .75em 0;
-    font-weight: 600;
+    margin: .75em 0 0 0;
+    font-weight: 700i;
+    letter-spacing: 1px;
     letter-spacing: 1px;
     text-transform: uppercase; }
-    @media screen and (max-width: 767px) {
-      .intro__text h3 {
-        margin: .75em 0 .5em 0; } }
   .intro__text h4 {
     margin: 0 0 .75em 0;
-    font-weight: 600; }
+    font-weight: 700;
+    letter-spacing: 1px; }
   .intro__text p {
     font-size: .85em;
     line-height: 1.5;
@@ -1392,7 +1391,11 @@ table {
 .stats-section {
   padding: 0;
   margin-top: 5%;
-  margin-left: 0; }
+  margin-left: 0;
+  font-family: 'PT Sans', sans-serif; }
+  .stats-section h4 {
+    font-weight: 700;
+    letter-spacing: 1px; }
   @media screen and (max-width: 767px) {
     .stats-section {
       margin-top: 10%; } }
@@ -1404,7 +1407,8 @@ table {
       padding: 5%; }
     .stats-section__item .stats__text {
       font-size: 0.707em;
-      font-weight: 600;
+      font-weight: 700;
+      letter-spacing: 1px;
       text-align: center;
       text-transform: uppercase;
       letter-spacing: 1px;
