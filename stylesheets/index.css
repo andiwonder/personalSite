@@ -1377,6 +1377,9 @@ table {
     font-weight: 600;
     letter-spacing: 1px;
     text-transform: uppercase; }
+    @media screen and (max-width: 767px) {
+      .intro__text h3 {
+        margin: .75em 0 .5em 0; } }
   .intro__text h4 {
     margin: 0 0 .75em 0;
     font-weight: 600; }
@@ -1387,8 +1390,12 @@ table {
     position: relative; }
 
 .stats-section {
-  padding: 2em 0;
-  margin-top: 5%; }
+  padding: 0;
+  margin-top: 5%;
+  margin-left: 0; }
+  @media screen and (max-width: 767px) {
+    .stats-section {
+      margin-top: 10%; } }
   .stats-section__item {
     text-align: center !important;
     margin: 2em 0px; }
