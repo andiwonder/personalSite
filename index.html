@@ -4,19 +4,17 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.js"></script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.5/angular-route.js"></script>
-    <script type="text/javascript" src="app.js"></script>
 
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.4.0/animate.css">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.8/semantic.min.css">
-    <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+
+    <script type="text/javascript" src="javascript/app.js"></script>
     <link rel="stylesheet" type="text/css" href="stylesheets/index.css">
-    
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
   </head>
-  <body>
-    
+  <body ng-app="personalSite">
       <div class="nav">
           <img class="site-logo" src="images/about-me/This-is-sewious.png" alt="">
           <ul class="nav-social">
@@ -54,77 +52,9 @@
             </li>
           </ul>
       </div><!--
-   --><div class="main-content push--desk--one-sixth">
+   --><div class="main-content push--desk--one-sixth" ng-controller="myController">
         <div class="main-content__wrapper">
-          <div class="intro">
-            <div class="photo-wrapper">
-              <img class="about-me__photo" src="images/about-me/photo.jpg" alt="">
-            </div>
-          </div>
-          <div class="main-content__wrapper--without-padding">
-            <div class="intro__text grid__item grid--full">
-               <h3>Swapnil Kasliwal</h3>
-               <h4>Full-Stack Developer</h4>
-               <p>
-                 &ldquo;Self-questioning and always thinking programmer looking to solve complex problems. I have an easy-going attitude, good communication skills, and a detail oriented mind which has helped work in groups. While not working , I enjoy playing DOTA as it helps me improve myself as a person.&rdquo;
-               </p>
-             </div>
-          </div>
-          <div class="stats-section grid grid--center grid--bottom">
-              <h4>Here are some technologies I have experience with</h4>
-                <div class="stats-section__item">
-                  <img class="stats__img" src="images/about-me/angular.png" alt="">
-                  <h3 class="stats__text">Angular</h3>
-                </div><!-- 
-             --><div class="stats-section__item">
-               <img class="stats__img" src="images/about-me/backbone.png" alt="">
-               <h3 class="stats__text">backbone</h3>
-             </div><!-- 
-             --><div class="stats-section__item">
-               <img class="stats__img" src="images/about-me/jquery.png" alt="">
-               <h3 class="stats__text">jquery</h3>
-             </div><!-- 
-             --><div class="stats-section__item">
-               <img class="stats__img" src="images/about-me/mongodb.png" alt="">
-               <h3 class="stats__text">mongodb</h3>
-             </div><!-- 
-             --><div class="stats-section__item">
-               <img class="stats__img" src="images/about-me/mysql.png" alt="">
-               <h3 class="stats__text">mysql</h3>
-             </div><!-- 
-             --><div class="stats-section__item">
-               <img class="stats__img" src="images/about-me/nodejs.png" alt="">
-               <h3 class="stats__text">nodejs</h3>
-             </div><!-- 
-              --><div class="stats-section__item">
-               <img class="stats__img" src="images/about-me/ror.png" alt="">
-               <h3 class="stats__text">Rails</h3>
-             </div><!-- 
-              --><div class="stats-section__item">
-               <img class="stats__img" src="images/about-me/slack-logo.png" alt="">
-               <h3 class="stats__text">Slack</h3>
-             </div><!-- 
-              --><div class="stats-section__item">
-               <img class="stats__img" src="images/about-me/trello-logo.png" alt="">
-               <h3 class="stats__text">Trello</h3>
-             </div><!-- 
-              --><div class="stats-section__item">
-               <img class="stats__img" src="images/about-me/python-logo.png" alt="">
-               <h3 class="stats__text">google</h3>
-             </div><!-- 
-              --><div class="stats-section__item">
-               <img class="stats__img" src="images/about-me/zoom-logo.png" alt="">
-               <h3 class="stats__text">zoom</h3>
-             </div><!-- 
-              --><div class="stats-section__item">
-               <img class="stats__img" src="images/about-me/htmlcss.png" alt="">
-               <h3 class="stats__text">html</h3>
-             </div>
-          </div>
-          <div class="grid">
-                <div class="section grid__item palm--one-whole lap--one-third two-fifths">1</div><!-- 
-             --><div class="section grid__item palm--one-whole lap--two-thirds three-fifths">2</div>
-          </div>
+          <ng-view></ng-view>
         </div>
       </div>
   

@@ -1,28 +1,9 @@
 console.log("angular-app.js");
 var myApp = angular.module("personalSite",['ngRoute']);
 
-myApp.filter('formatText', function() {
-  return function(text) {
-    var indices = [];
-    for(var i=0; i<text.length;i++) {
-      if (text[i] === "." && i%5 == 0) {
-        indices.push(i);
-      }
-    }
-    
-    if(indices.length > 2){
-      text = text.split('');
-      for (var i=0; i<indices.length; i++){
-        text[indices[i]] = '\n';
-      }
-      text = text.join('');
-    }
-    return text;
-  };
-});
 
 
-myApp.controller('myController', ['$scope' , '$http' , '$routeParams' , 'formatTextFilter' , function($scope ,$http, $routeParams){
+myApp.controller('myController', ['$scope' , '$http' , '$routeParams' , function($scope ,$http, $routeParams){
   
 
 }]);
@@ -37,7 +18,7 @@ myApp.controller('playlistController', function($scope ,$http){
 myApp.config(function ($routeProvider){
   $routeProvider
     .when("/", {
-      templateUrl : "angular/views/home2.html",
+      templateUrl : "about/about.html",
       controller : "myController"
     })
     .when("/blog", {
