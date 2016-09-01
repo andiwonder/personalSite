@@ -1376,12 +1376,10 @@ table {
     margin: .75em 0 0 0;
     font-weight: 700;
     letter-spacing: 1px;
-    letter-spacing: 1px;
     text-transform: uppercase; }
   .intro__text h4 {
     margin: 0 0 .75em 0;
-    font-weight: 700;
-    letter-spacing: 1px; }
+    font-weight: 700; }
   .intro__text p {
     font-size: .85em;
     line-height: 1.5;
@@ -1394,8 +1392,7 @@ table {
   margin-left: 0;
   font-family: 'PT Sans', sans-serif; }
   .stats-section h4 {
-    font-weight: 700;
-    letter-spacing: 1px; }
+    font-weight: 700; }
   @media screen and (max-width: 767px) {
     .stats-section {
       margin-top: 10%; } }
