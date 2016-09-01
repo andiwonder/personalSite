@@ -1,0 +1,27 @@
+.post__image {
+  width: 100%;
+
+  &--narrow {
+    width: 50%;
+  }
+}
+
+.post {
+  margin: 2em 0;
+  font-weight: 700;
+  font-family: 'PT Sans', sans-serif;
+
+  &__image-wrapper{
+
+  }
+
+  &__info{
+    h3 {
+      margin: 0;
+    }
+    h4 {
+      font-style: italic;
+      margin: 0
+    }
+  }
+}

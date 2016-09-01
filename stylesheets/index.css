@@ -1414,6 +1414,21 @@ table {
       letter-spacing: 1px;
       margin: .5em 0 0 0; }
 
+.post__image {
+  width: 100%; }
+  .post__image--narrow {
+    width: 50%; }
+
+.post {
+  margin: 2em 0;
+  font-weight: 700;
+  font-family: 'PT Sans', sans-serif; }
+  .post__info h3 {
+    margin: 0; }
+  .post__info h4 {
+    font-style: italic;
+    margin: 0; }
+
 /* Single property */
 html {
   font-size: 14px; }
