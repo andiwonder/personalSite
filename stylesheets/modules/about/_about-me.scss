@@ -20,13 +20,13 @@
   font-family: Arial;
   padding-left: 0;
   h3{
-    margin: 1.5% 0;
+    margin: .75em 0;
     font-weight: 600;
     letter-spacing: 1px;
     text-transform: uppercase;
   }
   h4{
-    margin: 0 0 1.5% 0;
+    margin: 0 0 .75em 0;
     font-weight: 600;
   }
   p {
@@ -51,3 +51,36 @@
     // }
   }
 }
+
+.stats-section {
+  padding: 2em 0;
+  margin-top: 5%;
+
+  &__item {
+    @extend .grid__item;
+    @extend .palm--one-third;
+    @extend .lap--one-quarter;
+    @extend .two-twelfths;
+
+    text-align: center !important;
+    margin: 2em 0px;
+  
+  .stats__img {
+    width: 60%;
+    padding: 5%;
+  }
+
+  .stats__text{
+    font-size: 0.707em;
+    font-weight: 600;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: .5em 0 0 0;
+  }
+
+  }
+}
+
+
+
