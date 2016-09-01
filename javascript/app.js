@@ -8,37 +8,31 @@ myApp.controller('myController', ['$scope' , '$http' , '$routeParams' , function
 
 }]);
 
-myApp.controller('playlistController', function($scope ,$http){
-
-
-});
-
-
 
 myApp.config(function ($routeProvider){
   $routeProvider
     .when("/", {
-      templateUrl : "about/about.html",
+      templateUrl : "javascript/about/about.html",
       controller : "myController"
     })
     .when("/blog", {
-      templateUrl : "blog/blog.html",
+      templateUrl : "javascript/blog/blog.html",
       controller : "myController"
     })
     .when("/blog/1", {
-      templateUrl : "blog/entry1/index.html",
+      templateUrl : "javascript/blog/entry1/index.html",
       controller : "myController"
     })
     .when("/blog/2", {
-      templateUrl : "blog/entry2/index.html",
+      templateUrl : "javascript/blog/entry2/index.html",
       controller : "myController"
     })    
     .when("/playlists",{
-      templateUrl : "angular/views/playlists.html",
+      templateUrl : "javascript/angular/views/playlists.html",
       controller : "playlistController"
     })
     .when('/playlists/:id',{
-      templateUrl : "angular/views/tracks.html",
+      templateUrl : "javascript/angular/views/tracks.html",
       controller : "myController"
     })
 })
