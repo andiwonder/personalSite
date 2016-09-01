@@ -1426,6 +1426,9 @@ table {
     font-style: italic;
     margin: 0; }
 
+.ui.text.container {
+  text-align: justify; }
+
 /* Single property */
 html {
   font-size: 14px; }
