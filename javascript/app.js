@@ -26,7 +26,15 @@ myApp.config(function ($routeProvider){
     .when("/blog/2", {
       templateUrl : "javascript/blog/entry2/index.html",
       controller : "myController"
-    })    
+    })
+    .when("/blog/3", {
+      templateUrl : "javascript/blog/entry3/index.html",
+      controller : "myController"
+    })
+    .when("/blog/4", {
+      templateUrl : "javascript/blog/entry4/index.html",
+      controller : "myController"
+    })        
     .when("/playlists",{
       templateUrl : "javascript/angular/views/playlists.html",
       controller : "playlistController"

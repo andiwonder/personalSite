@@ -1465,7 +1465,8 @@ table {
 .text-container {
   text-align: justify;
   font-family: 'PT Sans', sans-serif !important;
-  line-height: 1.5; }
+  line-height: 1.5 !important;
+  font-size: 1em !important; }
   .text-container h3 {
     margin: 0; }
   .text-container h3, .text-container h4 {
@@ -1502,6 +1503,200 @@ table {
     margin-right: auto !important; } }
 .d3_viz {
   width: 100%; }
+
+.article-header {
+  margin-top: 2em; }
+
+.intro-img {
+  margin-bottom: 2em; }
+
+.section__main-text {
+  font-style: normal;
+  line-height: 1.5;
+  font-size: 1em;
+  margin: 5% 0 0 0;
+  font-family: Arial; }
+.section__stats .heading1 {
+  color: #090909;
+  font-family: 'PT Sans', sans-serif;
+  font-weight: 700;
+  font-size: 1.2em;
+  line-height: 1.3;
+  text-align: left;
+  letter-spacing: 1px;
+  width: 45%;
+  margin-right: 4%;
+  display: inline-block; }
+  @media screen and (max-width: 768px) {
+    .section__stats .heading1 {
+      width: 100%;
+      text-align: center;
+      display: block; } }
+.section__image-row {
+  margin-top: 3%;
+  width: 50%;
+  display: inline-block;
+  vertical-align: top; }
+  @media screen and (max-width: 768px) {
+    .section__image-row {
+      width: 100%;
+      display: block; } }
+
+.section-intro__main-text-wrapper {
+  margin-top: 5%; }
+
+.stats--normal {
+  font-size: 2em; }
+
+.stats--big {
+  font-weight: 700;
+  font-size: 2.5em;
+  color: #FEFF03;
+  font-style: italic;
+  background: #222; }
+
+.stats--small {
+  font-size: .75em;
+  background-color: #FEFF03; }
+
+.stats__img--avatar {
+  display: in-line block; }
+  @media screen and (max-width: 768px) {
+    .stats__img--avatar {
+      width: 30%; } }
+  @media screen and (max-width: 1023px) {
+    .stats__img--avatar {
+      width: 24%; } }
+  @media screen and (min-width: 1024px) {
+    .stats__img--avatar {
+      width: 15%; } }
+
+.stats__text-with-image {
+  text-align: left;
+  vertical-align: top; }
+
+.text-with-image {
+  width: 32%;
+  vertical-align: top;
+  display: inline-block;
+  color: #090909;
+  font-variant: normal;
+  font-weight: 600;
+  font-stretch: normal;
+  font-size: 1.6em;
+  line-height: 1.3;
+  font-family: "cardo";
+  font-style: italic;
+  letter-spacing: .15em;
+  margin-top: 7%; }
+  .text-with-image__wrapper {
+    width: 85%; }
+    .text-with-image__wrapper span {
+      font-size: 1.5em;
+      background-color: #B1D7FE; }
+    .text-with-image__wrapper img {
+      width: 80%;
+      vertical-align: baseline;
+      margin-top: 10%; }
+
+.github-table {
+  width: 45%;
+  margin: 0 auto;
+  display: inline-block; }
+
+.commit-date span {
+  margin-top: 1%; }
+
+.commit-date span {
+  font-size: 1em;
+  vertical-align: top; }
+
+.commit-message {
+  padding-left: 5%;
+  /*padding-top: 2%;*/
+  border-left: 1px solid grey;
+  margin-left: 1.5%;
+  font-weight: 600;
+  /*padding-bottom: 2%;*/ }
+
+.img-wrapper {
+  width: 10%;
+  display: inline-block;
+  padding: 2% 2% 1% 2%;
+  vertical-align: top; }
+
+.text-wrapper {
+  display: inline-block;
+  width: 88%;
+  padding-top: 2%;
+  font-size: .9em; }
+
+.commit-message img {
+  width: 100%; }
+
+.commit-message-date {
+  font-size: .9em;
+  color: #767676; }
+
+.commit-message h3 {
+  font-size: 1em;
+  line-height: 1.2em; }
+
+.commit-message-innerdiv {
+  width: 100%;
+  border: 1px solid #e5e5e5;
+  background-color: #F8F5EF; }
+
+.commit-date {
+  margin: 2% 0; }
+
+.commit {
+  width: 100%; }
+
+.section-github {
+  padding-top: 5%;
+  padding-bottom: 5%; }
+
+.github-table {
+  width: 33%;
+  display: inline-block;
+  vertical-align: top;
+  margin-right: 1%; }
+
+.commit-week-table {
+  width: 35%;
+  margin-left: 10%;
+  display: inline-block;
+  vertical-align: top;
+  margin-right: 5%;
+  font-family: "cardo";
+  font-weight: 600; }
+
+.table-arrows {
+  vertical-align: top;
+  margin-top: 20% !important;
+  font-size: 2em !important; }
+
+.commit-week--header {
+  font-size: 5em; }
+
+.table-highlighted {
+  background-color: #FEFF03; }
+
+.week-table {
+  border: 1px solid rgba(34, 36, 38, 0.15) !important;
+  padding: 1% !important;
+  padding: 4% !important; }
+
+.hidden {
+  display: none; }
+
+.commit-week--header .ui.statistic {
+  background-color: #FEFF03;
+  vertical-align: top;
+  float: right; }
+  .commit-week--header .ui.statistic .label {
+    font-size: .2em; }
 
 /* Single property */
 html {

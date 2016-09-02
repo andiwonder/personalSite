@@ -1,9 +1,9 @@
 <div id="main_container">
-  <img class="post__image--extra-narrow" src="images/blog/dataviz.jpg" alt="">
-  <div class="text-container">
+  <img class="post__image--extra-narrow intro-img" src="images/blog/dataviz.jpg" alt="">
+  <div class="text-container ui text container">
     <h3>Analyzing Data Visulization</h3>
     <h4>Using the clinicaltrials.gov Database </h4>
-    <h4>Introduction - Background<br></h4>
+    <h1 class="ui center aligned header article-header">Introduction - Background</h1>
     <!-- <img class="ui h4 left floated image" src="images/blog/post-1/punch.gif"> -->
     <p>
       Looking at pictures is the simplest and most effective way to describe, explore, and summarize information about a set of numbers. Graphs display measured quantities using points, lines, a coordinate system, numbers, symbols, words, and color. Also, graphs serve a clear purpose by using a description, tabulation, and decoration. Information visualization, displaying huge quantities of data in an effective manner, is a simple and powerful technique that allows users to draw conclusions based on the patterns and relationships that the data is showing. Information visualization such as graphs show the data by making large data sets coherent, allowing comparison of different pieces of data, and reveal both a broad overview and fine details.
@@ -14,14 +14,14 @@
     <p>
       Presenting information visually allows us to gain insights that would be difficult or impossible to do from the same data presented textually. Most data analysis involves discovering the relationship among values which exhibits themselves as patterns, trends, and exceptions. However, understanding the data is not the end goal of the visualizations, rather reaching actionable information is. Good data analysis allows users to understand what is currently going on and be able to predict what will happen under particular conditions in the future. 
     </p>
-    <h4>Methods and Procedures<br></h4>
+    <h1  class="ui center aligned header article-header">Methods and Procedures</h1>
     <p>
       The two prerequisites for effectively analyzing data visually is having a way to present information and good data to analyze. The linchpin of any scientific visualization is data that is well structured, atomic, accurate, and has a high volume. Notably, any data analysis is only as accurate as the data itself and data that is accurate, free of error, and complete is critical. Similarly, data that is well structured allows users to easily access the information they desire. The data was downloaded from clincialtrials.gov database in xml format, parsed using the ruby language, and graphed using excel and D3.js.
     </p>
     <p>
       After looking at schema illustrating how the data was stored, and retrieving relevant data several calculations were performed to illustrate information visualization best practices and techniques. To determine the division of the trials and each divisions prevalence, each trial was accounted by the date the trial was started and its category and then grouped by year. The total number of trials is displayed using a pie chart, a bar chart, and a line chart. In addition, a stacked bar chart was used to further explore the relationship. Subsequently, the rate of change in trial growth was calculated and plotted to further explore the relationship. Additionally, the duration of trials who reported both a start date and end date was calculated, grouped by months, and the top 20 duration frequencies was plotted using a scatterplot. Similarly, the size of enrollment for each trial was collected, grouped by order of 10, and the top 20 enrollment size frequencies was plotted using a scatterplot.
     </p>
-    <h4>Results and discussion<br></h4>
+    <h1 class="ui center aligned header article-header">Results and discussion</h1>
     <p>
       “Although graphs inform us differently than spoken or written words, both involve language: one is visual and the other verbal.” Particularly, low-level characteristics of objects called pre-attentive attributes are easily noticed by our visual receptors and processed before conscious attention.  Length, width, shape, color, and position are basic pre-attentive attributes that can be used to display data in a rapidly perceptible and easily graspable manner. Properly designed graphs allow patterns, that reveal what the information means, to be easily spotted even after brief exposure. Also, presenting numbers in portion to the numerical quantity measured, and clear, detailed, and through labeling to exclude graphical distorting and ambiguity are two principles that can help achieve graphical integrity. Using a caption to give an explanation of the data, and label important events in the data makes graphs more comprehensible. Each part of a graph generates visual expectations about its other parts and help determine what the eye sees. A scale moving in regular intervals is expected to continue its march to the end in a consistent fashion, without muddling non-uniform changes. In general graphs are wider than taller, but taller graphs can be helped used to emphasize the picture of rapid growth. 
     </p>
@@ -44,7 +44,7 @@
     <img class="d3_viz" src="images/blog/post-2/fig5.png" alt="">
     <img class="d3_viz" src="images/blog/post-2/fig6.png" alt="">
     <img class="d3_viz" src="images/blog/post-2/fig7.png" alt="">
-    <h4>Conclusion<br></h4>
+    <h1  class="ui center aligned header article-header">Conclusion<br></h1>
     <p>
       In order to use visualizations appropriately, it is crucial to understand how visual
       perception works and then display data visually in ways that follows the rules. Rather than simply

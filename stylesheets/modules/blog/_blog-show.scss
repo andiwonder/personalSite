@@ -45,7 +45,8 @@
 .text-container{
   text-align: justify;
   font-family: 'PT Sans', sans-serif !important;
-  line-height: 1.5;
+  line-height: 1.5 !important;
+  font-size: 1em !important;
   h3{
     margin: 0;
   }
@@ -99,4 +100,12 @@
 
 .d3_viz{
   width: 100%;
+}
+
+.article-header{
+  margin-top: 2em;
+}
+
+.intro-img {
+  margin-bottom: 2em; 
 }
