@@ -20,8 +20,16 @@
   }
 
   &__info{
+    @media screen and (min-width: 1024px){
+      padding-left: 2em;
+    }
+
     h3 {
       margin: 0;
+
+      @media screen and (max-width: 1024px) {
+        margin-top: 1em;
+      }
     }
     h4 {
       font-style: italic;

@@ -1447,8 +1447,14 @@ table {
   margin: 2em 0;
   font-weight: 700;
   font-family: 'PT Sans', sans-serif; }
+  @media screen and (min-width: 1024px) {
+    .post__info {
+      padding-left: 2em; } }
   .post__info h3 {
     margin: 0; }
+    @media screen and (max-width: 1024px) {
+      .post__info h3 {
+        margin-top: 1em; } }
   .post__info h4 {
     font-style: italic;
     margin: 0;
