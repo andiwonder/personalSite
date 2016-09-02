@@ -1404,11 +1404,11 @@ table {
 .about-social {
   margin: 2em 0; }
   .about-social__item {
-    display: inline-block;
-    margin: .5em 3%;
+    display: block;
     vertical-align: bottom;
     background-color: #fff8dc;
-    float: left; }
+    width: 50%;
+    margin: 1em auto; }
   .about-social__icon {
     width: 24px;
     height: 24px;
