@@ -1317,17 +1317,6 @@ table {
     .nav {
       height: 100vh;
       position: fixed; } }
-  .nav-social {
-    margin-top: 20%; }
-    @media screen and (max-width: 1023px) {
-      .nav-social {
-        margin: 3% 0; } }
-    .nav-social__item {
-      display: inline-block;
-      margin: 0 3%; }
-    .nav-social__icon {
-      width: 24px;
-      height: 24px; }
   .nav-primary {
     margin-top: 20%;
     font-size: 1.125em; }
@@ -1394,8 +1383,6 @@ table {
   margin-top: 5%;
   margin-left: 0;
   font-family: 'PT Sans', sans-serif; }
-  .stats-section h4 {
-    font-weight: 700; }
   @media screen and (max-width: 767px) {
     .stats-section {
       margin-top: 10%; } }
@@ -1413,6 +1400,28 @@ table {
       text-transform: uppercase;
       letter-spacing: 1px;
       margin: .5em 0 0 0; }
+
+.about-social {
+  margin: 2em 0; }
+  .about-social__item {
+    display: inline-block;
+    margin: .5em 3%;
+    vertical-align: bottom;
+    background-color: #fff8dc;
+    float: left; }
+  .about-social__icon {
+    width: 24px;
+    height: 24px;
+    vertical-align: bottom;
+    margin-right: .5em; }
+  .about-social__text {
+    font-weight: 700;
+    font-family: 'PT Sans', sans-serif;
+    font-size: 0.707em;
+    margin-right: 5px; }
+
+.heavy {
+  font-weight: 700; }
 
 .post__image {
   width: 100%; }
@@ -1471,9 +1480,6 @@ table {
     margin-right: auto !important; } }
 .d3_viz {
   width: 100%; }
-
-.header--left {
-  text-align: left; }
 
 /* Single property */
 html {

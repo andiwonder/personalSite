@@ -58,10 +58,6 @@
   margin-left: 0;
   font-family: 'PT Sans', sans-serif;
 
-  h4 {
-    font-weight: 700;
-  }
-
   @media screen and (max-width:767px){
     margin-top: 10%;
   }
@@ -93,5 +89,35 @@
   }
 }
 
+
+.about-social{
+  margin: 2em 0;
+
+  &__item {
+    display: inline-block;
+    margin: .5em 3%;
+    vertical-align: bottom;
+    background-color: #fff8dc;
+    float: left;
+  }
+
+  &__icon {
+    width: 24px;
+    height: 24px;
+    vertical-align: bottom;
+    margin-right: .5em;
+  }
+
+  &__text {
+    font-weight: 700;
+    font-family: 'PT Sans', sans-serif;
+    font-size: 0.707em;
+    margin-right: 5px;
+  }
+}
+
+.heavy {
+  font-weight: 700;
+}
 
 
