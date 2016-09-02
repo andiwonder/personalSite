@@ -74,11 +74,19 @@
   .stats__img {
     width: 60%;
     padding: 5%;
+
+    &--small {
+      width: 40%;
+    }
+
+    @media screen and (min-width: 480px) and (max-width: 1024){
+      width: 40%;
+    }
   }
 
   .stats__text{
     font-size: 0.707em;
-    font-weight: 700;
+    font-weight: 100;
     letter-spacing: 1px;
     text-align: center;
     text-transform: uppercase;
@@ -96,7 +104,7 @@
   &__item {
     display: block;
     vertical-align: bottom;
-    background-color: #fff8dc;
+    background-color: #28aadc;
     width: 50%;
     margin: 1em auto;
   }
@@ -106,18 +114,27 @@
     height: 24px;
     vertical-align: bottom;
     margin-right: .5em;
+    padding-top: 2px;
   }
 
   &__text {
-    font-weight: 700;
+    font-weight: 100;
     font-family: 'PT Sans', sans-serif;
     font-size: 0.707em;
     margin-right: 5px;
+    color: #222;
+    letter-spacing: 1px;
   }
 }
 
 .heavy {
   font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.about-social__text-wrapper{
+  padding-bottom: 2px;
+  padding-top: 1px;
 }
 
 
