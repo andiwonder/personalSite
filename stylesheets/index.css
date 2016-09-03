@@ -1449,7 +1449,8 @@ table {
   font-family: 'PT Sans', sans-serif; }
   @media screen and (min-width: 1024px) {
     .post__info {
-      padding-left: 2em; } }
+      padding-left: 2em;
+      padding-top: 2em; } }
   .post__info h3 {
     margin: 0; }
     @media screen and (max-width: 1024px) {
@@ -1516,31 +1517,72 @@ table {
   font-size: 1em;
   margin: 5% 0 0 0;
   font-family: Arial; }
-.section__stats .heading1 {
-  color: #090909;
-  font-family: 'PT Sans', sans-serif;
-  font-weight: 700;
-  font-size: 1.2em;
-  line-height: 1.3;
-  text-align: left;
-  letter-spacing: 1px;
-  width: 45%;
-  margin-right: 4%;
-  display: inline-block; }
-  @media screen and (max-width: 768px) {
-    .section__stats .heading1 {
-      width: 100%;
-      text-align: center;
-      display: block; } }
-.section__image-row {
+.section__stats {
+  margin-bottom: 2em; }
+  .section__stats .heading1, .section__stats .heading1--right {
+    color: #090909;
+    font-family: 'PT Sans', sans-serif;
+    font-weight: 700;
+    font-size: 1.2em;
+    line-height: 1.3;
+    text-align: left;
+    letter-spacing: 1px;
+    width: 45%;
+    margin-right: 4%;
+    display: inline-block; }
+    @media screen and (max-width: 768px) {
+      .section__stats .heading1, .section__stats .heading1--right {
+        width: 100%;
+        text-align: center;
+        display: block;
+        margin: 1em 0; } }
+  .section__stats .heading1--right {
+    width: 60%;
+    text-align: right;
+    margin-right: 0; }
+    @media screen and (max-width: 768px) {
+      .section__stats .heading1--right {
+        width: 100%;
+        text-align: center;
+        display: block;
+        margin: 1em 0; } }
+.section__image-row, .section__image-row--left {
   margin-top: 3%;
   width: 50%;
   display: inline-block;
   vertical-align: top; }
   @media screen and (max-width: 768px) {
-    .section__image-row {
+    .section__image-row, .section__image-row--left {
       width: 100%;
-      display: block; } }
+      display: block;
+      margin: 1em 0; } }
+.section__image-row--left {
+  width: 30%;
+  font-size: .707em;
+  margin-right: 0;
+  float: left;
+  font-weight: 700; }
+  @media screen and (max-width: 768px) {
+    .section__image-row--left {
+      width: 100%;
+      display: block;
+      margin: 1em 0; } }
+
+.stats-section--2 {
+  text-align: left; }
+  .stats-section--2 .stats__item {
+    width: 48%;
+    display: inline-block; }
+    .stats-section--2 .stats__item__text {
+      margin: 4em 0 1em 0;
+      width: 70%;
+      color: #FEFF03;
+      background: #222;
+      padding-left: 1em; }
+    .stats-section--2 .stats__item__img {
+      display: inline-block; }
+      .stats-section--2 .stats__item__img img {
+        width: 50%; }
 
 .section-intro__main-text-wrapper {
   margin-top: 5%; }
@@ -1549,55 +1591,34 @@ table {
   font-size: 2em; }
 
 .stats--big {
-  font-weight: 700;
-  font-size: 2.5em;
+  font-weight: 100;
+  font-size: 2.3em;
   color: #FEFF03;
-  font-style: italic;
-  background: #222; }
+  background: #222;
+  padding: 2px; }
+  .stats--big--plain {
+    background-color: none;
+    color: inherit; }
 
 .stats--small {
   font-size: .75em;
   background-color: #FEFF03; }
 
 .stats__img--avatar {
-  display: in-line block; }
-  @media screen and (max-width: 768px) {
-    .stats__img--avatar {
-      width: 30%; } }
-  @media screen and (max-width: 1023px) {
-    .stats__img--avatar {
-      width: 24%; } }
-  @media screen and (min-width: 1024px) {
-    .stats__img--avatar {
-      width: 15%; } }
+  display: in-line block;
+  width: 24%; }
 
 .stats__text-with-image {
   text-align: left;
   vertical-align: top; }
 
-.text-with-image {
-  width: 32%;
-  vertical-align: top;
+.right {
+  text-align: right; }
+
+.logo--tiny {
+  width: 10%;
   display: inline-block;
-  color: #090909;
-  font-variant: normal;
-  font-weight: 600;
-  font-stretch: normal;
-  font-size: 1.6em;
-  line-height: 1.3;
-  font-family: "cardo";
-  font-style: italic;
-  letter-spacing: .15em;
-  margin-top: 7%; }
-  .text-with-image__wrapper {
-    width: 85%; }
-    .text-with-image__wrapper span {
-      font-size: 1.5em;
-      background-color: #B1D7FE; }
-    .text-with-image__wrapper img {
-      width: 80%;
-      vertical-align: baseline;
-      margin-top: 10%; }
+  margin: 0px 1%; }
 
 .github-table {
   width: 45%;
