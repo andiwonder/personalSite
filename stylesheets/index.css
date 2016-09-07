@@ -1564,16 +1564,16 @@ table {
   vertical-align: top; }
   @media screen and (max-width: 768px) {
     .section__image-row, .section__image-row--wide {
-      width: 100%;
+      width: 70%;
       display: block;
-      margin: 1em 0; } }
+      margin: 1em auto; } }
 .section__image-row--wide {
   width: 30%; }
   @media screen and (max-width: 768px) {
     .section__image-row--wide {
-      width: 100%;
+      width: 70%;
       display: block;
-      margin: 1em 0; } }
+      margin: 1em auto; } }
 
 .stats-section--2 {
   text-align: left; }
@@ -1618,7 +1618,7 @@ table {
 
 .stats__img--avatar {
   display: in-line block;
-  width: 24%; }
+  width: 23%; }
 .stats__img--wide {
   width: 100%; }
   @media screen and (max-width: 768px) {
@@ -1636,6 +1636,14 @@ table {
   width: 7%;
   display: inline-block;
   margin: 0px 1%; }
+
+.week-table {
+  font-weight: 700;
+  font-size: .707em !important;
+  font-family: 'PT Sans', sans-serif !important;
+  border: 1px solid rgba(34, 36, 38, 0.15) !important;
+  padding: 1% !important;
+  padding: 4% !important; }
 
 .github-table {
   width: 48%;
@@ -1721,11 +1729,6 @@ table {
 
 .table-highlighted {
   background-color: #FEFF03; }
-
-.week-table {
-  border: 1px solid rgba(34, 36, 38, 0.15) !important;
-  padding: 1% !important;
-  padding: 4% !important; }
 
 .hidden {
   display: none; }

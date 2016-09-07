@@ -69,9 +69,9 @@
     vertical-align: top;
 
     @media screen and (max-width: 768px) {
-      width: 100%;
+      width: 70%;
       display: block;
-      margin: 1em 0;
+      margin: 1em auto;
     }
   }
 
@@ -80,9 +80,9 @@
     width: 30%;
 
     @media screen and (max-width: 768px) {
-      width: 100%;
+      width: 70%;
       display: block;
-      margin: 1em 0;
+      margin: 1em auto;
     }
   }
 }
@@ -149,7 +149,7 @@
 .stats__img {
   &--avatar {
     display: in-line block;
-    width: 24%;
+    width: 23%;
   }
 
   &--wide {
@@ -174,4 +174,13 @@
   width: 7%;
   display: inline-block;
   margin: 0px 1%;
+}
+
+.week-table{
+  font-weight: 700;
+  font-size: .707em !important;
+  font-family: 'PT Sans', sans-serif !important;
+  border: 1px solid rgba(34,36,38,.15) !important;
+  padding: 1% !important;
+  padding: 4% !important;
 }
