@@ -1,14 +1,22 @@
 .github-table {
-  width: 45%;
-  margin: 0 auto;
+  width: 48%;
   display: inline-block;
+  vertical-align: top;
+  margin-right: 1%;
+  font-size: .707em;
+  text-align: left;
+  margin: 2em auto;
+  padding: 2em 1em;
+
+  @media screen and (max-width: 768px){
+    width: 70%;
+  }
 }
 .commit-date span {
   margin-top: 1%;
-}
-.commit-date span {
-  font-size: 1em;
+  font-size: 0.907em;
   vertical-align: top;
+  font-weight: 700;
 }
 
 .commit-message {
@@ -17,11 +25,11 @@
   border-left: 1px solid grey;
   margin-left: 1.5%;
   font-weight: 600;
-  /*padding-bottom: 2%;*/
+  padding-bottom: .707em;
 }
 
 .img-wrapper {
-  width: 10%;
+  width: 12%;
   display: inline-block;
   padding: 2% 2% 1% 2%;
   vertical-align: top;
@@ -67,20 +75,13 @@
 }
 
 
-.github-table {
-  width: 33%;
-  display: inline-block;
-  vertical-align: top; 
-  margin-right: 1%;
-}
-
 .commit-week-table {
   width: 35%;
   margin-left: 10%;
   display: inline-block;
   vertical-align: top;
   margin-right: 5%;
-  font-family: "cardo";
+  font-family: 'PT Sans', sans-serif;
   font-weight: 600;
 }
 
