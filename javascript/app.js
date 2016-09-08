@@ -35,12 +35,8 @@ myApp.config(function ($routeProvider){
       templateUrl : "javascript/blog/entry4/index.html",
       controller : "myController"
     })        
-    .when("/playlists",{
-      templateUrl : "javascript/angular/views/playlists.html",
-      controller : "playlistController"
-    })
-    .when('/playlists/:id',{
-      templateUrl : "javascript/angular/views/tracks.html",
+    .when('/projects',{
+      templateUrl : "javascript/projects/project.html",
       controller : "myController"
     })
 })
