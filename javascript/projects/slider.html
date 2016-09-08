@@ -1,0 +1,18 @@
+<div class="slider image-nav one-whole grid--full">
+  <div class="one-tenth image-nav__left">
+    <a href="" ng-click="prev()">
+      <img src="images/projects/left-arrow.png" />
+    </a>
+  </div><!--
+--><div class="four-fifths image-nav__center">
+    <div class="slide" ng-repeat="image in images" ng-show="image.visible">
+      <img class="slide__img" ng-src="images/projects/{{image.src}}" />
+      <h4 class="desc">{{image.title}}</h4>
+    </div>
+  </div><!--
+--><div class="one-tenth image-nav__right">
+    <a href="" ng-click="next()">
+      <img src="images/projects/right-arrow.png" />
+    </a>
+  </div>
+</div>

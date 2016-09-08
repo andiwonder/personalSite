@@ -1740,6 +1740,29 @@ table {
   .commit-week--header .ui.statistic .label {
     font-size: .2em; }
 
+#video_control_svg_container {
+  width: 100%;
+  margin: 0 auto;
+  height: auto;
+  overflow: scroll;
+  overflow-y: hidden;
+  background-color: #222; }
+
+.html5-video-player {
+  background-color: #222 !important; }
+
+.player_icon_img:hover {
+  width: 50px;
+  height: 40px; }
+
+#player {
+  width: 100%;
+  height: 60vh; }
+
+.player-tip {
+  margin: 2em auto;
+  font-family: 'PT Sans', sans-serif; }
+
 /* Single property */
 html {
   font-size: 14px; }
@@ -1780,5 +1803,42 @@ small, .font_small {
 
 .ui.label {
   margin: 1em 0 !important; }
+
+.proj__img {
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important; }
+
+.proj__text {
+  text-align: center; }
+
+.proj__text > .content > .description {
+  text-align: justify; }
+
+.proj__text > .content > .header {
+  font-size: 2em !important;
+  font-weight: 700 !important;
+  margin-bottom: 1em !important; }
+
+.proj__text > .content > .extra {
+  font-style: italic;
+  line-height: 1.3; }
+
+.slide__img {
+  width: 100%;
+  margin: 0 auto; }
+
+.image-nav__left {
+  vertical-align: top;
+  margin-top: 20%;
+  display: inline-block; }
+.image-nav__right {
+  vertical-align: top;
+  margin-top: 20%;
+  display: inline-block; }
+.image-nav__center {
+  vertical-align: bottom;
+  display: inline-block; }
+  .image-nav__center > .slide > .desc {
+    margin-top: 0; }
 
 /*# sourceMappingURL=index.css.map */

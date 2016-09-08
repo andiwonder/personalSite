@@ -1,11 +1,68 @@
 console.log("angular-app.js");
-var myApp = angular.module("personalSite",['ngRoute']);
+var myApp = angular.module("personalSite",['ngRoute','ngAnimate']);
 
 
 
 myApp.controller('myController', ['$scope' , '$http' , '$routeParams' , function($scope ,$http, $routeParams){
-  
-
+  $scope.proj1 = [{
+    src: 'dota/1.png',
+    title: 'Landing page'
+  }, {
+    src: 'dota/2.png',
+    title: 'Status feed'
+  }, {
+    src: 'dota/3.png',
+    title: 'Individual games performance'
+  }, {
+    src: 'dota/4.png',
+    title: 'Games played over each day'
+  }, {
+    src: 'dota/5.png',
+    title: 'Game data'
+  }, {
+    src: 'dota/6.png',
+    title: 'Extract clips from twitch videos'
+  }, {
+    src: 'dota/7.png',
+    title: 'Add notes to specific clips'
+  }, {
+    src: 'dota/8.png',
+    title: 'View saved notes/clips'
+  }, {
+    src: 'dota/9.png',
+    title: 'Guides'
+  }];
+  $scope.proj2 = [{
+    src: 'listen/1.png',
+    title: 'Landing page'
+  }, {
+    src: 'listen/2.png',
+    title: 'SPSS (simple perfect squared squares)'
+  }, {
+    src: 'listen/3.png',
+    title: 'Playlist visualized'
+  }, {
+    src: 'listen/4.png',
+    title: 'Select a playlist'
+  }, {
+    src: 'listen/5.png',
+    title: 'Listen to the playlist'
+  }, {
+    src: 'listen/6.png',
+    title: 'Additional features'
+  }, {
+    src: 'listen/7.png',
+    title: 'Artist bio'
+  }, {
+    src: 'listen/8.png',
+    title: 'Playlist example'
+  }, {
+    src: 'listen/9.png',
+    title: 'Playlist example'
+  }, {
+    src: 'listen/10.png',
+    title: 'Playlist example'
+  }];
 }]);
 
 
@@ -23,11 +80,11 @@ myApp.config(function ($routeProvider){
       templateUrl : "javascript/blog/entry1/index.html",
       controller : "myController"
     })
-    .when("/blog/2", {
+    .when("/blog/3", {
       templateUrl : "javascript/blog/entry2/index.html",
       controller : "myController"
     })
-    .when("/blog/3", {
+    .when("/blog/2", {
       templateUrl : "javascript/blog/entry3/index.html",
       controller : "myController"
     })
@@ -65,6 +122,39 @@ myApp.directive('donutChart', function() {
         .attr('fill', function(d, i){ return color(i) });
   }};
 });
+
+myApp.directive('slider', function($timeout) {
+  return {
+    restrict: 'AE',
+    replace: true,
+    scope: {
+      images: '='
+    },
+    link: function(scope, elem, attrs) {
+      scope.currentIndex = 0; // Initially the index is at the first image
+
+      scope.next = function() {
+        scope.currentIndex < scope.images.length - 1 ? scope.currentIndex++ : scope.currentIndex = 0;
+      };
+
+      scope.prev = function() {
+        scope.currentIndex > 0 ? scope.currentIndex-- : scope.currentIndex = scope.images.length - 1;
+      };
+
+      scope.$watch('currentIndex', function() {
+        scope.images.forEach(function(image) {
+          image.visible = false; // make every image invisible
+        });
+
+        scope.images[scope.currentIndex].visible = true; // make the current image visible
+      });
+    },
+    templateUrl: 'javascript/projects/slider.html',
+  };
+});
+
+
+
 
 
 myApp.directive('githubTable', function() {

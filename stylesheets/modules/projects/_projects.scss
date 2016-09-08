@@ -5,3 +5,53 @@
 .ui.label {
   margin: 1em 0! important;
 }
+
+.proj__img {
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+.proj__text {
+  text-align: center;
+}
+
+.proj__text>.content>.description {
+  text-align: justify;
+}
+
+.proj__text>.content>.header {
+  font-size: 2em !important;
+  font-weight: 700 !important;
+  margin-bottom: 1em !important;
+}
+
+.proj__text>.content>.extra{
+  font-style: italic;
+  line-height: 1.3;
+}
+
+.slide__img {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.image-nav {
+  &__left{
+    vertical-align: top;
+    margin-top: 20%;
+    display: inline-block;
+  }
+  &__right{
+    vertical-align: top;
+    margin-top: 20%;
+    display: inline-block;
+  }
+  &__center{
+    vertical-align: bottom;
+    display: inline-block;
+
+    > .slide > .desc {
+      margin-top: 0;
+    }
+  }
+}

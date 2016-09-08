@@ -1,22 +1,287 @@
-<div class="section">
-  <div class="section__stats">
-    <p class="heading1">
-      <span class="stats--normal">Created over</span> 
-      <br>
-      <span class="stats--big">10 weeks</span><span class="stats--normal"> by </span><span class="stats--big">9 people</span>
-      <br>
-      <span class="stats--small">(4 engineers interns, 4 editorial interns, 1 designer)</span>
-    </p>
-    <div  class="section__image-row">
-      <img class="stats__img--avatar" src="images/helen.jpg">
-      <img class="stats__img--avatar" src="images/molly.png">
-      <img class="stats__img--avatar" src="images/stevie.jpg">
-      <img class="stats__img--avatar" src="images/helen.jpg">
-      <img class="stats__img--avatar" src="images/matthew.png">
-      <img class="stats__img--avatar" src="images/daniel.jpg">
-      <img class="stats__img--avatar" src="images/kristy.png">
-      <img class="stats__img--avatar" src="images/veronika.jpg">
-      <img class="stats__img--avatar" src="images/elliot.jpg">
-    </div>
-  </div>
-</div>
+<!-- Copy & Pasted from YouTube -->
+<!--     <iframe src="https://www.youtube.com/embed/UjPFq_SOvmg" frameborder="0" 
+  width="100%" height="80%" allowfullscreen></iframe> -->
+<h4 class="player-tip">Click on player icons below to skip the video to a specific play</h4>
+<div id="player"></div>
+
+<div id="video_control_svg_container">  </div>
+
+</body>
+<script type="text/javascript">
+    // add margins to svg
+  var okc_vs_gw_g6 = [
+    {play:1,team:'okc',player:'durant',score:'2',time:'00:46',desc:'dunk'},
+    {play:2,team:'okc',player:'ibaka',score:'2',time:'00:52',desc:'jumper'},
+    {play:3,team:'gw',player:'green',score:'3',time:'00:59',desc:'3 point'},
+    {play:4,team:'gw',player:'bogut',score:'2',time:'1:04',desc:'dunk'},
+    {play:5,team:'okc',player:'ibaka',score:'2',time:'1:11',desc:'reflection'},
+    {play:6,team:'okc',player:'ibaka',score:'2',time:'1:28',desc:'jumper'},
+    {play:7,team:'okc',player:'waiters',score:'3',time:'01:36',desc:'3 point'},
+    {play:8,team:'gw',player:'barnes',score:'3',time:'01:42',desc:'3 point'},
+    {play:9,team:'okc',player:'kanter',score:'3',time:'01:46', desc:'fade away'},
+    {play:10,team:'okc',player:'durant',score:'2',time:'01:52',desc:'to the basket'},
+    {play:11,team:'okc',player:'westbrook',score:'2',time:'01:58',desc:'alley-oop'},
+    {play:12,team:'gw',player:'iguodala',score:'2',time:'02:03',desc:'jumper'},
+    {play:13,team:'gw',player:'curry',score:'3',time:'02:10',desc:'3 point'},
+    {play:14,team:'gw',player:'iguodala',score:'2',time:'02:23',desc:'spin'},
+    {play:15,team:'okc',player:'adams',score:'2',time:'02:30',desc:'dunk'},
+    {play:16,team:'okc',player:'durant',score:'2',time:'02:35',desc:'fade away'},
+    {play:17,team:'gw',player:'thompson',score:'3',time:'02:42',desc:'3 point'},
+    {play:18,team:'okc',player:'durant',score:'2',time:'02:50',desc:'dunk'},
+    {play:19,team:'gw',player:'thompson',score:'3',time:'02:56',desc:'3 point'},
+    {play:20,team:'okc',player:'ibaka',score:'3',time:'03:09',desc:'3 point'},
+    {play:21,team:'gw',player:'curry',score:'3',time:'03:16',desc:'3 point'},
+    {play:22,team:'okc',player:'ibaka',score:'2',time:'03:09',desc:'layup'},
+    {play:23,team:'gw',player:'barnes',score:'2',time:'03:32',desc:'jumper'},
+    {play:24,team:'gw',player:'thompson',score:'3',time:'03:40',desc:'3 point'},
+    {play:25,team:'gw',player:'thompson',score:'3',time:'03:46',desc:'3 point'},
+    {play:26,team:'gw',player:'green',score:'2',time:'04:03',desc:'to the basket'},
+    {play:27,team:'okc',player:'durant',score:'2',time:'04:10',desc:'jumper'},
+    {play:28,team:'okc',player:'westbrook',score:'2',time:'04:17',desc:'to the basket'},
+    {play:29,team:'gw',player:'curry',score:'3',time:'04:26',desc:'3 point'},
+    {play:30,team:'okc',player:'adams',score:'3',time:'04:42',desc:'dunk and 1'},
+    {play:31,team:'gw',player:'ezeli',score:'2',time:'04:48',desc:'alley-oop'},
+    {play:32,team:'okc',player:'roberson',score:'2',time:'04:54',desc:'rebound'},
+    {play:33,team:'gw',player:'curry',score:'3',time:'05:02',desc:'3 point'},
+    {play:34,team:'okc',player:'durant',score:'3',time:'05:10',desc:'3 point'},
+    {play:35,team:'gw',player:'curry',score:'3',time:'05:18',desc:'3 point'},
+    {play:36,team:'okc',player:'westbrook',score:'3',time:'05:34',desc:'and 1'},
+    {play:37,team:'gw',player:'thompson',score:'3',time:'05:40',desc:'3 point'},
+    {play:38,team:'gw',player:'thompson',score:'3',time:'05:48',desc:'3 point'},
+    {play:39,team:'gw',player:'barnes',score:'3',time:'06:00',desc:'3 point'},
+    {play:40,team:'okc',player:'westbrook',score:'2',time:'06:08',desc:'to the basket'},
+    {play:41,team:'okc',player:'durant',score:'2',time:'06:16',desc:'jumper'},
+    {play:42,team:'gw',player:'thompson',score:'3',time:'06:24',desc:'3 point'},
+    {play:43,team:'gw',player:'curry',score:'3',time:'06:31',desc:'3 point'},
+    {play:44,team:'gw',player:'curry',score:'3',time:'06:44',desc:'3 point'},
+    {play:45,team:'okc',player:'roberson',score:'2',time:'07:02',desc:'rebound'},
+    {play:46,team:'gw',player:'thompson',score:'3',time:'07:12',desc:'3 point'},
+  ];
+
+  var margin = {top: 50, right: 20, bottom: 30, left: 60},
+      width = 1800 - margin.left - margin.right,
+      height = 120 ;
+
+  // Parse the date / time
+  var parseDate = d3.time.format("%d-%b-%y").parse;
+
+  // Set the ranges
+  // var x = d3.time.scale().domain([data2[0].time, data2[data2.length - 1].time]).range([0, width]);
+  var svg = d3.select("#video_control_svg_container")
+    .append("svg")
+      .attr("fill","red")
+      .attr("id","my_svg")
+      .attr("width", width + margin.left + margin.right)
+      .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+        .attr("transform", 
+              "translate(" + margin.left + "," + margin.top + ")");
+
+
+  svg.append("text")      // text label for the x axis
+    .attr("x", -15 )
+    .attr("y", 35 )
+    .style("text-anchor", "middle")
+    .text("2 points");
+  svg.append("text")      // text label for the x axis
+    .attr("x", -15 )
+    .attr("y", 0 )
+    .style("text-anchor", "middle")
+    .text("3 points");
+  svg.append("text")      // text label for the x axis
+    .attr("x", -15 )
+    .attr("y", 70 )
+    .style("text-anchor", "middle")
+    .text("2 points");
+  svg.append("text")      // text label for the x axis
+    .attr("x", -15 )
+    .attr("y", 105 )
+    .style("text-anchor", "middle")
+    .text("3 points");
+  svg.append("text")      // text label for the x axis
+    .attr("x", 140 )
+    .attr("y", 50 )
+    .attr("font-size", "50px")
+    .attr("fill", "grey")
+    .style("text-anchor", "middle")
+    .text("1st QTR");
+  svg.append("text")      // text label for the x axis
+    .attr("x", 595 )
+    .attr("y", 50 )
+    .attr("font-size", "50px")
+    .attr("fill", "grey")
+    .style("text-anchor", "middle")
+    .text("2nd QTR");
+  svg.append("text")      // text label for the x axis
+    .attr("x", 1075 )
+    .attr("y", 50 )
+    .attr("font-size", "50px")
+    .attr("fill", "grey")
+    .style("text-anchor", "middle")
+    .text("3rd QTR");
+  svg.append("text")      // text label for the x axis
+    .attr("x", 1495 )
+    .attr("y", 50 )
+    .attr("font-size", "50px")
+    .attr("fill", "grey")
+    .style("text-anchor", "middle")
+    .text("4th QTR");
+
+  svg.append("line")
+    .attr("x1", 315)
+    .attr("y1", -50)
+    .attr("x2", 315)
+    .attr("y2", 150)
+    .attr("stroke-width", 2)
+    .attr("stroke", "red");
+  svg.append("line")
+    .attr("x1", 840)
+    .attr("y1", -50)
+    .attr("x2", 840)
+    .attr("y2", 150)
+    .attr("stroke-width", 2)
+    .attr("stroke", "red");
+  svg.append("line")
+    .attr("x1", 1295)
+    .attr("y1", -50)
+    .attr("x2", 1295)
+    .attr("y2", 150)
+    .attr("stroke-width", 2)
+    .attr("stroke", "red");
+
+  // svg.append("g")
+  //   .attr("class", "x axis")
+  //   .attr("transform", "translate(0," + height + ")")
+  //   .call(xAxis)
+
+
+var rectangle = svg.selectAll("rect").data(okc_vs_gw_g6);
+  
+  rectangle.enter().append("svg:rect")              
+    .attr("x", function(d,i){
+      return (d.play * 35) ;
+    })
+    .attr("y", function(d,i){
+      if (d.team == 'okc' && d.score == '2') {
+        return (parseInt(d.score) * 8)+ 30;
+      } else if (d.team == 'okc' && d.score == '3') {
+        return (parseInt(d.score) * 16)+ 30;
+      } else if (d.team == 'gw' && d.score == '2') {
+        return (parseInt(d.score) * -8)+ 30;
+      } else {
+        return (parseInt(d.score) * -16)+ 30;
+      }
+    })
+    .attr("fill", function(d,i){
+      if (d.team === 'okc'){
+        return "rgb(9,81,155)"
+      }
+      else {
+        return "rgb(247,196,70)"
+      }
+    })
+    .attr("width", 35)
+    .attr("height", 30);
+
+
+
+  var imgs = svg.selectAll("img").
+    data(okc_vs_gw_g6);
+    imgs.enter()
+    .append("svg:image")
+    .attr("value", function (d,i){
+      // console.log(d.id);
+      return d.play;
+    })
+    .attr("class", "player_icon_img")
+    .attr("xlink:href", function (d,i) {
+      if (d.team == 'okc'){
+        return "images/blog/post-3/thunder_pics/" + d.player + ".png"   
+      } else {
+        return "images/blog/post-3/warriors_pics/" + d.player + ".png"   
+      }       
+      })
+    .attr("x", function(d,i){
+      return (d.play * 35) ;
+    })
+    .attr("y", function(d,i){
+      if (d.team == 'okc' && d.score == '2') {
+        return (parseInt(d.score) * 8)+ 30;
+      } else if (d.team == 'okc' && d.score == '3') {
+        return (parseInt(d.score) * 16)+ 30;
+      } else if (d.team == 'gw' && d.score == '2') {
+        return (parseInt(d.score) * -8)+ 30;
+      } else {
+        return (parseInt(d.score) * -16)+ 30;
+      }
+    })
+    .attr("stroke","orange")
+    .attr("width", "35")
+    .attr("height", "30");
+
+
+
+</script>
+<script type="text/javascript">
+  var tag = document.createElement('script');
+
+  tag.src = "https://www.youtube.com/iframe_api";
+  var firstScriptTag = document.getElementsByTagName('script')[0];
+  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+  var player;
+  function onYouTubeIframeAPIReady() {
+    player = new YT.Player('player', {
+      height: '80%',
+      width: '100%',
+      playerVars: {
+          controls: 0,
+          disablekb: 1,
+          volume: 0
+      },
+      videoId: 'UjPFq_SOvmg'
+    });
+  }
+
+  $('.player_icon_img').click(function(){
+    player.mute();
+    var index_in_data = $(this).attr('value');
+    var index_int = parseInt(index_in_data);
+    var time_in_data = okc_vs_gw_g6[index_in_data-2].time;
+    var split_time = time_in_data.split(':');
+    var time_in_seconds = 0;
+    var end_of_highlight
+    // setTimeout(function(){
+    //    window.location.reload(1);
+    // }, 5000);
+    if (split_time.length == 2) {
+      // subtracting 14 because there is a sync issue between what i recorded and actual values
+      time_in_seconds = (parseInt(split_time[0]) * 60) + (parseInt(split_time[1])) - 14;
+    } else {
+      time_in_seconds = (parseInt(split_time[0])) - 14;
+    }
+    player.seekTo(time_in_seconds);
+  });
+
+  //   var time_in_seconds = 0;
+  //   var end_time = 0;
+  //   var duration_of_highlight;
+  //   if (split_time.length == 2) {
+  //     // subtracting 14 because there is a sync issue between what i recorded and actual values
+  //     time_in_seconds = (parseInt(split_time[0]) * 60) + (parseInt(split_time[1])) - 14;
+  //   } else {
+  //     time_in_seconds = (parseInt(split_time[0])) - 14;
+  //   }
+  //   if (split_end_time.length == 2) {
+  //     // subtracting 14 because there is a sync issue between what i recorded and actual values
+  //     end_time = (parseInt(split_end_time[0]) * 60) + (parseInt(split_end_time[1])) - 14;
+  //   } else {
+  //     end_time = (parseInt(split_end_time[0])) - 14;
+  //   }
+  //   duration_of_highlight = (end_time - time_in_seconds);
+  //   player.seekTo(time_in_seconds);
+  //   player.playVideo();
+  //   setTimeout(function(){
+  //      player.pauseVideo();
+  //   }, duration_of_highlight * 1000);
+</script>
