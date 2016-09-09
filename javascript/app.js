@@ -71,14 +71,18 @@ myApp.run(function($rootScope, $location, $window){
   $window.ga('create', 'UA-83297043-1', 'auto');
 
   $rootScope.$on('$routeChangeSuccess', function (scope, next, current) {
-      $window.ga('send', 'pageview', $location.path());
+      $window.ga('send', 'pageview', { page: $location.url() });
   });
 })
 
 
-myApp.config(function ($routeProvider){
+myApp.config(function ($routeProvider, $locationProvider){
   $routeProvider
     .when("/", {
+      templateUrl : "javascript/about/about.html",
+      controller : "myController"
+    })
+    .when("/about", {
       templateUrl : "javascript/about/about.html",
       controller : "myController"
     })
@@ -105,7 +109,8 @@ myApp.config(function ($routeProvider){
     .when('/projects',{
       templateUrl : "javascript/projects/project.html",
       controller : "myController"
-    })
+    });
+    $locationProvider.html5Mode(true);
 })
 
 
