@@ -77,6 +77,7 @@ myApp.run(function($rootScope, $location, $window){
 
 
 myApp.config(function ($routeProvider, $locationProvider){
+  
   $routeProvider
     .when("/", {
       templateUrl : "javascript/about/about.html",
@@ -110,6 +111,7 @@ myApp.config(function ($routeProvider, $locationProvider){
       templateUrl : "javascript/projects/project.html",
       controller : "myController"
     });
+
     $locationProvider.html5Mode(true);
 })
 
