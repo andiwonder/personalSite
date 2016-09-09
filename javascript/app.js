@@ -4,6 +4,7 @@ var myApp = angular.module("personalSite",['ngRoute','ngAnimate']);
 
 
 myApp.controller('myController', ['$scope' , '$http' , '$routeParams' , function($scope ,$http, $routeParams){
+  $window.ga('create', 'UA-XXXXXXXX-X', 'auto');
   $scope.proj1 = [{
     src: 'dota/1.png',
     title: 'Landing page'
@@ -64,6 +65,15 @@ myApp.controller('myController', ['$scope' , '$http' , '$routeParams' , function
     title: 'Playlist example'
   }];
 }]);
+
+myApp.run(function($rootScope, $location, $window){
+
+  $window.ga('create', 'UA-83297043-1', 'auto');
+  
+  $rootScope.$on('$stateChangeSuccess', function (event) {
+      $window.ga('send', 'pageview', $location.path());
+  });
+})
 
 
 myApp.config(function ($routeProvider){
