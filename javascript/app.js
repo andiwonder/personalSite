@@ -70,7 +70,7 @@ myApp.run(function($rootScope, $location, $window){
 
   $window.ga('create', 'UA-83297043-1', 'auto');
 
-  $rootScope.$on('$stateChangeSuccess', function (event) {
+  $rootScope.$on('$routeChangeSuccess', function (scope, next, current) {
       $window.ga('send', 'pageview', $location.path());
   });
 })
