@@ -71,7 +71,7 @@ myApp.run(function($rootScope, $location, $window){
   $window.ga('create', 'UA-83297043-1', 'auto');
 
   $rootScope.$on('$routeChangeSuccess', function (scope, next, current) {
-      console.log($location.url());
+      console.log($location.path());
       $window.ga('send', 'pageview', { page: $location.path() });
   });
 })

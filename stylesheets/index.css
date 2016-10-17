@@ -1511,6 +1511,29 @@ table {
 .intro-img {
   margin-bottom: 2em; }
 
+#dataviz_container .axis path {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges; }
+#dataviz_container .axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges; }
+#dataviz_container .x.axis path {
+  display: none; }
+#dataviz_container .line {
+  fill: none;
+  stroke: steelblue;
+  stroke-width: 1.5px; }
+#dataviz_container .chart_title {
+  text-align: center; }
+#dataviz_container #pie_chart_d3 {
+  margin: 0 auto; }
+#dataviz_container .jumbotron {
+  background-color: #F5DEB3;
+  margin-bottom: 0;
+  margin-top: 0; }
+
 .section__main-text {
   font-style: normal;
   line-height: 1.5;

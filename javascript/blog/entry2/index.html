@@ -59,20 +59,502 @@
   </div>
 </div>
 
-<div class="ui text container">
+<div id="dataviz_container" class="ui text container">
   <p>
-
-  
-
-
-  
-  
-  
-
-
-
-  
-  
-
+    <h2> More Graphs</h2>
+    <div id="pie_chart" class="jumbotron">
+      <div class="chart_title">
+        <h1 class="ui center aligned header article-header">Donut Chart</h1>
+        <p>Distribution of total studies by categories</p>
+      </div>
+      <div id="pie_chart_d3">
+      </div>
+    </div>
+    <div id="line_chart" class="jumbotron">
+      <div class="chart_title">
+        <h1 class="ui center aligned header article-header">Line Chart</h1>
+        <p>Total trials by category over time</p>
+      </div>
+      <div id="line_chart_d3">
+      </div>
+    </div>
+    <div id="grouped_bar_chart" class="jumbotron">
+      <div class="chart_title">
+        <h1 class="ui center aligned header article-header">Grouped Bar Chart</h1>
+        <p>Total trials by category over time</p>
+      </div>
+      <div id="grouped_bar_chart_d3">
+      </div>
+    </div>
+    <div id="stacked_area_chart" class="jumbotron">
+      <div class="chart_title">
+        <h1 class="ui center aligned header article-header">Stacked Area Chart</h1>
+        <p>Total trials(%) by category over time</p>
+      </div>
+      <div id="stack_area_chart_d3">
+      </div>
+    </div>
+    <div id="stacked_group_bar_chart" class="jumbotron">
+      <div class="chart_title">
+        <h1 class="ui center aligned header article-header">Stacked Group Bar Chart</h1>
+        <p>Total trials(%) by category over time</p>
+      </div>
+      <div id="stacked_group_bar_chart_d3">
+      </div>
+    </div>
   </p>
 </div>
+
+<script type="text/javascript">
+  var line_graph = function line_graph(){
+    var margin = {top: 20, right: 80, bottom: 30, left: 50},
+        width = 760 - margin.left - margin.right,
+        height = 450 - margin.top - margin.bottom;
+
+    var parseDate = d3.time.format("%Y").parse;
+
+    var x = d3.time.scale()
+        .range([0, width]);
+
+    var y = d3.scale.linear()
+        .range([height, 0]);
+
+    var color = d3.scale.category10();
+
+    var xAxis = d3.svg.axis()
+        .scale(x)
+        .orient("bottom");
+
+    var yAxis = d3.svg.axis()
+        .scale(y)
+        .orient("left");
+
+    var line = d3.svg.line()
+        .interpolate("basis")
+        .x(function(d) { return x(d.date); })
+        .y(function(d) { return y(d.temperature); });
+
+    var svg = d3.select("#line_chart_d3").append("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+      .append("g")
+        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+    d3.csv("https://s3-us-west-2.amazonaws.com/dotaempower/dataviz/data.csv", function(error, data) {
+      if (error) throw error;
+
+      color.domain(d3.keys(data[0]).filter(function(key) { return key !== "date"; }));
+
+      data.forEach(function(d) {
+        d.date = parseDate(d.year);
+        console.log(d.date);
+      });
+
+      var cities = color.domain().map(function(name) {
+        return {
+          name: name,
+          values: data.map(function(d) {
+            return {date: d.date, temperature: +d[name]};
+          })
+        };
+      });
+
+      x.domain(d3.extent(data, function(d) { return d.date; }));
+
+      y.domain([
+        d3.min(cities, function(c) { return d3.min(c.values, function(v) { return v.temperature; }); }),
+        d3.max(cities, function(c) { return d3.max(c.values, function(v) { return v.temperature; }); })
+      ]);
+
+      svg.append("g")
+          .attr("class", "x axis")
+          .attr("transform", "translate(0," + height + ")")
+          .call(xAxis);
+
+      svg.append("g")
+          .attr("class", "y axis")
+          .call(yAxis)
+        .append("text")
+          .attr("color","white")
+          .attr("transform", "rotate(-90)")
+          .attr("y", 6)
+          .attr("dy", ".71em")
+          .style("text-anchor", "end")
+          .text("Number of trials");
+
+      var city = svg.selectAll(".city")
+          .data(cities)
+        .enter().append("g")
+          .attr("class", "city");
+
+      city.append("path")
+          .attr("class", "line")
+          .attr("d", function(d) { return line(d.values); })
+          .style("stroke", function(d) { return color(d.name); });
+
+      city.append("text")
+          .datum(function(d) { return {name: d.name, value: d.values[d.values.length - 1]}; })
+          .attr("transform", function(d) { return "translate(" + x(d.value.date) + "," + y(d.value.temperature) + ")"; })
+          .attr("x", 3)
+          .attr("dy", ".35em")
+          .text(function(d) { return d.name; });
+    });
+  }
+</script>
+
+
+<script>
+  var stacked_area_chart = function stacked_area_chart(){
+    var margin = {top: 20, right: 20, bottom: 30, left: 50},
+        width = 960 - margin.left - margin.right,
+        height = 500 - margin.top - margin.bottom;
+
+    var parseDate = d3.time.format("%Y").parse,
+        formatPercent = d3.format(".0%");
+
+    var x = d3.time.scale()
+        .range([0, width]);
+
+    var y = d3.scale.linear()
+        .range([height, 0]);
+
+    var color = d3.scale.category20();
+
+    var xAxis = d3.svg.axis()
+        .scale(x)
+        .orient("bottom");
+
+    var yAxis = d3.svg.axis()
+        .scale(y)
+        .orient("left")
+        .tickFormat(formatPercent);
+
+    var area = d3.svg.area()
+        .x(function(d) { return x(d.date); })
+        .y0(function(d) { return y(d.y0); })
+        .y1(function(d) { return y(d.y0 + d.y); });
+
+    var stack = d3.layout.stack()
+        .values(function(d) { return d.values; });
+
+    var svg = d3.select("#stack_area_chart_d3").append("svg")        
+                .attr('viewBox','0 0 870 450')
+                .attr('preserveAspectRatio','xMinYMin')
+                .append("g")
+                  .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+    d3.csv("https://s3-us-west-2.amazonaws.com/dotaempower/dataviz/data2.csv", function(error, data) {
+      if (error) throw error;
+      console.log(data);
+
+      color.domain(d3.keys(data[0]).filter(function(key) { return key !== "date"; }));
+
+      data.forEach(function(d) {
+        d.date = parseDate(d.date);
+      });
+
+      var browsers = stack(color.domain().map(function(name) {
+        return {
+          name: name,
+          values: data.map(function(d) {
+            return {date: d.date, y: d[name] / 100};
+          })
+        };
+      }));
+
+      x.domain(d3.extent(data, function(d) { return d.date; }));
+
+
+      var browser = svg.selectAll(".browser")
+          .data(browsers)
+        .enter().append("g")
+          .attr("class", "browser");
+
+      browser.append("path")
+          .attr("class", "area")
+          .attr("d", function(d) { return area(d.values); })
+          .style("fill", function(d) { return color(d.name); });
+
+      browser.append("text")
+          .datum(function(d) { return {name: d.name, value: d.values[d.values.length - 1]}; })
+          .attr("transform", function(d) { return "translate(" + x(d.value.date) + "," + y(d.value.y0 + d.value.y / 2) + ")"; })
+          .attr("x", -6)
+          .attr("dy", ".35em")
+          .text(function(d) { return d.name; });
+
+      svg.append("g")
+          .attr("class", "x axis")
+          .attr("transform", "translate(0," + height + ")")
+          .call(xAxis);
+
+      svg.append("g")
+          .attr("class", "y axis")
+          .call(yAxis);
+    });
+  };
+</script>
+
+<script type="text/javascript">
+  var stacked_bar_chart = function stacked_bar_chart(){
+    var causes = ["behvariour","wound","immune","digestive","cancer"];
+
+    var parseDate = d3.time.format("%Y").parse;
+
+    var margin = {top: 20, right: 50, bottom: 30, left: 20},
+        width = 1000 - margin.left - margin.right,
+        height = 500 - margin.top - margin.bottom;
+
+    var x = d3.scale.ordinal()
+        .rangeRoundBands([0, width]);
+
+    var y = d3.scale.linear()
+        .rangeRound([height, 0]);
+
+    var z = d3.scale.category20();
+
+    var xAxis = d3.svg.axis()
+        .scale(x)
+        .orient("bottom")
+        .tickFormat(d3.time.format("%y"));
+
+    var yAxis = d3.svg.axis()
+        .scale(y)
+        .orient("right");
+
+    var svg = d3.select("#grouped_bar_chart_d3").append("svg")
+                .attr("viewBox",'0 0 1060 530')
+                .attr("preserveAspectRatio", "xMidYMax")
+                .append("g")
+                  .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+    d3.csv("https://s3-us-west-2.amazonaws.com/dotaempower/dataviz/data3.csv", type, function(error, crimea) {
+      if (error) throw error;
+
+      var layers = d3.layout.stack()(causes.map(function(c) {
+        return crimea.map(function(d) {
+          return {x: d.date, y: d[c]};
+        });
+      }));
+
+      x.domain(layers[0].map(function(d) { return d.x; }));
+      y.domain([0, d3.max(layers[layers.length - 1], function(d) { return d.y0 + d.y; })]).nice();
+
+      var layer = svg.selectAll(".layer")
+          .data(layers)
+        .enter().append("g")
+          .attr("class", "layer")
+          .style("fill", function(d, i) { return z(i); });
+
+      layer.selectAll("rect")
+          .data(function(d) { return d; })
+        .enter().append("rect")
+          .attr("x", function(d) { return x(d.x); })
+          .attr("y", function(d) { return y(d.y + d.y0); })
+          .attr("height", function(d) { return y(d.y0) - y(d.y + d.y0); })
+          .attr("width", x.rangeBand() - 1);
+
+      svg.append("g")
+          .attr("class", "axis axis--x")
+          .attr("transform", "translate(0," + height + ")")
+          .call(xAxis);
+
+      svg.append("g")
+          .attr("class", "axis axis--y")
+          .attr("transform", "translate(" + width + ",0)")
+          .call(yAxis);
+
+      svg.select(".x.axis")
+          .selectAll("text")
+          // To rotate the texts on x axis. Translate y position a little bit to prevent overlapping on axis line.
+          .style("font-size","15px");
+    });
+
+    function type(d) {
+      d.date = parseDate(d.date);
+      causes.forEach(function(c) { d[c] = +d[c]; });
+      return d;
+    }
+  } 
+</script>
+
+<script type="text/javascript">
+  var stacked_bar_chart_2 = function stacked_bar_chart_2(){
+    
+    var margin = {top: 20, right: 60, bottom: 30, left: 40},
+        width = 960 - margin.left - margin.right,
+        height = 500 - margin.top - margin.bottom;
+    
+    var parseDate = d3.time.format("%Y").parse;
+    
+    var y = d3.scale.ordinal()
+        .rangeRoundBands([height, 0], .1);
+
+    var x = d3.scale.linear()
+        .rangeRound([0, width]);
+
+    var color = d3.scale.category20();
+
+    var yAxis = d3.svg.axis()
+        .scale(y)
+        .orient("left")
+        .tickFormat(d3.time.format("%Y"));
+
+    var xAxis = d3.svg.axis()
+        .scale(x)
+        .orient("bottom")
+        .tickFormat(d3.format(".2s"));
+
+    var svg = d3.select("#stacked_group_bar_chart_d3").append("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+      .append("g")
+        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+    d3.csv("https://s3-us-west-2.amazonaws.com/dotaempower/dataviz/data2.csv", function(error, data) {
+      if (error) throw error;
+
+      color.domain(d3.keys(data[0]).filter(function(key) { return key !== "date"; }));
+
+      data.forEach(function(d) {
+        var y0 = 0;
+        d.ages = color.domain().map(function(name) { return {name: name, y0: y0, y1: y0 += +d[name]}; });
+        d.total = d.ages[d.ages.length - 1].y1;
+        d.date = parseDate(d.date);
+        console.log(d);
+      });
+
+      data.sort(function(a, b) { return b.total - a.total; });
+
+      y.domain(data.map(function(d) { return d.date; }));
+      x.domain([0, d3.max(data, function(d) { return d.total; })]);
+
+      svg.append("g")
+          .attr("class", "x axis")
+          .attr("transform", "translate(0," + height + ")")
+          .call(xAxis);
+
+      svg.append("g")
+          .attr("class", "y axis")
+          .call(yAxis)
+        .append("text")
+          .attr("transform", "rotate(-90)")
+          .attr("y", 6)
+          .attr("dy", ".71em")
+          .style("text-anchor", "end")
+          .text("Population");
+
+      var state = svg.selectAll(".state")
+          .data(data)
+          .enter().append("g")
+          .attr("class", "g")
+          .attr("transform", function(d) { return "translate(0," + y(d.date) + ")"; });
+
+      state.selectAll("rect")
+          .data(function(d) { return d.ages; })
+          .enter().append("rect")
+          .attr("height", y.rangeBand())
+          .attr("x", function(d) { return x(d.y0); })
+          .attr("width", function(d) { return x(d.y1) - x(d.y0); })
+          .style("fill", function(d) { return color(d.name); });
+
+      var legend = svg.selectAll(".legend")
+          .data(color.domain().slice().reverse())
+        .enter().append("g")
+          .attr("class", "legend")
+          .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
+
+      legend.append("rect")
+          .attr("x", width + 40)
+          .attr("width", 18)
+          .attr("height", 18)
+          .style("fill", color);
+
+      legend.append("text")
+          .attr("x", width + 35)
+          .attr("y", 9)
+          .attr("dy", ".35em")
+          .style("text-anchor", "end")
+          .text(function(d) { return d; });
+    });
+  }
+</script>
+
+<script type="text/javascript">
+  (function(d3) {
+    'use strict';
+
+    var dataset = [
+      { label: 'immune', count: 9399 },
+      { label: 'Digestive', count: 18928 }, 
+      { label: 'cancer', count: 15686 },
+      { label: 'wound', count: 10496 },
+      { label: 'behvaiour', count: 9021 }
+    ];
+
+    var width = 360;
+    var height = 360;
+    var radius = Math.min(width, height) / 2;
+    var donutWidth = 40;
+    var legendRectSize = 18;                                  // NEW
+    var legendSpacing = 4;                                    // NEW
+
+    var color = d3.scale.category20();
+
+    var svg = d3.select('#pie_chart_d3')
+      .append('svg')
+      .attr('width', width)
+      .attr('height', height)
+      .append('g')
+      .attr('transform', 'translate(' + (width / 2) + 
+        ',' + (height / 2) + ')');
+
+    var arc = d3.svg.arc()
+      .innerRadius(radius - donutWidth)
+      .outerRadius(radius);
+
+    var pie = d3.layout.pie()
+      .value(function(d) { return d.count; })
+      .sort(null);
+
+    var path = svg.selectAll('path')
+      .data(pie(dataset))
+      .enter()
+      .append('path')
+      .attr('d', arc)
+      .attr('fill', function(d, i) { 
+        return color(d.data.label);
+      });
+
+    var legend = svg.selectAll('.legend')                     // NEW
+      .data(color.domain())                                   // NEW
+      .enter()                                                // NEW
+      .append('g')                                            // NEW
+      .attr('class', 'legend')                                // NEW
+      .attr('transform', function(d, i) {                     // NEW
+        var height = legendRectSize + legendSpacing;          // NEW
+        var offset =  height * color.domain().length / 2;     // NEW
+        var horz = -2 * legendRectSize;                       // NEW
+        var vert = i * height - offset;                       // NEW
+        return 'translate(' + horz + ',' + vert + ')';        // NEW
+      });                                                     // NEW
+
+    legend.append('rect')                                     // NEW
+      .attr('width', legendRectSize)                          // NEW
+      .attr('height', legendRectSize)                         // NEW
+      .style('fill', color)                                   // NEW
+      .style('stroke', color);                                // NEW
+      
+    legend.append('text')                                     // NEW
+      .attr('x', legendRectSize + legendSpacing)              // NEW
+      .attr('y', legendRectSize - legendSpacing)              // NEW
+      .text(function(d) { return d; });                       // NEW
+  })(window.d3);
+</script>
+
+
+<script type="text/javascript">
+  line_graph();
+  stacked_area_chart();
+  stacked_bar_chart();
+  stacked_bar_chart_2();
+</script>
