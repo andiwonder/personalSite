@@ -1,0 +1,463 @@
+<div id="dataviz_container2">
+  <div class="text-container ui text container">
+    <h3 class="text__header">
+      Stacked rate of change over time
+    </h3>
+  </div>
+  <div id="d3_stacked_area_chart">
+  </div>
+  <div id="d3_stacked_area_chart_slider-range">
+  </div> 
+  <div class="text-container ui text container">
+    <h3 class="text__header">
+      Count of subjects enrolled in trials
+    </h3>
+  </div>
+  <div id="d3_scatterplot_duration">
+  </div> 
+  <div id="d3_scatterplot_duration_filter">
+    <b>Species Filter:</b>
+    <br>
+    <input name='v' value="digestive" type="checkbox" checked>Digestive
+    </input>
+    <br>
+    <input name="v" value="cancer" type="checkbox" checked >Cancer
+    </input>
+    <br>
+    <input name="v" value="immune" type="checkbox" checked >Immune
+    </input>
+    <br>
+    <input name="v" value="wound" type="checkbox" checked >Wounds
+    </input>
+    <br>
+    <input name="v" value="beahviour" type="checkbox" checked >Behaviour
+    </input>
+  </div>
+  <div id="d3_scatterplot_duration_slider-range">
+  </div>
+</div>
+
+<script type="text/javascript">
+  var stacked_area_chart = function stacked_area_chart(data, org_data_copy) {
+    console.log("stacked area chart called");
+
+    var margin = {top: 20, right: 20, bottom: 30, left: 50},
+        width = 960 - margin.left - margin.right,
+        height = 500 - margin.top - margin.bottom;
+
+    console.log("here1");
+
+    var formatPercent = d3.format(".0%");
+    var legendRectSize = 25;                                  // NEW
+    var legendSpacing = 10;                                    // NEW
+    var x = d3.time.scale().range([0, width]);
+    var y = d3.scale.linear().range([height, 0]);
+
+    var color = d3.scale.category20();
+
+    console.log("here2");
+
+    var xAxis = d3.svg.axis()
+        .scale(x)
+        .orient("bottom");
+
+    var yAxis = d3.svg.axis()
+        .scale(y)
+        .orient("left")
+        .tickFormat(formatPercent);
+
+    console.log("here3");
+
+    var area = d3.svg.area()
+        .x(function(d) { return x(d.date); })
+        .y0(function(d) { return y(d.y0); })
+        .y1(function(d) { return y(d.y0 + d.y); });
+
+    console.log("here4");
+
+    var stack = d3.layout.stack()
+        .values(function(d) { return d.values; });
+
+    var svg = d3.select("#d3_stacked_area_chart").append("svg")        
+                .attr('viewBox','0 0 1100 500')
+                .attr('preserveAspectRatio','xMinYMin')
+                .append("g")
+                  .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+    console.log("here5");
+
+    var dataset = [
+      { label: 'immune', count: 9399 },
+      { label: 'Digestive', count: 18928 }, 
+      { label: 'cancer', count: 15686 },
+      { label: 'wound', count: 10496 },
+      { label: 'behvaiour', count: 9021 }
+    ];
+
+    color.domain(d3.keys(data[0]).filter(function(key) { return key !== "date"; }));
+
+    var browsers = stack(color.domain().map(function(name) {
+      return {
+        name: name,
+        values: data.map(function(d) {
+          return {date: d.date, y: d[name] / 100};
+        })
+      };
+    }));
+
+    x.domain(d3.extent(data, function(d) { return d.date; }));
+    
+    console.log("here7");
+
+    var browser = svg.selectAll(".browser")
+        .data(browsers)
+      .enter().append("g")
+        .attr("class", "browser");
+
+    browser.append("path")
+        .attr("class", "area")
+        .attr("d", function(d) { return area(d.values); })
+        .attr("transform", "translate(5 , -5)")
+        .style("fill", function(d) { return color(d.name); });
+
+    svg.append("g")
+        .attr("class", "x-axis")
+        .attr("transform", "translate(0," + height + ")")
+        .call(xAxis);
+
+    svg.append("g")
+        .attr("class", "y-axis")
+        .call(yAxis);
+
+    var legend = svg.selectAll('.legend')                     // NEW
+      .data(color.domain())                                   // NEW
+      .enter()                                                // NEW
+      .append('g')                                            // NEW
+      .attr('class', 'legend')                                // NEW
+      .attr('transform', function(d, i) {                     // NEW
+        var height = legendRectSize + legendSpacing;          // NEW
+        var offset =  height * color.domain().length / 2;     // NEW
+        var horz = -2 * legendRectSize + 970;                       // NEW
+        var vert = i * height - offset + 90;                       // NEW
+        return 'translate(' + horz + ',' + vert + ')';        // NEW
+      });                                                     // NEW
+
+    legend.append('rect')                                     // NEW
+      .attr('width', legendRectSize)                          // NEW
+      .attr('height', legendRectSize)                         // NEW
+      .style('fill', color)                                   // NEW
+      .style('stroke', color);                                // NEW
+      
+    legend.append('text')                                     // NEW
+      .attr('x', legendRectSize + legendSpacing)              // NEW
+      .attr('y', legendRectSize - legendSpacing)              // NEW
+      .text(function(d) { return d; });                       // NEW
+  
+    function zoom(begin, end) {
+
+      var date1 = new Date();
+      date1.setFullYear(1995 + begin,0,1);
+      var date2 = new Date();
+      date2.setFullYear(2015 + end - 20,0,1);
+
+      console.log(date2);
+      
+      data = org_data_copy.filter(function(d) {
+        return d.date > date1 && d.date < date2;
+      });
+
+      x.domain(d3.extent(data, function(d) { return d.date; }));
+      d3.selectAll(".browser").remove();
+      d3.selectAll(".x-axis").remove();
+
+      var browsers = stack(color.domain().map(function(name) {
+        return {
+          name: name,
+          values: data.map(function(d) {
+              return {date: d.date, y: d[name] / 100};
+          })
+        };
+      }));
+
+
+      var browser = svg.selectAll(".browser")
+          .data(browsers)
+        .enter().append("g")
+          .attr("class", "browser");
+
+
+      browser.append("path")
+          .attr("class", "area")
+          .attr("d", function(d) { 
+            return area(d.values); 
+          })
+          .attr("transform", "translate(5 , -5)")
+          .style("fill", function(d) { return color(d.name); })
+          .transition()
+          .duration(2000);
+
+      svg.append("g")
+        .attr("class", "x-axis")
+        .attr("transform", "translate(0," + height + ")")
+        .call(xAxis);
+    }
+
+    $(function() {
+      $( "#d3_stacked_area_chart_slider-range" ).slider({
+        range: true,
+        min: 0,
+        max: 20,
+        values: [0, 20],
+        slide: function( event, ui ) {
+          var begin = d3.min([ui.values[0]]);
+          var end = d3.max([ui.values[1]]);
+          console.log("begin:", begin, "end:", end);
+
+          zoom(begin, end);
+        }
+      });
+    });
+  };
+  var p = new Promise(function(resolve, reject) {      
+    // Do an async task async task and then...
+    if(resolve) {
+      var data = [];
+      var parseDate = d3.time.format("%Y").parse,
+          formatPercent = d3.format(".0%");
+      d3.csv("https://s3-us-west-2.amazonaws.com/dotaempower/dataviz/data2.csv", function(error, csvdata) {
+        if (error) throw error;
+        data = csvdata;
+        console.log(data);
+
+        data.forEach(function(d) {
+          d.date = parseDate(d.date);
+        });
+        resolve(data);
+      });
+    }
+    else {
+      reject('Failure!');
+    }
+  });
+  p.then(function(response) { 
+    /* do something with the result */
+    var data = response;
+    var org_data_copy = response;
+    var formatPercent = d3.format(".0%");
+    stacked_area_chart(data, org_data_copy);
+  }).catch(function() {
+    /* error :( */
+  })
+</script>
+<script>
+  var scatterplot_duration = function scatterplot_duration() {
+
+    var margin = {top: 20, right: 20, bottom: 30, left: 40},
+        width = 960 - margin.left - margin.right,
+        height = 500 - margin.top - margin.bottom;
+
+      
+    var x = d3.scale.linear()
+        .range([0, width]);
+
+    var y = d3.scale.linear()
+        .range([height, 0]);
+
+
+    var color = d3.scale.category10();
+
+    // var axisNames = { 
+    //                     petalWidth: 'Petal Width', 
+    //                     petalLength: 'Petal Length', 
+    //                     sepalWidth: 'Sepal Width', 
+    //                     sepalLength: 'Sepal Length' 
+    //                 };
+
+    var xAxis = d3.svg.axis()
+        .scale(x)
+        .orient("bottom")
+        .innerTickSize(-height)
+        .outerTickSize(0)
+        .tickPadding(5)
+        .ticks(10);
+
+    var yAxis = d3.svg.axis()
+        .scale(y)
+        .orient("left")
+        .innerTickSize(-width)
+        .outerTickSize(0)
+        .tickPadding(5)
+        .ticks(10);
+
+
+    var svg = d3.select("#d3_scatterplot_duration").append("svg")
+        .attr('viewBox','-50 0 1000 520')
+        .attr('preserveAspectRatio','xMinYMin')
+        .append("g")
+        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+
+    d3.csv("https://s3-us-west-2.amazonaws.com/dotaempower/dataviz/data_duration.csv", function(error, data) {
+      console.log(error);
+      console.log(data);
+      data.forEach(function(d) {
+        d.enrollment = +d.month;
+        d.count = +d.count;
+        d.type = d.type;
+      });
+
+      org_data_copy = data;
+
+      x.domain(d3.extent(data, function(d) { return d.enrollment; })).nice();
+      y.domain(d3.extent(data, function(d) { return d.count; })).nice();
+
+      svg.append("g")
+          .attr("class", "x-axis")
+          .attr("transform", "translate(0," + height + ")")
+          .call(xAxis)
+        .append("text")
+          .attr("class", "label")
+          .attr("x", width / 2 + 120)
+          .attr("y", 50)
+          .attr("font-size", "30px")
+          .style("text-anchor", "end")
+          .text("Number of subjects");
+
+      svg.append("g")
+          .attr("class", "y-axis")
+          .call(yAxis)
+        .append("text")
+          .attr("class", "label")
+          .attr("text-anchor", "middle")  
+          .attr("transform", "translate("+ (50/2) +","+(height/2 - 100)+")rotate(-90)") 
+          .attr("y", -100)
+          .attr("font-size", "30px")
+          .attr("dy", ".71em")
+          .style("text-anchor", "end")
+          .text("Number of trials")
+
+
+
+     var circles = svg.selectAll(".dot")
+          .data(data)
+        .enter().append("circle")
+          .attr("class", "dot")
+          .attr("r", 3.5)
+          .attr("cx", function(d) { return x(d.enrollment); })
+          .attr("cy", function(d) { return y(d.count); })
+          .style("fill", function(d) { return color(d.type); });
+
+
+      var legend = svg.selectAll(".legend")
+          .data(color.domain())
+          .enter().append("g")
+          .attr("class", "legend")
+          .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
+
+
+      legend.append("rect")
+          .attr("x", width - 18)
+          .attr("width", 18)
+          .attr("height", 18)
+          .style("fill", color);
+
+      legend.append("text")
+          .attr("x", width - 24)
+          .attr("y", 9)
+          .attr("dy", ".35em")
+          .style("text-anchor", "end")
+          .text(function(d) { return d; })
+          .on("click", function(d) { alert("Hello world"); });
+
+
+
+      d3.selectAll("[name=v]").on("change", function() {
+          var selected = this.value;
+          display = this.checked ? "inline" : "none";
+          console.log(selected);
+          svg.selectAll(".dot")
+              .filter(function(d) {return selected == d.type;})
+              .attr("display", display);
+          });
+
+    });
+
+    function zoom(begin, end) {
+
+      console.log("zoom");
+
+      d3.selectAll(".dot").remove();
+      d3.selectAll(".x-axis").remove();
+      d3.selectAll(".y-axis").remove();
+      d3.selectAll(".tick").remove();
+      
+      data = org_data_copy.filter(function(d) {
+        d.enrollment = +d.enrollment;
+        return d.enrollment > begin && d.enrollment < end ;
+      });
+
+      console.log("data is " + data.length)
+      console.log("org_data_copy is " + org_data_copy.length)
+
+      data.forEach(function(d) {
+        d.enrollment = +d.month;
+        d.count = +d.count;
+        d.type = d.type;
+      });
+
+      x.domain(d3.extent(data, function(d) { return d.enrollment; })).nice();
+      y.domain(d3.extent(data, function(d) { return d.count; })).nice();
+
+      svg.append("g")
+          .attr("class", "x-axis")
+          .attr("transform", "translate(0," + height + ")")
+          .call(xAxis)
+        .append("text")
+          .attr("class", "label")
+          .attr("x", width / 2 + 120)
+          .attr("y", 50)
+          .attr("font-size", "30px")
+          .style("text-anchor", "end")
+          .text("Number of subjects");
+
+      svg.append("g")
+          .attr("class", "y-axis")
+          .call(yAxis)
+        .append("text")
+          .attr("class", "label")
+          .attr("text-anchor", "middle")  
+          .attr("transform", "translate("+ (50/2) +","+(height/2 - 100)+")rotate(-90)") 
+          .attr("y", -100)
+          .attr("font-size", "30px")
+          .attr("dy", ".71em")
+          .style("text-anchor", "end")
+          .text("Number of trials")
+
+
+
+     var circles = svg.selectAll(".dot")
+          .data(data)
+        .enter().append("circle")
+          .attr("class", "dot")
+          .attr("r", 3.5)
+          .attr("cx", function(d) { return x(d.enrollment); })
+          .attr("cy", function(d) { return y(d.count); })
+          .style("fill", function(d) { return color(d.type); });
+    }
+
+    $( "#d3_scatterplot_duration_slider-range" ).slider({
+        range: true,
+        min: 0,
+        max: 80,
+        values: [0, 80],
+        slide: function( event, ui ) {
+          var begin = d3.min([ui.values[0]]);
+          var end = d3.max([ui.values[1]]);
+          console.log("begin:", begin, "end:", end);
+
+          zoom(begin, end);
+        }
+      });
+  }
+  scatterplot_duration();
+</script>

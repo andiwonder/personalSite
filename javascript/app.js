@@ -107,6 +107,10 @@ myApp.config(function ($routeProvider, $locationProvider){
     .when("/blog/4", {
       templateUrl : "javascript/blog/entry4/index.html",
       controller : "myController"
+    })
+    .when("/blog/5", {
+      templateUrl : "javascript/blog/entry5/index.html",
+      controller : "myController"
     })        
     .when('/projects',{
       templateUrl : "javascript/projects/project.html",
