@@ -35,6 +35,33 @@
   </div>
   <div id="d3_scatterplot_duration_slider-range">
   </div>
+  <div class="text-container ui text container">
+    <h3 class="text__header">
+      Count of subjects enrolled in trials
+    </h3>
+  </div>
+  <div id="d3_scatterplot_enrollment">
+  </div>
+  <div id="d3_scatterplot_enrollment_filter">
+    <b>Species Filter:</b>
+    <br>
+    <input name='dur_v' value="digestive" type="checkbox" checked>Digestive
+    </input>
+    <br>
+    <input name="dur_v" value="cancer" type="checkbox" checked >Cancer
+    </input>
+    <br>
+    <input name="dur_v" value="immune" type="checkbox" checked >Immune
+    </input>
+    <br>
+    <input name="dur_v" value="wounds" type="checkbox" checked >Wounds
+    </input>
+    <br>
+    <input name="dur_v" value="behaviour" type="checkbox" checked >Behaviour
+    </input>
+  </div>
+  <div id="d3_scatterplot_enrollment_slider-range">
+  </div>
 </div>
 
 <script type="text/javascript">
@@ -167,8 +194,8 @@
       });
 
       x.domain(d3.extent(data, function(d) { return d.date; }));
-      d3.selectAll(".browser").remove();
-      d3.selectAll(".x-axis").remove();
+      svg.selectAll(".browser").remove();
+      svg.selectAll(".x-axis").remove();
 
       var browsers = stack(color.domain().map(function(name) {
         return {
@@ -250,7 +277,7 @@
   })
 </script>
 <script>
-  var scatterplot_duration = function scatterplot_duration() {
+  var scatterplot_duration = function scatterplot_duration(src, container, slider) {
 
     var margin = {top: 20, right: 20, bottom: 30, left: 40},
         width = 960 - margin.left - margin.right,
@@ -290,14 +317,16 @@
         .ticks(10);
 
 
-    var svg = d3.select("#d3_scatterplot_duration").append("svg")
+    var scatterplot_duration_svg = d3.select(container).append("svg")
         .attr('viewBox','-50 0 1000 520')
         .attr('preserveAspectRatio','xMinYMin')
         .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 
-    d3.csv("https://s3-us-west-2.amazonaws.com/dotaempower/dataviz/data_duration.csv", function(error, data) {
+    d3.csv(src, function(error, data) {
+      org_data_copy2 = data;
+
       console.log(error);
       console.log(data);
       data.forEach(function(d) {
@@ -306,7 +335,215 @@
         d.type = d.type;
       });
 
+      x.domain(d3.extent(data, function(d) { return d.enrollment; })).nice();
+      y.domain(d3.extent(data, function(d) { return d.count; })).nice();
+
+      scatterplot_duration_svg.append("g")
+          .attr("class", "x-axis")
+          .attr("transform", "translate(0," + height + ")")
+          .call(xAxis)
+        .append("text")
+          .attr("class", "label")
+          .attr("x", width / 2 + 120)
+          .attr("y", 50)
+          .attr("font-size", "30px")
+          .style("text-anchor", "end")
+          .text("Number of subjects");
+
+      scatterplot_duration_svg.append("g")
+          .attr("class", "y-axis")
+          .call(yAxis)
+        .append("text")
+          .attr("class", "label")
+          .attr("text-anchor", "middle")  
+          .attr("transform", "translate("+ (50/2) +","+(height/2 - 100)+")rotate(-90)") 
+          .attr("y", -100)
+          .attr("font-size", "30px")
+          .attr("dy", ".71em")
+          .style("text-anchor", "end")
+          .text("Number of trials")
+
+
+
+     var circles = scatterplot_duration_svg.selectAll(".dot")
+          .data(data)
+        .enter().append("circle")
+          .attr("class", "dot")
+          .attr("r", 3.5)
+          .attr("cx", function(d) { return x(d.enrollment); })
+          .attr("cy", function(d) { return y(d.count); })
+          .style("fill", function(d) { return color(d.type); });
+
+
+      var legend = scatterplot_duration_svg.selectAll(".legend")
+          .data(color.domain())
+          .enter().append("g")
+          .attr("class", "legend")
+          .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
+
+
+      legend.append("rect")
+          .attr("x", width - 18)
+          .attr("width", 18)
+          .attr("height", 18)
+          .style("fill", color);
+
+      legend.append("text")
+          .attr("x", width - 24)
+          .attr("y", 9)
+          .attr("dy", ".35em")
+          .style("text-anchor", "end")
+          .text(function(d) { return d; })
+          .on("click", function(d) { alert("Hello world"); });
+
+
+
+      d3.selectAll("[name=v]").on("change", function() {
+          var selected = this.value;
+          display = this.checked ? "inline" : "none";
+          console.log(selected);
+          scatterplot_duration_svg.selectAll(".dot")
+              .filter(function(d) {return selected == d.type;})
+              .attr("display", display);
+          });
+
+    });
+
+    function duration_zoom(begin, end) {
+      console.log("duration zoom");
+      // console.log("begin is " + begin);
+      // console.log("end is " + end);
+
+      scatterplot_duration_svg.selectAll(".dot").remove();
+      scatterplot_duration_svg.selectAll(".x-axis").remove();
+      scatterplot_duration_svg.selectAll(".y-axis").remove();
+      scatterplot_duration_svg.selectAll(".tick").remove();
+      
+      data = org_data_copy2.filter(function(d) {
+        d.enrollment = +d.enrollment;
+        return d.enrollment > begin && d.enrollment < end ;
+      });
+
+      // console.log("data is " + data.length);
+      // console.log("org_data_copy is " + org_data_copy.length);
+
+      data.forEach(function(d) {
+        d.enrollment = +d.enrollment;
+        d.count = +d.count;
+        d.type = d.type;
+      });
+
+      x.domain(d3.extent(data, function(d) { return d.enrollment; })).nice();
+      y.domain(d3.extent(data, function(d) { return d.count; })).nice();
+
+      scatterplot_duration_svg.append("g")
+          .attr("class", "x-axis")
+          .attr("transform", "translate(0," + height + ")")
+          .call(xAxis)
+        .append("text")
+          .attr("class", "label")
+          .attr("x", width / 2 + 120)
+          .attr("y", 50)
+          .attr("font-size", "30px")
+          .style("text-anchor", "end")
+          .text("Number of subjects");
+
+      scatterplot_duration_svg.append("g")
+          .attr("class", "y-axis")
+          .call(yAxis)
+        .append("text")
+          .attr("class", "label")
+          .attr("text-anchor", "middle")  
+          .attr("transform", "translate("+ (50/2) +","+(height/2 - 100)+")rotate(-90)") 
+          .attr("y", -100)
+          .attr("font-size", "30px")
+          .attr("dy", ".71em")
+          .style("text-anchor", "end")
+          .text("Number of trials")
+
+
+
+     var circles = scatterplot_duration_svg.selectAll(".dot")
+          .data(data)
+        .enter().append("circle")
+          .attr("class", "dot")
+          .attr("r", 3.5)
+          .attr("cx", function(d) { return x(d.enrollment); })
+          .attr("cy", function(d) { return y(d.count); })
+          .style("fill", function(d) { return color(d.type); });
+    }
+
+    $("#d3_scatterplot_duration_slider-range").slider({
+        range: true,
+        min: 0,
+        max: 80,
+        values: [0, 80],
+        slide: function( event, ui ) {
+          var begin = d3.min([ui.values[0]]);
+          var end = d3.max([ui.values[1]]);
+          console.log("begin:", begin, "end:", end);
+          duration_zoom(begin, end);
+        }
+      });
+  }
+  scatterplot_duration("https://s3-us-west-2.amazonaws.com/dotaempower/dataviz/data_duration.csv","#d3_scatterplot_duration","#d3_scatterplot_duration_slider-range");
+</script>
+<script type="text/javascript">
+  var scatterplot_enrollment = function scatterplot_enrollment(src, container, slider) {
+
+    var margin = {top: 20, right: 20, bottom: 30, left: 40},
+        width = 960 - margin.left - margin.right,
+        height = 500 - margin.top - margin.bottom;
+
+      
+    var x = d3.scale.linear()
+        .range([0, width]);
+
+    var y = d3.scale.linear()
+        .range([height, 0]);
+
+
+    var color = d3.scale.category10();
+
+    // var axisNames = { 
+    //                     petalWidth: 'Petal Width', 
+    //                     petalLength: 'Petal Length', 
+    //                     sepalWidth: 'Sepal Width', 
+    //                     sepalLength: 'Sepal Length' 
+    //                 };
+
+    var xAxis = d3.svg.axis()
+        .scale(x)
+        .orient("bottom")
+        .innerTickSize(-height)
+        .outerTickSize(0)
+        .tickPadding(5)
+        .ticks(10);
+
+    var yAxis = d3.svg.axis()
+        .scale(y)
+        .orient("left")
+        .innerTickSize(-width)
+        .outerTickSize(0)
+        .tickPadding(5)
+        .ticks(10);
+
+
+    var svg = d3.select("#d3_scatterplot_enrollment").append("svg")
+        .attr('viewBox','-50 0 1000 520')
+        .attr('preserveAspectRatio','xMinYMin')
+        .append("g")
+        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+
+    d3.csv(src, function(error, data) {
       org_data_copy = data;
+
+      data.forEach(function(d) {
+        d.enrollment = +d.enrollment;
+        d.count = +d.count;
+        d.type = d.type;
+      });
 
       x.domain(d3.extent(data, function(d) { return d.enrollment; })).nice();
       y.domain(d3.extent(data, function(d) { return d.count; })).nice();
@@ -371,7 +608,7 @@
 
 
 
-      d3.selectAll("[name=v]").on("change", function() {
+      d3.selectAll("[name=dur_v]").on("change", function() {
           var selected = this.value;
           display = this.checked ? "inline" : "none";
           console.log(selected);
@@ -381,26 +618,23 @@
           });
 
     });
+    
+    function enrollment_zoom(begin, end) {
 
-    function zoom(begin, end) {
+      console.log("enrollment zoom");
 
-      console.log("zoom");
-
-      d3.selectAll(".dot").remove();
-      d3.selectAll(".x-axis").remove();
-      d3.selectAll(".y-axis").remove();
-      d3.selectAll(".tick").remove();
+      svg.selectAll(".dot").remove();
+      svg.selectAll(".x-axis").remove();
+      svg.selectAll(".y-axis").remove();
+      svg.selectAll(".tick").remove();
       
       data = org_data_copy.filter(function(d) {
         d.enrollment = +d.enrollment;
         return d.enrollment > begin && d.enrollment < end ;
       });
 
-      console.log("data is " + data.length)
-      console.log("org_data_copy is " + org_data_copy.length)
-
       data.forEach(function(d) {
-        d.enrollment = +d.month;
+        d.enrollment = +d.enrollment;
         d.count = +d.count;
         d.type = d.type;
       });
@@ -434,7 +668,6 @@
           .text("Number of trials")
 
 
-
      var circles = svg.selectAll(".dot")
           .data(data)
         .enter().append("circle")
@@ -445,19 +678,19 @@
           .style("fill", function(d) { return color(d.type); });
     }
 
-    $( "#d3_scatterplot_duration_slider-range" ).slider({
-        range: true,
-        min: 0,
-        max: 80,
-        values: [0, 80],
-        slide: function( event, ui ) {
-          var begin = d3.min([ui.values[0]]);
-          var end = d3.max([ui.values[1]]);
-          console.log("begin:", begin, "end:", end);
+    $("#d3_scatterplot_enrollment_slider-range").slider({
+      range: true,
+      min: 0,
+      max: 45,
+      values: [0, 45],
+      slide: function( event, ui ) {
+        var begin = d3.min([ui.values[0]]);
+        var end = d3.max([ui.values[1]]);
+        console.log("begin:", begin, "end:", end);
 
-          zoom(begin, end);
-        }
-      });
+        enrollment_zoom(begin, end);
+      }
+    });
   }
-  scatterplot_duration();
+  scatterplot_enrollment("https://s3-us-west-2.amazonaws.com/dotaempower/dataviz/data_enrollment.csv","#d3_scatterplot_enrollment","#d3_scatterplot_enrollment_slider-range");
 </script>

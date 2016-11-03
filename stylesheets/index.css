@@ -1540,64 +1540,65 @@ table {
     margin-left: -10%; } }
 #dataviz_container2 > #d3_stacked_area_chart_slider-range {
   margin: 5% 12% 5% 5%; }
-#dataviz_container2 > #d3_scatterplot_duration {
+#dataviz_container2 > #d3_scatterplot_enrollment, #dataviz_container2 #d3_scatterplot_duration {
   width: 80%;
   /* float: left; */
   display: inline-block;
   text-align: left; }
-  #dataviz_container2 > #d3_scatterplot_duration body {
+  #dataviz_container2 > #d3_scatterplot_enrollment body, #dataviz_container2 #d3_scatterplot_duration body {
     font: 15px sans-serif; }
-  #dataviz_container2 > #d3_scatterplot_duration .name {
+  #dataviz_container2 > #d3_scatterplot_enrollment .name, #dataviz_container2 #d3_scatterplot_duration .name {
     position: relative;
     top: 90px;
     text-align: left;
     font-weight: bold; }
-  #dataviz_container2 > #d3_scatterplot_duration .title {
+  #dataviz_container2 > #d3_scatterplot_enrollment .title, #dataviz_container2 #d3_scatterplot_duration .title {
     position: relative;
     text-align: left;
     font-size: 25px; }
-  #dataviz_container2 > #d3_scatterplot_duration .x-axis path, #dataviz_container2 > #d3_scatterplot_duration .y-axis path,
-  #dataviz_container2 > #d3_scatterplot_duration .y-axis line, #dataviz_container2 > #d3_scatterplot_duration .x-axis line {
+  #dataviz_container2 > #d3_scatterplot_enrollment .x-axis path, #dataviz_container2 > #d3_scatterplot_enrollment .y-axis path,
+  #dataviz_container2 > #d3_scatterplot_enrollment .y-axis line, #dataviz_container2 > #d3_scatterplot_enrollment .x-axis line, #dataviz_container2 #d3_scatterplot_duration .x-axis path, #dataviz_container2 #d3_scatterplot_duration .y-axis path,
+  #dataviz_container2 #d3_scatterplot_duration .y-axis line, #dataviz_container2 #d3_scatterplot_duration .x-axis line {
     fill: none;
     stroke: black;
     shape-rendering: crispEdges; }
-  #dataviz_container2 > #d3_scatterplot_duration .line {
+  #dataviz_container2 > #d3_scatterplot_enrollment .line, #dataviz_container2 #d3_scatterplot_duration .line {
     fill: none;
     stroke: blue;
     stroke-width: 2px; }
-  #dataviz_container2 > #d3_scatterplot_duration .dot {
+  #dataviz_container2 > #d3_scatterplot_enrollment .dot, #dataviz_container2 #d3_scatterplot_duration .dot {
     stroke: #000; }
-  #dataviz_container2 > #d3_scatterplot_duration #filter {
+  #dataviz_container2 > #d3_scatterplot_enrollment #filter, #dataviz_container2 #d3_scatterplot_duration #filter {
     position: absolute; }
-  #dataviz_container2 > #d3_scatterplot_duration #mark {
+  #dataviz_container2 > #d3_scatterplot_enrollment #mark, #dataviz_container2 #d3_scatterplot_duration #mark {
     padding-left: 150px;
     position: inherit; }
-  #dataviz_container2 > #d3_scatterplot_duration #xAXs {
+  #dataviz_container2 > #d3_scatterplot_enrollment #xAXs, #dataviz_container2 #d3_scatterplot_duration #xAXs {
     position: relative;
     left: 290px;
     bottom: 30px; }
-  #dataviz_container2 > #d3_scatterplot_duration #yAXs {
+  #dataviz_container2 > #d3_scatterplot_enrollment #yAXs, #dataviz_container2 #d3_scatterplot_duration #yAXs {
     position: relative;
     bottom: 30px;
     left: 315px; }
-  #dataviz_container2 > #d3_scatterplot_duration #label {
+  #dataviz_container2 > #d3_scatterplot_enrollment #label, #dataviz_container2 #d3_scatterplot_duration #label {
     position: absolute;
     top: 599px;
     bottom: 125px;
     left: 300px;
     right: 0px; }
-  #dataviz_container2 > #d3_scatterplot_duration #label2 {
+  #dataviz_container2 > #d3_scatterplot_enrollment #label2, #dataviz_container2 #d3_scatterplot_duration #label2 {
     position: absolute;
     top: 599px;
     bottom: 125px;
     left: 430px;
     right: 0px; }
-  #dataviz_container2 > #d3_scatterplot_duration_filter {
+  #dataviz_container2 > #d3_scatterplot_enrollment_filter, #dataviz_container2 #d3_scatterplot_duration_filter {
     min-width: 10%;
     display: inline-block;
     vertical-align: top;
     text-align: left; }
-  #dataviz_container2 > #d3_scatterplot_duration_slider-range {
+  #dataviz_container2 > #d3_scatterplot_enrollment_slider-range, #dataviz_container2 #d3_scatterplot_duration_slider-range {
     margin: 5% 12% 5% 5%; }
 
 .section__main-text {
