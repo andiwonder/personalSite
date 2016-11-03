@@ -10,7 +10,7 @@
   </div> 
   <div class="text-container ui text container">
     <h3 class="text__header">
-      Count of subjects enrolled in trials
+      Count of trial duration in months.
     </h3>
   </div>
   <div id="d3_scatterplot_duration">
@@ -348,7 +348,7 @@
           .attr("y", 50)
           .attr("font-size", "30px")
           .style("text-anchor", "end")
-          .text("Number of subjects");
+          .text("Number of months");
 
       scatterplot_duration_svg.append("g")
           .attr("class", "y-axis")
@@ -446,7 +446,7 @@
           .attr("y", 50)
           .attr("font-size", "30px")
           .style("text-anchor", "end")
-          .text("Number of subjects");
+          .text("Number of months");
 
       scatterplot_duration_svg.append("g")
           .attr("class", "y-axis")
