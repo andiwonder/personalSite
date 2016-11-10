@@ -37,17 +37,31 @@
 
 #dataviz_container2 {
   // border: 2px solid red;
+  // border-left: 1px solid black;
+  // border-right: 1px solid black;
   @media only screen and (min-width: 1024px) {
     width: 120%;
     margin-left: -10%;
+    > div.text-container {
+      text-indent: -8%;
+    }
+  }
+
+  > div:nth-child(1) {
+    margin-top: 0;
+  }
+
+  > div.text-container {
+    margin: 5% 0;
   }
 
   > #d3_stacked_area_chart_slider-range {
     margin: 5% 12% 5% 5%;
   }
   
-  > #d3_scatterplot_enrollment , #d3_scatterplot_duration {
-    width: 80%;
+  > #d3_linegraph_rateofchange , #d3_scatterplot_enrollment , #d3_scatterplot_duration , #d3_linegraph_trials {
+
+    width: 75%;
     /* float: left; */
     display: inline-block;
     text-align: left;
@@ -129,7 +143,19 @@
       display: inline-block;
       vertical-align: top;
       text-align: left;
+      float: right;
+
+      >b {
+        border: 2px solid red;
+        margin: 10% 0;
+      }
+
+      >input {
+        margin: 5% 10% 5% 0%;
+      }
     }
+
+
 
     &_slider-range {
       margin: 5% 12% 5% 5%;

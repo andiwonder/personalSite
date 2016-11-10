@@ -1537,68 +1537,82 @@ table {
 @media only screen and (min-width: 1024px) {
   #dataviz_container2 {
     width: 120%;
-    margin-left: -10%; } }
+    margin-left: -10%; }
+    #dataviz_container2 > div.text-container {
+      text-indent: -8%; } }
+#dataviz_container2 > div:nth-child(1) {
+  margin-top: 0; }
+#dataviz_container2 > div.text-container {
+  margin: 5% 0; }
 #dataviz_container2 > #d3_stacked_area_chart_slider-range {
   margin: 5% 12% 5% 5%; }
-#dataviz_container2 > #d3_scatterplot_enrollment, #dataviz_container2 #d3_scatterplot_duration {
-  width: 80%;
+#dataviz_container2 > #d3_linegraph_rateofchange, #dataviz_container2 #d3_scatterplot_enrollment, #dataviz_container2 #d3_scatterplot_duration, #dataviz_container2 #d3_linegraph_trials {
+  width: 75%;
   /* float: left; */
   display: inline-block;
   text-align: left; }
-  #dataviz_container2 > #d3_scatterplot_enrollment body, #dataviz_container2 #d3_scatterplot_duration body {
+  #dataviz_container2 > #d3_linegraph_rateofchange body, #dataviz_container2 #d3_scatterplot_enrollment body, #dataviz_container2 #d3_scatterplot_duration body, #dataviz_container2 #d3_linegraph_trials body {
     font: 15px sans-serif; }
-  #dataviz_container2 > #d3_scatterplot_enrollment .name, #dataviz_container2 #d3_scatterplot_duration .name {
+  #dataviz_container2 > #d3_linegraph_rateofchange .name, #dataviz_container2 #d3_scatterplot_enrollment .name, #dataviz_container2 #d3_scatterplot_duration .name, #dataviz_container2 #d3_linegraph_trials .name {
     position: relative;
     top: 90px;
     text-align: left;
     font-weight: bold; }
-  #dataviz_container2 > #d3_scatterplot_enrollment .title, #dataviz_container2 #d3_scatterplot_duration .title {
+  #dataviz_container2 > #d3_linegraph_rateofchange .title, #dataviz_container2 #d3_scatterplot_enrollment .title, #dataviz_container2 #d3_scatterplot_duration .title, #dataviz_container2 #d3_linegraph_trials .title {
     position: relative;
     text-align: left;
     font-size: 25px; }
-  #dataviz_container2 > #d3_scatterplot_enrollment .x-axis path, #dataviz_container2 > #d3_scatterplot_enrollment .y-axis path,
-  #dataviz_container2 > #d3_scatterplot_enrollment .y-axis line, #dataviz_container2 > #d3_scatterplot_enrollment .x-axis line, #dataviz_container2 #d3_scatterplot_duration .x-axis path, #dataviz_container2 #d3_scatterplot_duration .y-axis path,
-  #dataviz_container2 #d3_scatterplot_duration .y-axis line, #dataviz_container2 #d3_scatterplot_duration .x-axis line {
+  #dataviz_container2 > #d3_linegraph_rateofchange .x-axis path, #dataviz_container2 > #d3_linegraph_rateofchange .y-axis path,
+  #dataviz_container2 > #d3_linegraph_rateofchange .y-axis line, #dataviz_container2 > #d3_linegraph_rateofchange .x-axis line, #dataviz_container2 #d3_scatterplot_enrollment .x-axis path, #dataviz_container2 #d3_scatterplot_enrollment .y-axis path,
+  #dataviz_container2 #d3_scatterplot_enrollment .y-axis line, #dataviz_container2 #d3_scatterplot_enrollment .x-axis line, #dataviz_container2 #d3_scatterplot_duration .x-axis path, #dataviz_container2 #d3_scatterplot_duration .y-axis path,
+  #dataviz_container2 #d3_scatterplot_duration .y-axis line, #dataviz_container2 #d3_scatterplot_duration .x-axis line, #dataviz_container2 #d3_linegraph_trials .x-axis path, #dataviz_container2 #d3_linegraph_trials .y-axis path,
+  #dataviz_container2 #d3_linegraph_trials .y-axis line, #dataviz_container2 #d3_linegraph_trials .x-axis line {
     fill: none;
     stroke: black;
     shape-rendering: crispEdges; }
-  #dataviz_container2 > #d3_scatterplot_enrollment .line, #dataviz_container2 #d3_scatterplot_duration .line {
+  #dataviz_container2 > #d3_linegraph_rateofchange .line, #dataviz_container2 #d3_scatterplot_enrollment .line, #dataviz_container2 #d3_scatterplot_duration .line, #dataviz_container2 #d3_linegraph_trials .line {
     fill: none;
     stroke: blue;
     stroke-width: 2px; }
-  #dataviz_container2 > #d3_scatterplot_enrollment .dot, #dataviz_container2 #d3_scatterplot_duration .dot {
+  #dataviz_container2 > #d3_linegraph_rateofchange .dot, #dataviz_container2 #d3_scatterplot_enrollment .dot, #dataviz_container2 #d3_scatterplot_duration .dot, #dataviz_container2 #d3_linegraph_trials .dot {
     stroke: #000; }
-  #dataviz_container2 > #d3_scatterplot_enrollment #filter, #dataviz_container2 #d3_scatterplot_duration #filter {
+  #dataviz_container2 > #d3_linegraph_rateofchange #filter, #dataviz_container2 #d3_scatterplot_enrollment #filter, #dataviz_container2 #d3_scatterplot_duration #filter, #dataviz_container2 #d3_linegraph_trials #filter {
     position: absolute; }
-  #dataviz_container2 > #d3_scatterplot_enrollment #mark, #dataviz_container2 #d3_scatterplot_duration #mark {
+  #dataviz_container2 > #d3_linegraph_rateofchange #mark, #dataviz_container2 #d3_scatterplot_enrollment #mark, #dataviz_container2 #d3_scatterplot_duration #mark, #dataviz_container2 #d3_linegraph_trials #mark {
     padding-left: 150px;
     position: inherit; }
-  #dataviz_container2 > #d3_scatterplot_enrollment #xAXs, #dataviz_container2 #d3_scatterplot_duration #xAXs {
+  #dataviz_container2 > #d3_linegraph_rateofchange #xAXs, #dataviz_container2 #d3_scatterplot_enrollment #xAXs, #dataviz_container2 #d3_scatterplot_duration #xAXs, #dataviz_container2 #d3_linegraph_trials #xAXs {
     position: relative;
     left: 290px;
     bottom: 30px; }
-  #dataviz_container2 > #d3_scatterplot_enrollment #yAXs, #dataviz_container2 #d3_scatterplot_duration #yAXs {
+  #dataviz_container2 > #d3_linegraph_rateofchange #yAXs, #dataviz_container2 #d3_scatterplot_enrollment #yAXs, #dataviz_container2 #d3_scatterplot_duration #yAXs, #dataviz_container2 #d3_linegraph_trials #yAXs {
     position: relative;
     bottom: 30px;
     left: 315px; }
-  #dataviz_container2 > #d3_scatterplot_enrollment #label, #dataviz_container2 #d3_scatterplot_duration #label {
+  #dataviz_container2 > #d3_linegraph_rateofchange #label, #dataviz_container2 #d3_scatterplot_enrollment #label, #dataviz_container2 #d3_scatterplot_duration #label, #dataviz_container2 #d3_linegraph_trials #label {
     position: absolute;
     top: 599px;
     bottom: 125px;
     left: 300px;
     right: 0px; }
-  #dataviz_container2 > #d3_scatterplot_enrollment #label2, #dataviz_container2 #d3_scatterplot_duration #label2 {
+  #dataviz_container2 > #d3_linegraph_rateofchange #label2, #dataviz_container2 #d3_scatterplot_enrollment #label2, #dataviz_container2 #d3_scatterplot_duration #label2, #dataviz_container2 #d3_linegraph_trials #label2 {
     position: absolute;
     top: 599px;
     bottom: 125px;
     left: 430px;
     right: 0px; }
-  #dataviz_container2 > #d3_scatterplot_enrollment_filter, #dataviz_container2 #d3_scatterplot_duration_filter {
+  #dataviz_container2 > #d3_linegraph_rateofchange_filter, #dataviz_container2 #d3_scatterplot_enrollment_filter, #dataviz_container2 #d3_scatterplot_duration_filter, #dataviz_container2 #d3_linegraph_trials_filter {
     min-width: 10%;
     display: inline-block;
     vertical-align: top;
-    text-align: left; }
-  #dataviz_container2 > #d3_scatterplot_enrollment_slider-range, #dataviz_container2 #d3_scatterplot_duration_slider-range {
+    text-align: left;
+    float: right; }
+    #dataviz_container2 > #d3_linegraph_rateofchange_filter > b, #dataviz_container2 #d3_scatterplot_enrollment_filter > b, #dataviz_container2 #d3_scatterplot_duration_filter > b, #dataviz_container2 #d3_linegraph_trials_filter > b {
+      border: 2px solid red;
+      margin: 10% 0; }
+    #dataviz_container2 > #d3_linegraph_rateofchange_filter > input, #dataviz_container2 #d3_scatterplot_enrollment_filter > input, #dataviz_container2 #d3_scatterplot_duration_filter > input, #dataviz_container2 #d3_linegraph_trials_filter > input {
+      margin: 5% 10% 5% 0%; }
+  #dataviz_container2 > #d3_linegraph_rateofchange_slider-range, #dataviz_container2 #d3_scatterplot_enrollment_slider-range, #dataviz_container2 #d3_scatterplot_duration_slider-range, #dataviz_container2 #d3_linegraph_trials_slider-range {
     margin: 5% 12% 5% 5%; }
 
 .section__main-text {

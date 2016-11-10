@@ -1,6 +1,72 @@
 <div id="dataviz_container2">
   <div class="text-container ui text container">
     <h3 class="text__header">
+      An examination of the Clinicaltrials.gov data
+    </h3>
+    <p>
+      
+    </p>
+  </div>
+  <div class="text-container ui text container">
+    <h3 class="text__header">
+      Total Number of trials each year.
+    </h3>
+  </div>
+  <div id="d3_linegraph_trials">
+  </div> 
+  <div id="d3_linegraph_trials_filter">
+    <b>Species Filter:</b>
+    <br>
+    <br>
+    <input name='linegraph_trials_v' value="digestive" type="checkbox" checked>Digestive
+    </input>
+    <br>
+    <input name="linegraph_trials_v" value="cancer" type="checkbox" checked >Cancer
+    </input>
+    <br>
+    <input name="linegraph_trials_v" value="immune" type="checkbox" checked >Immune
+    </input>
+    <br>
+    <input name="linegraph_trials_v" value="wound" type="checkbox" checked >Wounds
+    </input>
+    <br>
+    <input name="linegraph_trials_v" value="behvariour" type="checkbox" checked >Behaviour
+    </input>
+  </div>
+  <div id="d3_linegraph_trials_slider-range">
+  </div>
+  <hr>
+  <div class="text-container ui text container">
+    <h3 class="text__header">
+      Average enrollment per trial.
+    </h3>
+  </div>
+  <div id="d3_linegraph_rateofchange">
+  </div> 
+  <div id="d3_linegraph_rateofchange_filter">
+    <b>Species Filter:</b>
+    <br>
+    <br>
+    <input name='linegraph_rateofchange_v' value="digestive" type="checkbox" checked>Digestive
+    </input>
+    <br>
+    <input name="linegraph_rateofchange_v" value="cancer" type="checkbox" checked >Cancer
+    </input>
+    <br>
+    <input name="linegraph_rateofchange_v" value="immune" type="checkbox" checked >Immune
+    </input>
+    <br>
+    <input name="linegraph_rateofchange_v" value="wound" type="checkbox" checked >Wounds
+    </input>
+    <br>
+    <input name="linegraph_rateofchange_v" value="beahviour" type="checkbox" checked >Behaviour
+    </input>
+  </div>
+  <div id="d3_linegraph_rateofchange_slider-range">
+  </div>
+  <hr>
+  <div class="text-container ui text container">
+    <h3 class="text__header">
       Stacked rate of change over time
     </h3>
   </div>
@@ -8,6 +74,17 @@
   </div>
   <div id="d3_stacked_area_chart_slider-range">
   </div> 
+  <div class="text-container ui text container">
+    <h4>Key findings</h4>
+    <ol>
+      <li>Test 1</li>
+      <li>Test 1</li>
+      <li>Test 1</li>
+      <li>Test 1</li>
+      <li>Test 1</li>
+    </ol>
+  </div>
+  <hr>
   <div class="text-container ui text container">
     <h3 class="text__header">
       Count of trial duration in months.
@@ -17,6 +94,7 @@
   </div> 
   <div id="d3_scatterplot_duration_filter">
     <b>Species Filter:</b>
+    <br>
     <br>
     <input name='v' value="digestive" type="checkbox" checked>Digestive
     </input>
@@ -35,6 +113,7 @@
   </div>
   <div id="d3_scatterplot_duration_slider-range">
   </div>
+  <hr>
   <div class="text-container ui text container">
     <h3 class="text__header">
       Count of subjects enrolled in trials
@@ -693,4 +772,607 @@
     });
   }
   scatterplot_enrollment("https://s3-us-west-2.amazonaws.com/dotaempower/dataviz/data_enrollment.csv","#d3_scatterplot_enrollment","#d3_scatterplot_enrollment_slider-range");
+</script>
+<script type="text/javascript">
+  var line_graph = function line_graph(){
+
+    var margin = {top: 20, right: 80, bottom: 30, left: 50},
+        width = 700 - margin.left - margin.right,
+        height = 350 - margin.top - margin.bottom;
+
+    var parseDate = d3.time.format("%Y").parse;
+
+    var x = d3.time.scale()
+        .range([0, width]);
+
+    var y = d3.scale.linear()
+        .range([height, 0]);
+
+    var color = d3.scale.category10();
+
+    var xAxis = d3.svg.axis()
+        .scale(x)
+        .orient("bottom");
+
+    var yAxis = d3.svg.axis()
+        .scale(y)
+        .orient("left");
+
+    var line = d3.svg.line()
+        .interpolate("basis")
+        .x(function(d) { return x(d.date); })
+        .y(function(d) { return y(d.temperature); });
+
+    var line_chart_trialnumber = d3.select("#d3_linegraph_trials").append("svg")
+        .attr('viewBox','-50 0 800 400')
+        .attr('preserveAspectRatio','xMinYMin')
+      .append("g")
+        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+    d3.csv("https://s3-us-west-2.amazonaws.com/dotaempower/dataviz/data.csv", function(error, data) {
+      if (error) throw error;
+      
+      color.domain(d3.keys(data[0]).filter(function(key) { return key !== "year"; }));
+
+      data.forEach(function(d) {
+        d.date = parseDate(d.year);
+        console.log(d.date);
+      });
+      org_data_copy_line_chart_trialnumber = data;
+
+      var cities = color.domain().map(function(name) {
+        return {
+          name: name,
+          values: data.map(function(d) {
+            return {date: d.date, temperature: +d[name]};
+          })
+        };
+      });
+
+      x.domain(d3.extent(data, function(d) { return d.date; }));
+
+      y.domain([
+        d3.min(cities, function(c) { return d3.min(c.values, function(v) { return v.temperature; }); }),
+        d3.max(cities, function(c) { return d3.max(c.values, function(v) { return v.temperature; }); })
+      ]);
+
+      console.log("y domain is " + y.domain());
+
+      line_chart_trialnumber.append("g")
+          .attr("class", "x-axis")
+          .attr("transform", "translate(0," + height + ")")
+          .call(xAxis)
+        .append("text")
+          .attr("class", "label")
+          .attr("x", width / 2 + 120)
+          .attr("y", 50)
+          .attr("font-size", "24px")
+          .style("text-anchor", "end")
+          .text("Number of subjects");
+
+      line_chart_trialnumber.append("g")
+          .attr("class", "y-axis")
+          .call(yAxis)
+        .append("text")
+          .attr("class", "label")
+          .attr("text-anchor", "middle")  
+          .attr("transform", "translate("+ (30/2) +","+(height/2 - 100)+")rotate(-90)") 
+          .attr("y", -100)
+          .attr("font-size", "24px")
+          .attr("dy", ".71em")
+          .style("text-anchor", "end")
+          .text("Number of trials");
+
+      var city = line_chart_trialnumber.selectAll(".city")
+                      .data(cities)
+                    .enter().append("g")
+                      .attr("class", "city");
+
+      city.append("path")
+          .attr("class", "line")
+          .attr("d", function(d) { return line(d.values); })
+          .style("stroke", function(d) { return color(d.name); })
+          .transition()
+          .duration(1000)
+          .ease("linear");
+
+      city.append("text")
+          .datum(function(d) { return {name: d.name, value: d.values[d.values.length - 1]}; })
+          .attr("class","line_chart_trialnumber_label")
+          .attr("transform", function(d) { return "translate(" + x(d.value.date) + "," + y(d.value.temperature) + ")"; })
+          .attr("x", 3)
+          .attr("dy", ".35em")
+          .text(function(d) { return d.name; });
+
+      
+      var colorsarr = ["behvariour","wound","immune","digestive"]
+
+
+      var circles = line_chart_trialnumber.selectAll(".row")
+          .data(data)
+        .enter().append('g');
+
+
+
+      circles.selectAll('.circle')
+          .data(function(d, i) { 
+            var array = $.map(data[i], function(value, index) {
+                if (index!="year") return [value];
+            }); 
+            return array; 
+          })
+        .enter().append('circle')
+          .attr("class", "path-circle")
+          .attr('r', 2.5 )
+          .attr('cx', function(d, i) { if (i!=5) return x(this.parentNode.__data__.date); })
+          .attr('cy', function(d,i)  { if (i!=5) return y(d); })
+          .attr("stroke", function (d,i) { 
+            for(var key in this.parentNode.__data__) {
+              if(this.parentNode.__data__[key] === d) {
+                  return color(key);
+              }
+            }
+          })
+          .attr("fill","none");
+      
+      d3.selectAll("[name=linegraph_trials_v]").on("change", function() {
+        var selected = this.value;
+        display = this.checked ? "inline" : "none";
+        // debugger; 
+        console.log(selected);
+        // debugger;
+        // console.log(line_chart_trialnumber.selectAll(".city"));
+        line_chart_trialnumber.selectAll("circle")
+            .filter(function(d) {
+              for(var key in this.parentNode.__data__) {
+                if(this.parentNode.__data__[key] === d) {
+                  return selected == key;
+                }
+              }
+            })
+            .attr("display", display);
+        line_chart_trialnumber.selectAll("path")
+            .filter(function(d) {
+              return selected == d.name;
+            })
+            .attr("display", display);
+        line_chart_trialnumber.selectAll(".line_chart_trialnumber_label")
+            .filter(function(d) {
+              return selected == d.name;
+            })
+            .attr("display", display);
+      });
+
+    });
+
+
+    function leastSquares(xSeries, ySeries) {
+      var reduceSumFunc = function(prev, cur) { return prev + cur; };
+      
+      var xBar = xSeries.reduce(reduceSumFunc) * 1.0 / xSeries.length;
+      var yBar = ySeries.reduce(reduceSumFunc) * 1.0 / ySeries.length;
+
+      var ssXX = xSeries.map(function(d) { return Math.pow(d - xBar, 2); })
+        .reduce(reduceSumFunc);
+      
+      var ssYY = ySeries.map(function(d) { return Math.pow(d - yBar, 2); })
+        .reduce(reduceSumFunc);
+        
+      var ssXY = xSeries.map(function(d, i) { return (d - xBar) * (ySeries[i] - yBar); })
+        .reduce(reduceSumFunc);
+        
+      var slope = ssXY / ssXX;
+      var intercept = yBar - (xBar * slope);
+      var rSquare = Math.pow(ssXY, 2) / (ssXX * ssYY);
+      
+      return [slope, intercept, rSquare];
+    }
+
+    function line_chart_trialnumber_zoom (begin, end) {
+
+      var date1 = new Date();
+      date1.setFullYear(1995 + begin,0,1);
+      var date2 = new Date();
+      date2.setFullYear(2015 + end - 20,0,1);
+
+      line_chart_trialnumber.selectAll("*").remove();
+      // d3.selectAll(".x-axis").remove();
+      // d3.selectAll(".y-axis").remove();
+      // d3.selectAll(".y-axis").remove();
+      // d3.selectAll(".city").remove();
+      // d3.selectAll(".row").remove();
+      // d3.selectAll(".path-circle").remove();
+      // console.log(date2);
+      console.log("zoom y domain is " + y.domain());
+      
+      data = org_data_copy_line_chart_trialnumber.filter(function(d) {
+        return d.date >= date1 && d.date <= date2;
+      });
+      color.domain(d3.keys(data[0]).filter(function(key) { return key !== "date" && key != "year"; }));
+      x.domain(d3.extent(data, function(d) { return d.date; }));
+
+      var cities = color.domain().map(function(name) {
+        return {
+          name: name,
+          values: data.map(function(d) {
+            return {date: d.date, temperature: +d[name]};
+          })
+        };
+      });
+
+      y.domain([
+        d3.min(cities, function(c) { return d3.min(c.values, function(v) { return v.temperature; }); }),
+        d3.max(cities, function(c) { return d3.max(c.values, function(v) { return v.temperature; }); })
+      ]);
+
+      console.log("y domain is " + y.domain());
+
+      line_chart_trialnumber.append("g")
+          .attr("class", "x-axis")
+          .attr("transform", "translate(0," + height + ")")
+          .call(xAxis)
+        .append("text")
+          .attr("class", "label")
+          .attr("x", width / 2 + 120)
+          .attr("y", 50)
+          .attr("font-size", "24px")
+          .style("text-anchor", "end")
+          .text("Number of subjects");
+
+      line_chart_trialnumber.append("g")
+          .attr("class", "y-axis")
+          .call(yAxis)
+        .append("text")
+          .attr("class", "label")
+          .attr("text-anchor", "middle")  
+          .attr("transform", "translate("+ (30/2) +","+(height/2 - 100)+")rotate(-90)") 
+          .attr("y", -100)
+          .attr("font-size", "24px")
+          .attr("dy", ".71em")
+          .style("text-anchor", "end")
+          .text("Number of trials");
+
+      var city = line_chart_trialnumber.selectAll(".city")
+                      .data(cities)
+                    .enter().append("g")
+                      .attr("class", "city");
+
+      var path = city.append("path")
+          // .transition()
+          // .duration(1000)
+          // .ease("linear")
+          .attr("class", "line")
+          .attr("d", function(d) { return line(d.values); })
+          .style("stroke", function(d) { return color(d.name); });
+          
+
+      city.append("text")
+          .attr("class","line_chart_trialnumber_label")
+          .datum(function(d) { return {name: d.name, value: d.values[d.values.length - 1]}; })
+          .attr("transform", function(d) { return "translate(" + x(d.value.date) + "," + y(d.value.temperature) + ")"; })
+          .attr("x", 3)
+          .attr("dy", ".35em")
+          .text(function(d) { return d.name; });
+
+      
+      var colorsarr = ["behvariour","wound","immune","digestive"]
+
+
+      var circles = line_chart_trialnumber.selectAll(".row")
+          .data(data)
+        .enter().append('g');
+  
+
+      circles.selectAll('.circle')
+          .data(function(d, i) { 
+            var array = $.map(data[i], function(value, index) {
+                if (index!="year") return [value];
+            }); 
+            return array; 
+          })
+        .enter().append('circle')
+          .attr("class", "path-circle")
+          .attr('r', 2.5 )
+          .attr('cx', function(d, i) { if (i!=5) return x(this.parentNode.__data__.date); })
+          .attr('cy', function(d,i)  { if (i!=5) return y(d); })
+          .attr("stroke", function (d,i) { 
+            for(var key in this.parentNode.__data__) {
+              if(this.parentNode.__data__[key] === d) {
+                  return color(key);
+              }
+            }
+          })
+          .attr("fill","none");
+
+    }
+
+    $("#d3_linegraph_trials_slider-range").slider({
+      range: true,
+      min: 0,
+      max: 20,
+      values: [0, 20],
+      slide: function( event, ui ) {
+        var begin = d3.min([ui.values[0]]);
+        var end = d3.max([ui.values[1]]);
+        // console.log("begin:", begin, "end:", end);
+
+        line_chart_trialnumber_zoom(begin, end);
+      }
+    });
+  }
+  line_graph();
+</script>
+<script type="text/javascript">
+  var line_graph2 = function line_graph2(){
+
+    var margin = {top: 20, right: 80, bottom: 30, left: 50},
+        width = 700 - margin.left - margin.right,
+        height = 350 - margin.top - margin.bottom;
+
+    var formatnum = d3.format(".4g");
+
+    var parseDate = d3.time.format("%Y").parse;
+
+    var x = d3.time.scale()
+        .range([0, width]);
+
+    var y = d3.scale.linear()
+        .range([height, 0]);
+
+    var color = d3.scale.category10();
+
+    var xAxis = d3.svg.axis()
+        .scale(x)
+        .orient("bottom");
+
+    var yAxis = d3.svg.axis()
+        .scale(y)
+        .orient("left");
+
+    var line = d3.svg.line()
+        .interpolate("basis")
+        .x(function(d) { return x(d.date); })
+        .y(function(d) { return y(d.temperature); });
+
+    var linegraph_enrollment = d3.select("#d3_linegraph_rateofchange").append("svg")
+        .attr('viewBox','-50 0 800 400')
+        .attr('preserveAspectRatio','xMinYMin')
+      .append("g")
+        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+    d3.csv("https://s3-us-west-2.amazonaws.com/dotaempower/dataviz/rateofchange.csv", function(error, data) {
+      if (error) throw error;
+      
+      color.domain(d3.keys(data[0]).filter(function(key) { return key !== "year"; }));
+
+      data.forEach(function(d) {
+        for(var key in d) {
+          if (key != "year") {
+            d[key] = Math.round(d[key]);
+          };
+        }
+        d.date = parseDate(d.year);
+        console.log(d.date);
+      });
+      org_data_copy = data;
+
+      var cities = color.domain().map(function(name) {
+        return {
+          name: name,
+          values: data.map(function(d) {
+            return {date: d.date, temperature: +d[name]};
+          })
+        };
+      });
+
+      x.domain(d3.extent(data, function(d) { return d.date; }));
+
+      y.domain([
+        d3.min(cities, function(c) { return d3.min(c.values, function(v) { return v.temperature; }); }),
+        d3.max(cities, function(c) { return d3.max(c.values, function(v) { return v.temperature; }); })
+      ]);
+
+      console.log("y domain is " + y.domain());
+
+      linegraph_enrollment.append("g")
+          .attr("class", "x-axis")
+          .attr("transform", "translate(0," + height + ")")
+          .call(xAxis)
+        .append("text")
+          .attr("class", "label")
+          .attr("x", width / 2 + 120)
+          .attr("y", 50)
+          .attr("font-size", "24px")
+          .style("text-anchor", "end")
+          .text("Number of subjects");
+
+      linegraph_enrollment.append("g")
+          .attr("class", "y-axis")
+          .call(yAxis)
+        .append("text")
+          .attr("class", "label")
+          .attr("text-anchor", "middle")  
+          .attr("transform", "translate("+ (30/2) +","+(height/2 - 100)+")rotate(-90)") 
+          .attr("y", -100)
+          .attr("font-size", "24px")
+          .attr("dy", ".71em")
+          .style("text-anchor", "end")
+          .text("Number of trials");
+
+      var city = linegraph_enrollment.selectAll(".city")
+                      .data(cities)
+                    .enter().append("g")
+                      .attr("class", "city");
+
+      city.append("path")
+          .attr("class", "line")
+          .attr("d", function(d) { return line(d.values); })
+          .style("stroke", function(d) { return color(d.name); });
+
+      // city.append("text")
+      //     .datum(function(d) { return {name: d.name, value: d.values[d.values.length - 1]}; })
+      //     .attr("transform", function(d) { return "translate(" + x(d.value.date) + "," + y(d.value.temperature) + ")"; })
+      //     .attr("x", 3)
+      //     .attr("dy", ".35em")
+      //     .text(function(d) { return d.name; });
+
+      
+      var colorsarr = ["behvariour","wound","immune","digestive"]
+
+
+      var circles = linegraph_enrollment.selectAll(".row")
+          .data(data)
+        .enter().append('g');
+  
+
+      circles.selectAll('.circle')
+          .data(function(d, i) { 
+            var array = $.map(data[i], function(value, index) {
+                if (index!="year") return [value];
+            }); 
+            return array; 
+          })
+        .enter().append('circle')
+          .attr("class", "path-circle")
+          .attr('r', 2.5 )
+          .attr('cx', function(d, i) { if (i!=5) return x(this.parentNode.__data__.date); })
+          .attr('cy', function(d,i)  { if (i!=5) return y(d) + 2; })
+          .attr("stroke", function (d,i) { 
+            for(var key in this.parentNode.__data__) {
+              if(this.parentNode.__data__[key] === d) {
+                  return color(key);
+              }
+            }
+          })
+          .attr("fill","none");
+    });
+  
+    function zoom (begin, end) {
+
+      var date1 = new Date();
+      date1.setFullYear(1995 + begin,0,1);
+      var date2 = new Date();
+      date2.setFullYear(2015 + end - 20,0,1);
+
+      linegraph_enrollment.selectAll("*").remove();
+      // d3.selectAll(".x-axis").remove();
+      // d3.selectAll(".y-axis").remove();
+      // d3.selectAll(".y-axis").remove();
+      // d3.selectAll(".city").remove();
+      // d3.selectAll(".row").remove();
+      // d3.selectAll(".path-circle").remove();
+      // console.log(date2);
+      // console.log("zoom y domain is " + y.domain());
+      
+      data = org_data_copy.filter(function(d) {
+        return d.date >= date1 && d.date <= date2;
+      });
+      color.domain(d3.keys(data[0]).filter(function(key) { return key !== "date" && key != "year"; }));
+      x.domain(d3.extent(data, function(d) { return d.date; }));
+
+      var cities = color.domain().map(function(name) {
+        return {
+          name: name,
+          values: data.map(function(d) {
+            return {date: d.date, temperature: +d[name]};
+          })
+        };
+      });
+
+      y.domain([
+        d3.min(cities, function(c) { return d3.min(c.values, function(v) { return v.temperature; }); }),
+        d3.max(cities, function(c) { return d3.max(c.values, function(v) { return v.temperature; }); })
+      ]);
+
+      console.log("y domain is " + y.domain());
+
+      linegraph_enrollment.append("g")
+          .attr("class", "x-axis")
+          .attr("transform", "translate(0," + height + ")")
+          .call(xAxis)
+        .append("text")
+          .attr("class", "label")
+          .attr("x", width / 2 + 120)
+          .attr("y", 50)
+          .attr("font-size", "24px")
+          .style("text-anchor", "end")
+          .text("Number of subjects");
+
+      linegraph_enrollment.append("g")
+          .attr("class", "y-axis")
+          .call(yAxis)
+        .append("text")
+          .attr("class", "label")
+          .attr("text-anchor", "middle")  
+          .attr("transform", "translate("+ (30/2) +","+(height/2 - 100)+")rotate(-90)") 
+          .attr("y", -100)
+          .attr("font-size", "24px")
+          .attr("dy", ".71em")
+          .style("text-anchor", "end")
+          .text("Number of trials");
+
+      var city = linegraph_enrollment.selectAll(".city")
+                      .data(cities)
+                    .enter().append("g")
+                      .attr("class", "city");
+
+      city.append("path")
+          .attr("class", "line")
+          .attr("d", function(d) { return line(d.values); })
+          .style("stroke", function(d) { return color(d.name); });
+
+      // city.append("text")
+      //     .datum(function(d) { return {name: d.name, value: d.values[d.values.length - 1]}; })
+      //     .attr("transform", function(d) { return "translate(" + x(d.value.date) + "," + y(d.value.temperature) + ")"; })
+      //     .attr("x", 3)
+      //     .attr("dy", ".35em")
+      //     .text(function(d) { return d.name; });
+
+      
+      var colorsarr = ["behvariour","wound","immune","digestive"]
+
+
+      var circles = linegraph_enrollment.selectAll(".row")
+          .data(data)
+        .enter().append('g');
+  
+
+      circles.selectAll('.circle')
+          .data(function(d, i) { 
+            var array = $.map(data[i], function(value, index) {
+                if (index!="year") return [value];
+            }); 
+            return array; 
+          })
+        .enter().append('circle')
+          .attr("class", "path-circle")
+          .attr('r', 2.5 )
+          .attr('cx', function(d, i) { if (i!=5) return x(this.parentNode.__data__.date); })
+          .attr('cy', function(d,i)  { if (i!=5) return y(d); })
+          .attr("stroke", function (d,i) { 
+            for(var key in this.parentNode.__data__) {
+              if(this.parentNode.__data__[key] === d) {
+                  return color(key);
+              }
+            }
+          })
+          .attr("fill","none");
+
+    }
+
+    $("#d3_linegraph_rateofchange_slider-range").slider({
+      range: true,
+      min: 0,
+      max: 20,
+      values: [0, 20],
+      slide: function( event, ui ) {
+        var begin = d3.min([ui.values[0]]);
+        var end = d3.max([ui.values[1]]);
+        // console.log("begin:", begin, "end:", end);
+
+        zoom(begin, end);
+      }
+    });
+  }
+  line_graph2();
 </script>
