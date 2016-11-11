@@ -1534,12 +1534,36 @@ table {
   margin-bottom: 0;
   margin-top: 0; }
 
+@media only screen and (max-width: 1023px) {
+  #dataviz_container2 > div.text-container > ul {
+    list-style-type: square;
+    list-style-position: inside; }
+  #dataviz_container2 > div.text-container > ul.data_list {
+    font-size: .65em;
+    text-indent: 1px;
+    list-style-type: square;
+    list-style-position: inside;
+    column-count: 2; } }
 @media only screen and (min-width: 1024px) {
   #dataviz_container2 {
     width: 120%;
     margin-left: -10%; }
-    #dataviz_container2 > div.text-container {
-      text-indent: -8%; } }
+    #dataviz_container2 > div.text-container > ul {
+      text-indent: 1px;
+      list-style-type: square;
+      list-style-position: inside; }
+    #dataviz_container2 > div.text-container > ul.data_list {
+      font-size: .65em;
+      text-indent: 1px;
+      list-style-type: square;
+      list-style-position: inside; } }
+    @media only screen and (min-width: 1024px) and (max-width: 1023px) {
+      #dataviz_container2 > div.text-container > ul.data_list {
+        column-count: 2; } }
+    @media only screen and (min-width: 1024px) and (min-width: 1024px) {
+      #dataviz_container2 > div.text-container > ul.data_list {
+        column-count: 3; } }
+
 #dataviz_container2 > div:nth-child(1) {
   margin-top: 0; }
 #dataviz_container2 > div.text-container {
@@ -1608,7 +1632,6 @@ table {
     text-align: left;
     float: right; }
     #dataviz_container2 > #d3_linegraph_rateofchange_filter > b, #dataviz_container2 #d3_scatterplot_enrollment_filter > b, #dataviz_container2 #d3_scatterplot_duration_filter > b, #dataviz_container2 #d3_linegraph_trials_filter > b {
-      border: 2px solid red;
       margin: 10% 0; }
     #dataviz_container2 > #d3_linegraph_rateofchange_filter > input, #dataviz_container2 #d3_scatterplot_enrollment_filter > input, #dataviz_container2 #d3_scatterplot_duration_filter > input, #dataviz_container2 #d3_linegraph_trials_filter > input {
       margin: 5% 10% 5% 0%; }

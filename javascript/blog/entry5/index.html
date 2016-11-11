@@ -1,21 +1,61 @@
 <div id="dataviz_container2">
   <div class="text-container ui text container">
-    <h3 class="text__header">
-      An examination of the Clinicaltrials.gov data
-    </h3>
-    <p>
-      
-    </p>
+    <h3 class="text__header"> An examination of the Clinicaltrials.gov data </h3>
+    <br>
+    <h4>Overview</h4>
+    <ul>
+      <li>In total there are 300,000 trials in the database and the amount of data is not large, considering only approximately 20 years of data is accrued</li>
+      <li>In total there are 13 categoreies, for this analysis only 5 were considered</li>
+    </ul>
+    <br>
+    <br>
+    <ul class="data_list">
+      <li>  Bacterial and Fungal Diseases    </li>
+      <li style="color:blue;">  Behaviors and Mental Disorders    </li>
+      <li>  Blood and Lymph Conditions    </li>
+      <li style="color:blue;">  Cancers and Other Neoplasms    </li>
+      <li style="color:blue;">  Digestive System Diseases    </li>
+      <li>  Diseases and Abnormalities at or Before Birth    </li>
+      <li>  Disorders of Environmental Origin    </li>
+      <li>  Ear, Nose, and Throat Diseases    </li>
+      <li>  Eye Diseases    </li>
+      <li>  Gland and Hormone Related Diseases    </li>
+      <li>  Heart and Blood Diseases    </li>
+      <li style="color:blue;">  Immune System Diseases    </li>
+      <li>  Mouth and Tooth Diseases    </li>
+      <li>  Muscle, Bone, and Cartilage Diseases    </li>
+      <li>  Nervous System Diseases    </li>
+      <li>  Nutritional and Metabolic Diseases    </li>
+      <li>  Occupational Diseases    </li>
+      <li>  Parasitic Diseases    </li>
+      <li>  Respiratory Tract (Lung and Bronchial) Diseases    </li>
+      <li>  Skin and Connective Tissue Diseases    </li>
+      <li>  Substance Related Disorders    </li>
+      <li>  Symptoms and General Pathology    </li>
+      <li>  Urinary Tract, Sexual Organs, and Pregnancy Conditions    </li>
+      <li>  Viral Diseases    </li>
+      <li style="color:blue;">  Wounds and Injuries    </li>
+    </ul>
+    <br>
+    <br>
+    <h4>Key goals</h4>
+    <ul>
+        <li>How many trials are there ?</li>
+        <li>What is the rate of change of the number of trials per year ?</li>
+        <li>What is the number of subjects in trials ?</li>
+        <li>How long do trials last ?</li>
+    </ul>
   </div>
+  <hr>
   <div class="text-container ui text container">
     <h3 class="text__header">
-      Total Number of trials each year.
+      Total Number of trials per year.
     </h3>
   </div>
   <div id="d3_linegraph_trials">
   </div> 
   <div id="d3_linegraph_trials_filter">
-    <b>Species Filter:</b>
+    <b>Category Filter:</b>
     <br>
     <br>
     <input name='linegraph_trials_v' value="digestive" type="checkbox" checked>Digestive
@@ -35,39 +75,55 @@
   </div>
   <div id="d3_linegraph_trials_slider-range">
   </div>
+  <div class="text-container ui text container">
+    <h4>Overview</h4>
+    <ul>
+      <li>The number of trials for each year (per category) is being graphed</li>
+      <li>The number of trials is increasing each year, might seem like an exponential curve, but most likely in a linear fashion</li>
+      <li>Each category's growth was static except, in comparision to other categories, except for wounds which overtakes behvaiour around 2008 </li>
+    </ul>
+  </div>
   <hr>
   <div class="text-container ui text container">
     <h3 class="text__header">
-      Average enrollment per trial.
+      Rate of change of trials per year.
     </h3>
   </div>
   <div id="d3_linegraph_rateofchange">
   </div> 
   <div id="d3_linegraph_rateofchange_filter">
-    <b>Species Filter:</b>
+    <b>Category Filter:</b>
     <br>
     <br>
-    <input name='linegraph_rateofchange_v' value="digestive" type="checkbox" checked>Digestive
+    <input name='linegraph_enrollment_v' value="digestive" type="checkbox" checked>Digestive
     </input>
     <br>
-    <input name="linegraph_rateofchange_v" value="cancer" type="checkbox" checked >Cancer
+    <input name="linegraph_enrollment_v" value="cancer" type="checkbox" checked >Cancer
     </input>
     <br>
-    <input name="linegraph_rateofchange_v" value="immune" type="checkbox" checked >Immune
+    <input name="linegraph_enrollment_v" value="immune" type="checkbox" checked >Immune
     </input>
     <br>
-    <input name="linegraph_rateofchange_v" value="wound" type="checkbox" checked >Wounds
+    <input name="linegraph_enrollment_v" value="wound" type="checkbox" checked >Wounds
     </input>
     <br>
-    <input name="linegraph_rateofchange_v" value="beahviour" type="checkbox" checked >Behaviour
+    <input name="linegraph_enrollment_v" value="behaviour" type="checkbox" checked >Behaviour
     </input>
   </div>
   <div id="d3_linegraph_rateofchange_slider-range">
   </div>
+  <div class="text-container ui text container">
+    <h4>Overview</h4>
+    <ul>
+      <li>The rate of change shows that trials are still increasing each year, just at a slower rate than the previous year. </li>
+      <li>This suggests that in the future, the number of trials might decrease or possibily plateau. </li>
+      <li>Each categories overall compisition (%) will remain constant. </li>
+    </ul>
+  </div>
   <hr>
   <div class="text-container ui text container">
     <h3 class="text__header">
-      Stacked rate of change over time
+      Percentage of total trials per year.
     </h3>
   </div>
   <div id="d3_stacked_area_chart">
@@ -75,14 +131,12 @@
   <div id="d3_stacked_area_chart_slider-range">
   </div> 
   <div class="text-container ui text container">
-    <h4>Key findings</h4>
-    <ol>
-      <li>Test 1</li>
-      <li>Test 1</li>
-      <li>Test 1</li>
-      <li>Test 1</li>
-      <li>Test 1</li>
-    </ol>
+    <h4>Overview</h4>
+    <ul>
+      <li>The percentage of total for each category is being graphed</li>
+      <li>Very little changes except for immune decreasing and wounds expanding</li>
+      <li>More changes from 1995-2004 than from 2004-2015</li>
+    </ul>
   </div>
   <hr>
   <div class="text-container ui text container">
@@ -93,7 +147,7 @@
   <div id="d3_scatterplot_duration">
   </div> 
   <div id="d3_scatterplot_duration_filter">
-    <b>Species Filter:</b>
+    <b>Category Filter:</b>
     <br>
     <br>
     <input name='v' value="digestive" type="checkbox" checked>Digestive
@@ -113,6 +167,15 @@
   </div>
   <div id="d3_scatterplot_duration_slider-range">
   </div>
+  <div class="text-container ui text container">
+    <h4>Overview</h4>
+    <ul>
+      <li>Majority of trials between 1 yr to 4 yr and consitent behaviour across the x-axis (duration of trials)</li>
+      <li>The y axis is reflective of the number of trials per year (figure 1). However, the order in this dataset <small>(Immune, Digestive, Wounds, Cancer, Behaviour)</small>  is slightly different from figure 1 <small>(Immune, Digestive, Cancer, Wounds, Behaviour)</small></li>
+      <li>This could be indicative of Wounds having more concentrated duration of trials, leading to higher numbers for a particular duration</li>
+    </ul>
+  </div>
+
   <hr>
   <div class="text-container ui text container">
     <h3 class="text__header">
@@ -122,7 +185,8 @@
   <div id="d3_scatterplot_enrollment">
   </div>
   <div id="d3_scatterplot_enrollment_filter">
-    <b>Species Filter:</b>
+    <b>Category Filter:</b>
+    <br>
     <br>
     <input name='dur_v' value="digestive" type="checkbox" checked>Digestive
     </input>
@@ -140,6 +204,14 @@
     </input>
   </div>
   <div id="d3_scatterplot_enrollment_slider-range">
+  </div>
+  <div class="text-container ui text container">
+    <h4>Overview</h4>
+    <ul>
+      <li>Majority of subjects enrolled is between 1 to 30 and consitent behaviour across the x-axis (number of subjects)</li>
+      <li>As the number of subjects increases, the number of trials with that population size decreases.</li>
+      <li>The y axis is reflective of the number of trials per year (figure 1). The order in this dataset <small>(Immune, Digestive, Cancer, Wounds, Behaviour)</small>  is consistent with figure 1</li>
+    </ul>
   </div>
 </div>
 
@@ -406,8 +478,8 @@
     d3.csv(src, function(error, data) {
       org_data_copy2 = data;
 
-      console.log(error);
-      console.log(data);
+      // console.log(error);
+      // console.log(data);
       data.forEach(function(d) {
         d.enrollment = +d.month;
         d.count = +d.count;
@@ -931,7 +1003,7 @@
               }
             })
             .attr("display", display);
-        line_chart_trialnumber.selectAll("path")
+        line_chart_trialnumber.selectAll(".city")
             .filter(function(d) {
               return selected == d.name;
             })
@@ -969,6 +1041,13 @@
     }
 
     function line_chart_trialnumber_zoom (begin, end) {
+      line_chart_trialnumber_checkedarr = [];
+
+      d3.selectAll("[name=linegraph_trials_v]").each(function(d,i){
+        if (this.checked != true) {
+          line_chart_trialnumber_checkedarr.push(this.value);
+        }
+      });
 
       var date1 = new Date();
       date1.setFullYear(1995 + begin,0,1);
@@ -1084,6 +1163,30 @@
           })
           .attr("fill","none");
 
+        line_chart_trialnumber.selectAll("circle")
+          .filter(function(d) {
+            for(var key in this.parentNode.__data__) {
+              if(this.parentNode.__data__[key] == d) {
+                if (line_chart_trialnumber_checkedarr.indexOf(key) > -1) { 
+                  return true;
+                }
+              }
+            }
+          })
+          .attr("display","none");
+
+        line_chart_trialnumber.selectAll(".city")
+          .filter(function(d) {
+            if (line_chart_trialnumber_checkedarr.indexOf(d.name) > -1){ console.log("found 1") }
+            if (line_chart_trialnumber_checkedarr.indexOf(d.name) > -1){ return true }
+          })
+          .attr("display", "none");
+        // linegraph_enrollment.selectAll(".line_chart_trialnumber_label")
+        //     .filter(function(d) {
+        //       return selected == d.name;
+        //     })
+        //     .attr("display", display);
+
     }
 
     $("#d3_linegraph_trials_slider-range").slider({
@@ -1110,6 +1213,7 @@
         height = 350 - margin.top - margin.bottom;
 
     var formatnum = d3.format(".4g");
+    var formatPercent = d3.format("%");
 
     var parseDate = d3.time.format("%Y").parse;
 
@@ -1127,7 +1231,8 @@
 
     var yAxis = d3.svg.axis()
         .scale(y)
-        .orient("left");
+        .orient("left")
+        .tickFormat(function(d) { return d + "%"; });
 
     var line = d3.svg.line()
         .interpolate("basis")
@@ -1152,7 +1257,7 @@
           };
         }
         d.date = parseDate(d.year);
-        console.log(d.date);
+        // console.log(d.date);
       });
       org_data_copy = data;
 
@@ -1172,7 +1277,7 @@
         d3.max(cities, function(c) { return d3.max(c.values, function(v) { return v.temperature; }); })
       ]);
 
-      console.log("y domain is " + y.domain());
+      // console.log("y domain is " + y.domain());
 
       linegraph_enrollment.append("g")
           .attr("class", "x-axis")
@@ -1180,11 +1285,11 @@
           .call(xAxis)
         .append("text")
           .attr("class", "label")
-          .attr("x", width / 2 + 120)
+          .attr("x", width / 2)
           .attr("y", 50)
           .attr("font-size", "24px")
           .style("text-anchor", "end")
-          .text("Number of subjects");
+          .text("Year");
 
       linegraph_enrollment.append("g")
           .attr("class", "y-axis")
@@ -1197,7 +1302,7 @@
           .attr("font-size", "24px")
           .attr("dy", ".71em")
           .style("text-anchor", "end")
-          .text("Number of trials");
+          .text("Percent change");
 
       var city = linegraph_enrollment.selectAll(".city")
                       .data(cities)
@@ -1220,34 +1325,67 @@
       var colorsarr = ["behvariour","wound","immune","digestive"]
 
 
-      var circles = linegraph_enrollment.selectAll(".row")
-          .data(data)
-        .enter().append('g');
+      // var circles = linegraph_enrollment.selectAll(".row")
+      //     .data(data)
+      //   .enter().append('g');
   
 
-      circles.selectAll('.circle')
-          .data(function(d, i) { 
-            var array = $.map(data[i], function(value, index) {
-                if (index!="year") return [value];
-            }); 
-            return array; 
-          })
-        .enter().append('circle')
-          .attr("class", "path-circle")
-          .attr('r', 2.5 )
-          .attr('cx', function(d, i) { if (i!=5) return x(this.parentNode.__data__.date); })
-          .attr('cy', function(d,i)  { if (i!=5) return y(d) + 2; })
-          .attr("stroke", function (d,i) { 
-            for(var key in this.parentNode.__data__) {
-              if(this.parentNode.__data__[key] === d) {
-                  return color(key);
-              }
-            }
-          })
-          .attr("fill","none");
+      // circles.selectAll('.circle')
+      //     .data(function(d, i) { 
+      //       var array = $.map(data[i], function(value, index) {
+      //           if (index!="year") return [value];
+      //       }); 
+      //       return array; 
+      //     })
+      //   .enter().append('circle')
+      //     .attr("class", "path-circle")
+      //     .attr('r', 2.5 )
+      //     .attr('cx', function(d, i) { if (i!=5) return x(this.parentNode.__data__.date); })
+      //     .attr('cy', function(d,i)  { if (i!=5) return y(d) + 2; })
+      //     .attr("stroke", function (d,i) { 
+      //       for(var key in this.parentNode.__data__) {
+      //         if(this.parentNode.__data__[key] === d) {
+      //             return color(key);
+      //         }
+      //       }
+      //     })
+      //     .attr("fill","none");
+
+      d3.selectAll("[name=linegraph_enrollment_v]").on("change", function() {
+        var selected = this.value;
+        display = this.checked ? "inline" : "none";
+        // debugger; 
+        // console.log(selected);
+        // debugger;
+        // console.log(line_chart_trialnumber.selectAll(".city"));
+         // linegraph_enrollment.selectAll("circle")
+         //    .filter(function(d) {
+         //      for(var key in this.parentNode.__data__) {
+         //        if(this.parentNode.__data__[key] === d) {
+         //          if (key == "beahviour" && selected == "beahviour") { debugger };
+         //          return selected == key;
+         //        }
+         //      }
+         //    })
+         //    .attr("display", display);
+        linegraph_enrollment.selectAll(".city")
+            .filter(function(d) { return selected == d.name; })
+            .attr("display", display);
+        linegraph_enrollment.selectAll(".line_chart_trialnumber_label")
+            .filter(function(d) { return selected == d.name; })
+            .attr("display", display);
+      });
     });
   
-    function zoom (begin, end) {
+    function linegraph_enrollment_zoom (begin, end) {
+
+      linegraph_enrollment_checkedarr = [];
+
+      d3.selectAll("[name=linegraph_enrollment_v]").each(function(d,i){
+        if (this.checked != true) {
+          linegraph_enrollment_checkedarr.push(this.value);
+        }
+      });
 
       var date1 = new Date();
       date1.setFullYear(1995 + begin,0,1);
@@ -1284,7 +1422,7 @@
         d3.max(cities, function(c) { return d3.max(c.values, function(v) { return v.temperature; }); })
       ]);
 
-      console.log("y domain is " + y.domain());
+      // console.log("y domain is " + y.domain());
 
       linegraph_enrollment.append("g")
           .attr("class", "x-axis")
@@ -1292,11 +1430,11 @@
           .call(xAxis)
         .append("text")
           .attr("class", "label")
-          .attr("x", width / 2 + 120)
+          .attr("x", width / 2)
           .attr("y", 50)
           .attr("font-size", "24px")
           .style("text-anchor", "end")
-          .text("Number of subjects");
+          .text("Year");
 
       linegraph_enrollment.append("g")
           .attr("class", "y-axis")
@@ -1309,7 +1447,7 @@
           .attr("font-size", "24px")
           .attr("dy", ".71em")
           .style("text-anchor", "end")
-          .text("Number of trials");
+          .text("Percent Change");
 
       var city = linegraph_enrollment.selectAll(".city")
                       .data(cities)
@@ -1329,34 +1467,61 @@
       //     .text(function(d) { return d.name; });
 
       
-      var colorsarr = ["behvariour","wound","immune","digestive"]
+      var colorsarr = ["beahviour","wound","immune","digestive"]
 
 
-      var circles = linegraph_enrollment.selectAll(".row")
-          .data(data)
-        .enter().append('g');
+      // var circles = linegraph_enrollment.selectAll(".row")
+      //     .data(data)
+      //   .enter().append('g');
   
 
-      circles.selectAll('.circle')
-          .data(function(d, i) { 
-            var array = $.map(data[i], function(value, index) {
-                if (index!="year") return [value];
-            }); 
-            return array; 
+      // circles.selectAll('.circle')
+      //     .data(function(d, i) { 
+      //       var array = $.map(data[i], function(value, index) {
+      //           if (index!="year") return [value];
+      //       }); 
+      //       return array; 
+      //     })
+      //   .enter().append('circle')
+      //     .attr("class", "path-circle")
+      //     .attr('r', 2.5 )
+      //     .attr('cx', function(d, i) { if (i!=5) return x(this.parentNode.__data__.date); })
+      //     .attr('cy', function(d,i)  { if (i!=5) return y(d); })
+      //     .attr("stroke", function (d,i) { 
+      //       for(var key in this.parentNode.__data__) {
+      //         if(this.parentNode.__data__[key] === d) {
+      //             return color(key);
+      //         }
+      //       }
+      //     })
+      //     .attr("fill","none");
+
+        // console.log(linegraph_enrollment_checkedarr);
+
+        // linegraph_enrollment.selectAll("circle")
+        //     .filter(function(d) {
+        //       for(var key in this.parentNode.__data__) {
+        //         if(this.parentNode.__data__[key] === d) {
+        //           if (linegraph_enrollment_checkedarr.indexOf(key) > -1) { 
+        //             console.log("look ehre!");
+        //             return;
+        //           }
+        //         }
+        //       }
+        //     })
+        //     .attr("display", display);
+
+        linegraph_enrollment.selectAll(".city")
+          .filter(function(d) {
+            if (linegraph_enrollment_checkedarr.indexOf(d.name) > -1){ console.log("found 1") }
+            if (linegraph_enrollment_checkedarr.indexOf(d.name) > -1){ return true }
           })
-        .enter().append('circle')
-          .attr("class", "path-circle")
-          .attr('r', 2.5 )
-          .attr('cx', function(d, i) { if (i!=5) return x(this.parentNode.__data__.date); })
-          .attr('cy', function(d,i)  { if (i!=5) return y(d); })
-          .attr("stroke", function (d,i) { 
-            for(var key in this.parentNode.__data__) {
-              if(this.parentNode.__data__[key] === d) {
-                  return color(key);
-              }
-            }
-          })
-          .attr("fill","none");
+          .attr("display", "none");
+        // linegraph_enrollment.selectAll(".line_chart_trialnumber_label")
+        //     .filter(function(d) {
+        //       return selected == d.name;
+        //     })
+        //     .attr("display", display);
 
     }
 
@@ -1370,7 +1535,7 @@
         var end = d3.max([ui.values[1]]);
         // console.log("begin:", begin, "end:", end);
 
-        zoom(begin, end);
+        linegraph_enrollment_zoom(begin, end);
       }
     });
   }
