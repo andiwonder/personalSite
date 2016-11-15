@@ -88,28 +88,28 @@ myApp.config(function ($routeProvider, $locationProvider){
       templateUrl : "javascript/about/about.html",
       controller : "myController"
     })
-    .when("/blog", {
-      templateUrl : "javascript/blog/blog.html",
+    .when("/portfolio", {
+      templateUrl : "javascript/portfolio/portfolio.html",
       controller : "myController"
     })
-    .when("/blog/1", {
-      templateUrl : "javascript/blog/entry1/index.html",
+    .when("/portfolio/1", {
+      templateUrl : "javascript/portfolio/entry1/index.html",
       controller : "myController"
     })
-    .when("/blog/3", {
-      templateUrl : "javascript/blog/entry2/index.html",
+    .when("/portfolio/3", {
+      templateUrl : "javascript/portfolio/entry2/index.html",
       controller : "myController"
     })
-    .when("/blog/2", {
-      templateUrl : "javascript/blog/entry3/index.html",
+    .when("/portfolio/2", {
+      templateUrl : "javascript/portfolio/entry3/index.html",
       controller : "myController"
     })
-    .when("/blog/4", {
-      templateUrl : "javascript/blog/entry4/index.html",
+    .when("/portfolio/4", {
+      templateUrl : "javascript/portfolio/entry4/index.html",
       controller : "myController"
     })
-    .when("/blog/5", {
-      templateUrl : "javascript/blog/entry5/index.html",
+    .when("/portfolio/5", {
+      templateUrl : "javascript/portfolio/entry5/index.html",
       controller : "myController"
     })        
     .when('/projects',{
