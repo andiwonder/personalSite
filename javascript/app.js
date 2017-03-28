@@ -111,7 +111,11 @@ myApp.config(function ($routeProvider, $locationProvider){
     .when("/portfolio/5", {
       templateUrl : "javascript/portfolio/entry5/index.html",
       controller : "myController"
-    })        
+    })
+    .when("/portfolio/6", {
+      templateUrl : "javascript/portfolio/entry6/index.html",
+      controller : "myController"
+    })          
     .when('/projects',{
       templateUrl : "javascript/projects/project.html",
       controller : "myController"

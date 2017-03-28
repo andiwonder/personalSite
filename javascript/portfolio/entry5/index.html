@@ -216,6 +216,19 @@
 </div>
 
 <script type="text/javascript">
+  // to deal with  Uncaught TypeError: Cannot read property 'msie' of undefined - jQuery 
+  jQuery.browser = {};
+    (function () {
+        jQuery.browser.msie = false;
+        jQuery.browser.version = 0;
+        if (navigator.userAgent.match(/MSIE ([0-9]+)\./)) {
+            jQuery.browser.msie = true;
+            jQuery.browser.version = RegExp.$1;
+        }
+    })();
+</script>
+
+<script type="text/javascript">
   var stacked_area_chart = function stacked_area_chart(data, org_data_copy) {
     console.log("stacked area chart called");
 
@@ -381,6 +394,7 @@
     }
 
     $(function() {
+      // debugger;
       $( "#d3_stacked_area_chart_slider-range" ).slider({
         range: true,
         min: 0,

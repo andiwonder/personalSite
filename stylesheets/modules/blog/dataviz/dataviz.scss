@@ -36,6 +36,7 @@
 }
 
 #dataviz_container2 {
+  background: url(../images/blog/bg_noise.png);
   // border: 2px solid red;
   // border-left: 1px solid black;
   // border-right: 1px solid black;
@@ -59,8 +60,7 @@
   }
 
   @media only screen and (min-width: 1024px) {
-    width: 120%;
-    margin-left: -10%;
+    width: 100%;
     > div.text-container {
       // text-indent: -8%;
       
@@ -100,12 +100,13 @@
     margin: 5% 12% 5% 5%;
   }
   
-  > #d3_linegraph_rateofchange , #d3_scatterplot_enrollment , #d3_scatterplot_duration , #d3_linegraph_trials {
-
-    width: 75%;
+  >#d3_stacked_area_chart, #d3_linegraph_rateofchange , #d3_scatterplot_enrollment , #d3_scatterplot_duration , #d3_linegraph_trials {
+    width: 80%;
     /* float: left; */
     display: inline-block;
     text-align: left;
+    font-family: "Work sans";
+    font-size: .8em;
 
     body {
       font: 15px sans-serif;
@@ -180,11 +181,9 @@
     }
     
     &_filter {
-      min-width: 10%;
+      width: 100%;
       display: inline-block;
       vertical-align: top;
-      text-align: left;
-      float: right;
 
       >b {
         // border: 2px solid red;
@@ -192,14 +191,19 @@
       }
 
       >input {
-        margin: 5% 10% 5% 0%;
+        margin-left: 2%;
+        margin-right: 1%;
       }
     }
 
 
 
     &_slider-range {
-      margin: 5% 12% 5% 5%;
+      // margin: 0% 12% 5% 5%;
+      width: 70%;
+      margin: 0 auto;
+      margin-bottom: 5%;
+      margin-top: 2%;
     }
   }
 

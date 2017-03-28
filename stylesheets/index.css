@@ -1297,7 +1297,7 @@ table {
 
 .nav {
   text-align: center;
-  background-color: #28aadc;
+  background-color: #4A8EF3;
   padding-top: 5%;
   font-weight: 700i;
   font-family: 'PT Sans', sans-serif;
@@ -1319,7 +1319,9 @@ table {
       position: fixed; } }
   .nav-primary {
     margin-top: 20%;
-    font-size: 1.125em; }
+    font-size: 1.8em;
+    font-weight: bold;
+    font-style: italic; }
     @media screen and (max-width: 1023px) {
       .nav-primary {
         margin: 3% auto;
@@ -1333,14 +1335,16 @@ table {
         display: table;
         font-size: .9em; } }
     .nav-primary__item {
-      margin: 20% 0; }
+      margin: 33% 0;
+      font-family: 'Arvo', serif;
+      font-weight: 400; }
       @media screen and (max-width: 1023px) {
         .nav-primary__item {
           margin: 3% 0;
           display: table-cell; } }
     .nav-primary__link {
       color: black;
-      font-size: 1.125em; }
+      font-size: 1em; }
 
 .main-content {
   text-align: center; }
@@ -1348,13 +1352,11 @@ table {
     .main-content {
       padding: 20px; } }
 
-.main-content__wrapper {
-  padding: 5% 0; }
-  @media screen and (min-width: 1200px) {
-    .main-content__wrapper {
-      width: 70%; } }
-  .main-content__wrapper--without-padding {
-    padding: 0; }
+@media screen and (min-width: 1200px) {
+  .main-content__wrapper {
+    width: 100%; } }
+.main-content__wrapper--without-padding {
+  padding: 0; }
 
 .intro .photo__wrapper {
   text-align: center; }
@@ -1383,6 +1385,10 @@ table {
   margin-top: 5%;
   margin-left: 0;
   font-family: 'PT Sans', sans-serif; }
+  @media screen and (min-width: 1200px) {
+    .stats-section {
+      width: 70%;
+      margin: 0 auto; } }
   @media screen and (max-width: 767px) {
     .stats-section {
       margin-top: 10%; } }
@@ -1436,6 +1442,11 @@ table {
   padding-bottom: 2px;
   padding-top: 1px; }
 
+@media screen and (min-width: 1200px) {
+  .desk__narrow {
+    width: 70%;
+    margin: 0 auto; } }
+
 .post__image {
   width: 100%; }
   .post__image--narrow {
@@ -1465,9 +1476,13 @@ table {
 
 .text-container {
   text-align: justify;
-  font-family: 'PT Sans', sans-serif !important;
+  font-family: 'Work Sans', sans-serif !important;
   line-height: 1.5 !important;
-  font-size: 1em !important; }
+  font-size: .85em !important;
+  font-weight: 500;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  color: rgba(0, 0, 0, 0.87); }
   .text-container h3 {
     margin: 0; }
   .text-container h3, .text-container h4 {
@@ -1534,29 +1549,30 @@ table {
   margin-bottom: 0;
   margin-top: 0; }
 
-@media only screen and (max-width: 1023px) {
-  #dataviz_container2 > div.text-container > ul {
-    list-style-type: square;
-    list-style-position: inside; }
-  #dataviz_container2 > div.text-container > ul.data_list {
-    font-size: .65em;
-    text-indent: 1px;
-    list-style-type: square;
-    list-style-position: inside;
-    column-count: 2; } }
-@media only screen and (min-width: 1024px) {
-  #dataviz_container2 {
-    width: 120%;
-    margin-left: -10%; }
+#dataviz_container2 {
+  background: url(../images/blog/bg_noise.png); }
+  @media only screen and (max-width: 1023px) {
     #dataviz_container2 > div.text-container > ul {
-      text-indent: 1px;
       list-style-type: square;
       list-style-position: inside; }
     #dataviz_container2 > div.text-container > ul.data_list {
       font-size: .65em;
       text-indent: 1px;
       list-style-type: square;
-      list-style-position: inside; } }
+      list-style-position: inside;
+      column-count: 2; } }
+  @media only screen and (min-width: 1024px) {
+    #dataviz_container2 {
+      width: 100%; }
+      #dataviz_container2 > div.text-container > ul {
+        text-indent: 1px;
+        list-style-type: square;
+        list-style-position: inside; }
+      #dataviz_container2 > div.text-container > ul.data_list {
+        font-size: .65em;
+        text-indent: 1px;
+        list-style-type: square;
+        list-style-position: inside; } }
     @media only screen and (min-width: 1024px) and (max-width: 1023px) {
       #dataviz_container2 > div.text-container > ul.data_list {
         column-count: 2; } }
@@ -1564,79 +1580,84 @@ table {
       #dataviz_container2 > div.text-container > ul.data_list {
         column-count: 3; } }
 
-#dataviz_container2 > div:nth-child(1) {
-  margin-top: 0; }
-#dataviz_container2 > div.text-container {
-  margin: 5% 0; }
-#dataviz_container2 > #d3_stacked_area_chart_slider-range {
-  margin: 5% 12% 5% 5%; }
-#dataviz_container2 > #d3_linegraph_rateofchange, #dataviz_container2 #d3_scatterplot_enrollment, #dataviz_container2 #d3_scatterplot_duration, #dataviz_container2 #d3_linegraph_trials {
-  width: 75%;
-  /* float: left; */
-  display: inline-block;
-  text-align: left; }
-  #dataviz_container2 > #d3_linegraph_rateofchange body, #dataviz_container2 #d3_scatterplot_enrollment body, #dataviz_container2 #d3_scatterplot_duration body, #dataviz_container2 #d3_linegraph_trials body {
-    font: 15px sans-serif; }
-  #dataviz_container2 > #d3_linegraph_rateofchange .name, #dataviz_container2 #d3_scatterplot_enrollment .name, #dataviz_container2 #d3_scatterplot_duration .name, #dataviz_container2 #d3_linegraph_trials .name {
-    position: relative;
-    top: 90px;
-    text-align: left;
-    font-weight: bold; }
-  #dataviz_container2 > #d3_linegraph_rateofchange .title, #dataviz_container2 #d3_scatterplot_enrollment .title, #dataviz_container2 #d3_scatterplot_duration .title, #dataviz_container2 #d3_linegraph_trials .title {
-    position: relative;
-    text-align: left;
-    font-size: 25px; }
-  #dataviz_container2 > #d3_linegraph_rateofchange .x-axis path, #dataviz_container2 > #d3_linegraph_rateofchange .y-axis path,
-  #dataviz_container2 > #d3_linegraph_rateofchange .y-axis line, #dataviz_container2 > #d3_linegraph_rateofchange .x-axis line, #dataviz_container2 #d3_scatterplot_enrollment .x-axis path, #dataviz_container2 #d3_scatterplot_enrollment .y-axis path,
-  #dataviz_container2 #d3_scatterplot_enrollment .y-axis line, #dataviz_container2 #d3_scatterplot_enrollment .x-axis line, #dataviz_container2 #d3_scatterplot_duration .x-axis path, #dataviz_container2 #d3_scatterplot_duration .y-axis path,
-  #dataviz_container2 #d3_scatterplot_duration .y-axis line, #dataviz_container2 #d3_scatterplot_duration .x-axis line, #dataviz_container2 #d3_linegraph_trials .x-axis path, #dataviz_container2 #d3_linegraph_trials .y-axis path,
-  #dataviz_container2 #d3_linegraph_trials .y-axis line, #dataviz_container2 #d3_linegraph_trials .x-axis line {
-    fill: none;
-    stroke: black;
-    shape-rendering: crispEdges; }
-  #dataviz_container2 > #d3_linegraph_rateofchange .line, #dataviz_container2 #d3_scatterplot_enrollment .line, #dataviz_container2 #d3_scatterplot_duration .line, #dataviz_container2 #d3_linegraph_trials .line {
-    fill: none;
-    stroke: blue;
-    stroke-width: 2px; }
-  #dataviz_container2 > #d3_linegraph_rateofchange .dot, #dataviz_container2 #d3_scatterplot_enrollment .dot, #dataviz_container2 #d3_scatterplot_duration .dot, #dataviz_container2 #d3_linegraph_trials .dot {
-    stroke: #000; }
-  #dataviz_container2 > #d3_linegraph_rateofchange #filter, #dataviz_container2 #d3_scatterplot_enrollment #filter, #dataviz_container2 #d3_scatterplot_duration #filter, #dataviz_container2 #d3_linegraph_trials #filter {
-    position: absolute; }
-  #dataviz_container2 > #d3_linegraph_rateofchange #mark, #dataviz_container2 #d3_scatterplot_enrollment #mark, #dataviz_container2 #d3_scatterplot_duration #mark, #dataviz_container2 #d3_linegraph_trials #mark {
-    padding-left: 150px;
-    position: inherit; }
-  #dataviz_container2 > #d3_linegraph_rateofchange #xAXs, #dataviz_container2 #d3_scatterplot_enrollment #xAXs, #dataviz_container2 #d3_scatterplot_duration #xAXs, #dataviz_container2 #d3_linegraph_trials #xAXs {
-    position: relative;
-    left: 290px;
-    bottom: 30px; }
-  #dataviz_container2 > #d3_linegraph_rateofchange #yAXs, #dataviz_container2 #d3_scatterplot_enrollment #yAXs, #dataviz_container2 #d3_scatterplot_duration #yAXs, #dataviz_container2 #d3_linegraph_trials #yAXs {
-    position: relative;
-    bottom: 30px;
-    left: 315px; }
-  #dataviz_container2 > #d3_linegraph_rateofchange #label, #dataviz_container2 #d3_scatterplot_enrollment #label, #dataviz_container2 #d3_scatterplot_duration #label, #dataviz_container2 #d3_linegraph_trials #label {
-    position: absolute;
-    top: 599px;
-    bottom: 125px;
-    left: 300px;
-    right: 0px; }
-  #dataviz_container2 > #d3_linegraph_rateofchange #label2, #dataviz_container2 #d3_scatterplot_enrollment #label2, #dataviz_container2 #d3_scatterplot_duration #label2, #dataviz_container2 #d3_linegraph_trials #label2 {
-    position: absolute;
-    top: 599px;
-    bottom: 125px;
-    left: 430px;
-    right: 0px; }
-  #dataviz_container2 > #d3_linegraph_rateofchange_filter, #dataviz_container2 #d3_scatterplot_enrollment_filter, #dataviz_container2 #d3_scatterplot_duration_filter, #dataviz_container2 #d3_linegraph_trials_filter {
-    min-width: 10%;
-    display: inline-block;
-    vertical-align: top;
-    text-align: left;
-    float: right; }
-    #dataviz_container2 > #d3_linegraph_rateofchange_filter > b, #dataviz_container2 #d3_scatterplot_enrollment_filter > b, #dataviz_container2 #d3_scatterplot_duration_filter > b, #dataviz_container2 #d3_linegraph_trials_filter > b {
-      margin: 10% 0; }
-    #dataviz_container2 > #d3_linegraph_rateofchange_filter > input, #dataviz_container2 #d3_scatterplot_enrollment_filter > input, #dataviz_container2 #d3_scatterplot_duration_filter > input, #dataviz_container2 #d3_linegraph_trials_filter > input {
-      margin: 5% 10% 5% 0%; }
-  #dataviz_container2 > #d3_linegraph_rateofchange_slider-range, #dataviz_container2 #d3_scatterplot_enrollment_slider-range, #dataviz_container2 #d3_scatterplot_duration_slider-range, #dataviz_container2 #d3_linegraph_trials_slider-range {
+  #dataviz_container2 > div:nth-child(1) {
+    margin-top: 0; }
+  #dataviz_container2 > div.text-container {
+    margin: 5% 0; }
+  #dataviz_container2 > #d3_stacked_area_chart_slider-range {
     margin: 5% 12% 5% 5%; }
+  #dataviz_container2 > #d3_stacked_area_chart, #dataviz_container2 #d3_linegraph_rateofchange, #dataviz_container2 #d3_scatterplot_enrollment, #dataviz_container2 #d3_scatterplot_duration, #dataviz_container2 #d3_linegraph_trials {
+    width: 80%;
+    /* float: left; */
+    display: inline-block;
+    text-align: left;
+    font-family: "Work sans";
+    font-size: .8em; }
+    #dataviz_container2 > #d3_stacked_area_chart body, #dataviz_container2 #d3_linegraph_rateofchange body, #dataviz_container2 #d3_scatterplot_enrollment body, #dataviz_container2 #d3_scatterplot_duration body, #dataviz_container2 #d3_linegraph_trials body {
+      font: 15px sans-serif; }
+    #dataviz_container2 > #d3_stacked_area_chart .name, #dataviz_container2 #d3_linegraph_rateofchange .name, #dataviz_container2 #d3_scatterplot_enrollment .name, #dataviz_container2 #d3_scatterplot_duration .name, #dataviz_container2 #d3_linegraph_trials .name {
+      position: relative;
+      top: 90px;
+      text-align: left;
+      font-weight: bold; }
+    #dataviz_container2 > #d3_stacked_area_chart .title, #dataviz_container2 #d3_linegraph_rateofchange .title, #dataviz_container2 #d3_scatterplot_enrollment .title, #dataviz_container2 #d3_scatterplot_duration .title, #dataviz_container2 #d3_linegraph_trials .title {
+      position: relative;
+      text-align: left;
+      font-size: 25px; }
+    #dataviz_container2 > #d3_stacked_area_chart .x-axis path, #dataviz_container2 > #d3_stacked_area_chart .y-axis path,
+    #dataviz_container2 > #d3_stacked_area_chart .y-axis line, #dataviz_container2 > #d3_stacked_area_chart .x-axis line, #dataviz_container2 #d3_linegraph_rateofchange .x-axis path, #dataviz_container2 #d3_linegraph_rateofchange .y-axis path,
+    #dataviz_container2 #d3_linegraph_rateofchange .y-axis line, #dataviz_container2 #d3_linegraph_rateofchange .x-axis line, #dataviz_container2 #d3_scatterplot_enrollment .x-axis path, #dataviz_container2 #d3_scatterplot_enrollment .y-axis path,
+    #dataviz_container2 #d3_scatterplot_enrollment .y-axis line, #dataviz_container2 #d3_scatterplot_enrollment .x-axis line, #dataviz_container2 #d3_scatterplot_duration .x-axis path, #dataviz_container2 #d3_scatterplot_duration .y-axis path,
+    #dataviz_container2 #d3_scatterplot_duration .y-axis line, #dataviz_container2 #d3_scatterplot_duration .x-axis line, #dataviz_container2 #d3_linegraph_trials .x-axis path, #dataviz_container2 #d3_linegraph_trials .y-axis path,
+    #dataviz_container2 #d3_linegraph_trials .y-axis line, #dataviz_container2 #d3_linegraph_trials .x-axis line {
+      fill: none;
+      stroke: black;
+      shape-rendering: crispEdges; }
+    #dataviz_container2 > #d3_stacked_area_chart .line, #dataviz_container2 #d3_linegraph_rateofchange .line, #dataviz_container2 #d3_scatterplot_enrollment .line, #dataviz_container2 #d3_scatterplot_duration .line, #dataviz_container2 #d3_linegraph_trials .line {
+      fill: none;
+      stroke: blue;
+      stroke-width: 2px; }
+    #dataviz_container2 > #d3_stacked_area_chart .dot, #dataviz_container2 #d3_linegraph_rateofchange .dot, #dataviz_container2 #d3_scatterplot_enrollment .dot, #dataviz_container2 #d3_scatterplot_duration .dot, #dataviz_container2 #d3_linegraph_trials .dot {
+      stroke: #000; }
+    #dataviz_container2 > #d3_stacked_area_chart #filter, #dataviz_container2 #d3_linegraph_rateofchange #filter, #dataviz_container2 #d3_scatterplot_enrollment #filter, #dataviz_container2 #d3_scatterplot_duration #filter, #dataviz_container2 #d3_linegraph_trials #filter {
+      position: absolute; }
+    #dataviz_container2 > #d3_stacked_area_chart #mark, #dataviz_container2 #d3_linegraph_rateofchange #mark, #dataviz_container2 #d3_scatterplot_enrollment #mark, #dataviz_container2 #d3_scatterplot_duration #mark, #dataviz_container2 #d3_linegraph_trials #mark {
+      padding-left: 150px;
+      position: inherit; }
+    #dataviz_container2 > #d3_stacked_area_chart #xAXs, #dataviz_container2 #d3_linegraph_rateofchange #xAXs, #dataviz_container2 #d3_scatterplot_enrollment #xAXs, #dataviz_container2 #d3_scatterplot_duration #xAXs, #dataviz_container2 #d3_linegraph_trials #xAXs {
+      position: relative;
+      left: 290px;
+      bottom: 30px; }
+    #dataviz_container2 > #d3_stacked_area_chart #yAXs, #dataviz_container2 #d3_linegraph_rateofchange #yAXs, #dataviz_container2 #d3_scatterplot_enrollment #yAXs, #dataviz_container2 #d3_scatterplot_duration #yAXs, #dataviz_container2 #d3_linegraph_trials #yAXs {
+      position: relative;
+      bottom: 30px;
+      left: 315px; }
+    #dataviz_container2 > #d3_stacked_area_chart #label, #dataviz_container2 #d3_linegraph_rateofchange #label, #dataviz_container2 #d3_scatterplot_enrollment #label, #dataviz_container2 #d3_scatterplot_duration #label, #dataviz_container2 #d3_linegraph_trials #label {
+      position: absolute;
+      top: 599px;
+      bottom: 125px;
+      left: 300px;
+      right: 0px; }
+    #dataviz_container2 > #d3_stacked_area_chart #label2, #dataviz_container2 #d3_linegraph_rateofchange #label2, #dataviz_container2 #d3_scatterplot_enrollment #label2, #dataviz_container2 #d3_scatterplot_duration #label2, #dataviz_container2 #d3_linegraph_trials #label2 {
+      position: absolute;
+      top: 599px;
+      bottom: 125px;
+      left: 430px;
+      right: 0px; }
+    #dataviz_container2 > #d3_stacked_area_chart_filter, #dataviz_container2 #d3_linegraph_rateofchange_filter, #dataviz_container2 #d3_scatterplot_enrollment_filter, #dataviz_container2 #d3_scatterplot_duration_filter, #dataviz_container2 #d3_linegraph_trials_filter {
+      width: 100%;
+      display: inline-block;
+      vertical-align: top; }
+      #dataviz_container2 > #d3_stacked_area_chart_filter > b, #dataviz_container2 #d3_linegraph_rateofchange_filter > b, #dataviz_container2 #d3_scatterplot_enrollment_filter > b, #dataviz_container2 #d3_scatterplot_duration_filter > b, #dataviz_container2 #d3_linegraph_trials_filter > b {
+        margin: 10% 0; }
+      #dataviz_container2 > #d3_stacked_area_chart_filter > input, #dataviz_container2 #d3_linegraph_rateofchange_filter > input, #dataviz_container2 #d3_scatterplot_enrollment_filter > input, #dataviz_container2 #d3_scatterplot_duration_filter > input, #dataviz_container2 #d3_linegraph_trials_filter > input {
+        margin-left: 2%;
+        margin-right: 1%; }
+    #dataviz_container2 > #d3_stacked_area_chart_slider-range, #dataviz_container2 #d3_linegraph_rateofchange_slider-range, #dataviz_container2 #d3_scatterplot_enrollment_slider-range, #dataviz_container2 #d3_scatterplot_duration_slider-range, #dataviz_container2 #d3_linegraph_trials_slider-range {
+      width: 70%;
+      margin: 0 auto;
+      margin-bottom: 5%;
+      margin-top: 2%; }
 
 .section__main-text {
   font-style: normal;
@@ -1648,6 +1669,9 @@ table {
   margin: 2em auto;
   padding-bottom: 2em;
   border-bottom: 2px solid #222; }
+  @media screen and (min-width: 1200px) {
+    .section__stats {
+      width: 70%; } }
   .section__stats .heading1, .section__stats .heading1--wide, .section__stats .heading1--wide--topmarg {
     color: #090909;
     font-family: 'PT Sans', sans-serif;
@@ -1772,6 +1796,33 @@ table {
   padding: 1% !important;
   padding: 4% !important; }
 
+.bg__image__1 {
+  background: url(../images/blog/intern-proj.png);
+  height: 100vh;
+  width: 100vw;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed; }
+
+.bg__image__2 {
+  background: url(../images/blog/post-4/changes/changeb1.png);
+  height: 100vh;
+  width: 100vw;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed; }
+
+.bg__image__3 {
+  background: url(../images/blog/post-4/city.png);
+  height: 100vh;
+  width: 100vw;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed; }
+
 .github-table {
   width: 48%;
   display: inline-block;
@@ -1889,6 +1940,37 @@ table {
 .player-tip {
   margin: 2em auto;
   font-family: 'PT Sans', sans-serif; }
+
+.full__width {
+  max-width: 100%; }
+
+.showcase__left {
+  float: none;
+  height: 70vh;
+  background: url("../images/blog/post-6/img1.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  margin: 5% auto; }
+.showcase__right {
+  float: none;
+  height: 30vh;
+  background: url("../images/blog/post-6/img2.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+  margin: 5% auto; }
+.showcase img {
+  width: 100%; }
+
+.fill {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden .fill img;
+    overflow-flex-shrink: 0;
+    overflow-min-width: 100%;
+    overflow-min-height: 100%; }
 
 /* Single property */
 html {

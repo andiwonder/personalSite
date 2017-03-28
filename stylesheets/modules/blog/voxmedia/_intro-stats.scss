@@ -14,6 +14,11 @@
     padding-bottom: 2em;
     border-bottom: 2px solid #222;
 
+    @media screen and (min-width: 1200px) {
+      width: 70%;
+
+    }
+
     .heading1 {
       color: #090909;
       font-family: 'PT Sans', sans-serif;
@@ -38,6 +43,8 @@
       @extend .heading1;
       width: 66%;
       margin-right: 2%;
+
+
 
       @media screen and (max-width: 768px) {
         width: 100%;
@@ -183,4 +190,34 @@
   border: 1px solid rgba(34,36,38,.15) !important;
   padding: 1% !important;
   padding: 4% !important;
+}
+
+.bg__image__1 {
+  background: url(../images/blog/intern-proj.png);
+  height: 100vh;
+  width: 100vw;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+.bg__image__2 {
+  background: url(../images/blog/post-4/changes/changeb1.png);
+  height: 100vh;
+  width: 100vw;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+.bg__image__3 {
+  background: url(../images/blog/post-4/city.png);
+  height: 100vh;
+  width: 100vw;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
 }

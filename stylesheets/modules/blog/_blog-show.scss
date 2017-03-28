@@ -1,3 +1,10 @@
+.desk__narrow {
+  @media screen and (min-width: 1200px) {
+    width: 70%;
+    margin: 0 auto;
+  }
+}
+
 .post__image {
   width: 100%;
 
@@ -45,9 +52,13 @@
 
 .text-container{
   text-align: justify;
-  font-family: 'PT Sans', sans-serif !important;
+  font-family: 'Work Sans', sans-serif !important;
   line-height: 1.5 !important;
-  font-size: 1em !important;
+  font-size: .85em !important;
+  font-weight: 500;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  color: rgba(0,0,0,0.87);
   h3{
     margin: 0;
   }

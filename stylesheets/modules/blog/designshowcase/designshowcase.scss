@@ -1,0 +1,40 @@
+.showcase {
+
+  &__left {
+    float: none;
+    height: 70vh;
+    background: url('../images/blog/post-6/img1.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    margin: 5% auto;
+    // box-shadow: inset 0 0 0 9999px rgba(179,157,250,0.1);
+  }
+
+  &__right {
+    float: none;
+    height: 30vh;
+    background: url('../images/blog/post-6/img2.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+    margin: 5% auto;
+  }
+
+  & img {
+    width: 100%;
+  }
+}
+
+.fill {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden
+
+  & img {
+    flex-shrink: 0;
+    min-width: 100%;
+    min-height: 100%
+  }
+}
